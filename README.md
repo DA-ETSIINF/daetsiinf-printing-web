@@ -2,7 +2,7 @@
 
 ## Installation
 
-Install npm and then install `npm install -g @angular/cli`
+Install npm and then install `npm install -g @angular/cli`<br />
 If you need to install: `npm i`
 
 ## Run
