@@ -6,12 +6,21 @@
 :root {
   --bck: #f2f2f2;
   --white: #fff;
+  --dark-1: #efefef;
+  --dark-2: #56595b;
+  --dark-3: #3f3f3f;
+  --dark-4: #1b1b1c;
+
+  --primary: #7593c7;
+  --purple: #8c7ebb;
+  --blue: #65a5c9;
 }
 
 body,
 html {
   background: var(--bck);
   font-family: 'Oswald', sans-serif;
+  z-index: 1;
 }
 
 .material-icons {

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HeaderLgComponent } from './header/lg/header-lg.component';
 import { HeaderSmComponent } from './header/sm/header-sm.component';
+import { MenuComponent } from './header/sm/menu/menu.component';
 import { DocumentsComponent } from './documents/documents.component';
 
 const appRoutes: Routes = [{ path: '', component: DocumentsComponent }];
@@ -16,7 +17,8 @@ const appRoutes: Routes = [{ path: '', component: DocumentsComponent }];
     HeaderComponent,
     HeaderLgComponent,
     HeaderSmComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    MenuComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   providers: [],
