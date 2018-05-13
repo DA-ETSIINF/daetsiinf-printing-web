@@ -1,0 +1,50 @@
+<div class="menu" [ngStyle]="{'marginLeft':getStatus() ? '0' : '-80%' }">
+  <div class="menu__top">
+    <div class="menu__top-row">
+      <i class="material-icons user-icon">person</i>
+      <div class="user__info">
+        <h3 class="user__name">Javier García</h3>
+      </div>
+      <i class="material-icons" (click)="toogleMenu()">close</i>
+    </div>
+    <h5 class="user__email">maximo.garcia.martinez@alumnos.upm.es</h5>
+  </div>
+  <div class="menu__balance">
+    <span class="balance">SALDO: </span>
+    <span class="balance__quantity">3,09€</span>
+    <span class="recharge">Recargar</span>
+  </div>
+
+  <nav>
+    <ul>
+      <li>
+        <i class="material-icons">
+          insert_drive_file
+        </i>
+        Documentos
+        <div class="option">Mis documentos</div>
+        <div class="option">Documentos compartidos</div>
+      </li>
+      <li>
+        <i class="material-icons">
+          settings
+        </i>
+        Mis datos
+      </li>
+      <li>
+        <i class="material-icons">
+          history
+        </i>
+        Mi historial
+      </li>
+      <div class="horizontal-divider"></div>
+      <li>
+        <i class="material-icons">
+          exit_to_app
+        </i>
+        Cerrar sesión
+      </li>
+    </ul>
+  </nav>
+</div>
+<div id="close-menu" [ngClass]="{'hidding': !getStatus(),'showing': getStatus()}" (click)="toogleMenu()"></div>
