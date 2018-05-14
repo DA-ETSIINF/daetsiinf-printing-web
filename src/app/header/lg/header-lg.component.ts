@@ -6,10 +6,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-lg.component.css']
 })
 export class HeaderLgComponent implements OnInit {
+  static showUserDropdown: boolean = false;
+  static hideUserDropdown: boolean = false;
+  constructor() {}
 
-  constructor() { }
+  getShowUserDropdown = (): boolean => {
+    return HeaderLgComponent.showUserDropdown;
+  };
+  getHideUserDropdown = (): boolean => {
+    return HeaderLgComponent.hideUserDropdown;
+  };
 
-  ngOnInit() {
-  }
+  showUserDropdown = () => {
+    HeaderLgComponent.showUserDropdown = true;
+    HeaderLgComponent.hideUserDropdown = true;
+  };
 
+  hideUserDropdown = () => {
+    HeaderLgComponent.hideUserDropdown = false;
+    setTimeout(function() {
+      HeaderLgComponent.showUserDropdown = false;
+    }, 100);
+  };
+
+  ngOnInit() {}
 }
