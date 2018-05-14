@@ -1,3 +1,40 @@
-<p>
-  header-lg works!
-</p>
+<header>
+  <div class="header">
+    <img class="logo-daetsiinf" src=".\assets\img\logos\daetsiinf.png">
+    <h1 class="title">REPROGRAFÍA</h1>
+    <div class="header__right">
+      <div class="balance">3.09 €</div>
+      <div class="vertical-divider"></div>
+      <div class="dropdown" (mouseover)="showUserDropdown()" (mouseleave)="hideUserDropdown()">
+        <div class="dropdown__toggle">
+          <div class="dropdown__text">Javier</div>
+          <i class="material-icons">
+            keyboard_arrow_down
+          </i>
+        </div>
+        <nav class="dropdown__menu" [ngStyle]="{'zIndex':getShowUserDropdown()?'1000':'-1'}">
+          <ul [ngStyle]="{'margin-top':getHideUserDropdown()?'10px':'0','opacity':getHideUserDropdown()?'1':'0'}">
+            <li>
+              <i class="material-icons">insert_drive_file</i>
+              <span>Documentos</span>
+            </li>
+            <li>
+              <i class="material-icons">settings</i>
+              <span>Mis datos</span>
+            </li>
+            <li>
+              <i class="material-icons">history</i>
+              <span>Mi historial</span>
+            </li>
+            <div class="horizontal-divider"></div>
+            <li>
+              <i class="material-icons">exit_to_app</i>
+              <span>Cerrar sesión</span>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

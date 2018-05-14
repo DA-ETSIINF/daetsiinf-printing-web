@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from '../header.component';
 import { MenuComponent } from './menu/menu.component';
 import { DocumentsComponent } from '../../documents/documents.component';
 import { MatIconModule } from '@angular/material/icon';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header-sm',
@@ -10,9 +10,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./header-sm.component.css']
 })
 export class HeaderSmComponent implements OnInit {
-  currentURL: string;
   isOpen: boolean = false;
-  constructor(private location: Location) {}
+  constructor() {}
 
   toggleMenu = () => {
     MenuComponent.isOpen = !MenuComponent.isOpen;
@@ -25,20 +24,14 @@ export class HeaderSmComponent implements OnInit {
     DocumentsComponent.myDocumentsShowing = true;
   };
 
+  showDocumentsOptions = () => {
+    return HeaderComponent.showDocumentsOptions();
+  };
+
   viewSharedDocuments = e => {
     e.preventDefault();
     DocumentsComponent.myDocumentsShowing = false;
   };
 
-  showDocumentsOptions = (): boolean => {
-    return (
-      this.currentURL == '/my-documents' || this.currentURL == '/shared-with-me'
-    );
-  };
-
-  ngOnInit() {
-    this.currentURL = this.location.path();
-    if (this.currentURL == '/shared-with-me')
-      DocumentsComponent.myDocumentsShowing = false;
-  }
+  ngOnInit() {}
 }
