@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
+  static myDocumentsShowing: boolean = true;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor() {}
+  static getMyDocumentsShowing = (): boolean => {
+    return DocumentsComponent.myDocumentsShowing;
+  };
+  ngOnInit() {}
 }

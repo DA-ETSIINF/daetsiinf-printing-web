@@ -11,9 +11,9 @@ export class HeaderComponent implements OnInit {
   deviceWidth: string;
   constructor() {}
 
-  widthStatus(size) {
+  widthStatus = size => {
     this.deviceWidth = size < 992 ? 'small' : 'large';
-  }
+  };
 
   ngOnInit() {
     this.widthStatus(window.innerWidth);
