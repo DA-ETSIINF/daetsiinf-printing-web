@@ -1,0 +1,16 @@
+<nav>
+  <ul>
+    <li [ngClass]="{'active': getMyDocumentsShowing()}">
+      <a routerLink="/my-documents" (click)="viewMyDocuments($event)">
+        <i class="material-icons">play_arrow</i>
+        <span>Mis documentos</span>
+      </a>
+    </li>
+    <li [ngClass]="{'active': !getMyDocumentsShowing()}">
+      <a routerLink="/shared-with-me" (click)="viewSharedDocuments($event)">
+        <i class="material-icons">play_arrow</i>
+        <span>Compartidos conmigo</span>
+      </a>
+    </li>
+  </ul>
+</nav>

@@ -16,21 +16,21 @@ export class HeaderSmComponent implements OnInit {
   toggleMenu = () => {
     MenuComponent.isOpen = !MenuComponent.isOpen;
   };
+
   getMyDocumentsShowing = () => {
-    return DocumentsComponent.getMyDocumentsShowing();
-  };
-  viewMyDocuments = e => {
-    e.preventDefault();
-    DocumentsComponent.myDocumentsShowing = true;
+    return DocumentsComponent.myDocumentsShowing;
   };
 
   showDocumentsOptions = () => {
-    return HeaderComponent.showDocumentsOptions();
+    return DocumentsComponent.showDocumentsOptions();
   };
 
-  viewSharedDocuments = e => {
-    e.preventDefault();
-    DocumentsComponent.myDocumentsShowing = false;
+  viewMyDocuments = () => {
+    DocumentsComponent.viewMyDocuments();
+  };
+
+  viewSharedDocuments = () => {
+    DocumentsComponent.viewSharedDocuments();
   };
 
   ngOnInit() {}

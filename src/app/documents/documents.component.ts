@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-documents',
@@ -7,10 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentsComponent implements OnInit {
   static myDocumentsShowing: boolean = true;
+  static currentURL: string;
 
-  constructor() {}
-  static getMyDocumentsShowing = (): boolean => {
+  constructor(private location: Location) {}
+
+  static showDocumentsOptions = () => {
+    return (
+      DocumentsComponent.currentURL == '/my-documents' ||
+      DocumentsComponent.currentURL == '/shared-with-me'
+    );
+  };
+
+  static getMyDocumentsShowing = () => {
     return DocumentsComponent.myDocumentsShowing;
   };
-  ngOnInit() {}
+  static viewMyDocuments = () => {
+    DocumentsComponent.myDocumentsShowing = true;
+  };
+
+  static viewSharedDocuments = () => {
+    DocumentsComponent.myDocumentsShowing = false;
+  };
+
+  ngOnInit() {
+    DocumentsComponent.currentURL = this.location.path();
+    if (DocumentsComponent.currentURL == '/shared-with-me')
+      DocumentsComponent.myDocumentsShowing = false;
+  }
 }

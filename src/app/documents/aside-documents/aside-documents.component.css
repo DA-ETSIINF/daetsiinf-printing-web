@@ -1,0 +1,29 @@
+nav {
+  margin-top: 16px;
+  width: 220px;
+}
+nav ul li {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+nav ul .active {
+  background: #e4e4e4;
+  border-radius: 0 5px 5px 0;
+  border-left: 8px solid var(--blue);
+}
+nav ul li a {
+  height: 45px;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--dark-4);
+  font-size: 18px;
+  width: 100%;
+}
+nav ul li a i {
+  font-size: 14px;
+  margin-right: 5px;
+}

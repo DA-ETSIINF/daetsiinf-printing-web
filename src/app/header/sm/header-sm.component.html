@@ -5,13 +5,13 @@
     <img class="logo-daetsiinf" src=".\assets\img\logos\daetsiinf.png">
   </div>
   <div class="documents-bar" *ngIf="showDocumentsOptions()">
-    <a routerLink="my-documents" (click)="viewMyDocuments($event)">
+    <a routerLink="/my-documents" (click)="viewMyDocuments()">
       mis documentos
     </a>
-    <a routerLink="shared-with-me" (click)="viewSharedDocuments($event)">
+    <a routerLink="/shared-with-me" (click)="viewSharedDocuments()">
       compartidos conmigo
     </a>
   </div>
 </header>
-<div class="active" [ngStyle]="{'marginLeft': getMyDocumentsShowing() ? '0' : '50%'}"></div>
+<div class="active" *ngIf="showDocumentsOptions()" [ngStyle]="{'marginLeft': getMyDocumentsShowing() ? '0' : '50%'}"></div>
 <app-menu></app-menu>

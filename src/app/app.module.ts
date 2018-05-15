@@ -10,6 +10,7 @@ import { MenuComponent } from './header/sm/menu/menu.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { MyDocumentsComponent } from './documents/my-documents/my-documents.component';
 import { SharedDocumentsComponent } from './documents/shared-documents/shared-documents.component';
+import { AsideDocumentsComponent } from './documents/aside-documents/aside-documents.component';
 
 const appRoutes: Routes = [
   { path: 'my-documents', component: MyDocumentsComponent },
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     DocumentsComponent,
     MenuComponent,
     MyDocumentsComponent,
-    SharedDocumentsComponent
+    SharedDocumentsComponent,
+    AsideDocumentsComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   providers: [],
