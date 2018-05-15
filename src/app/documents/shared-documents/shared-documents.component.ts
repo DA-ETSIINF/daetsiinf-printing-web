@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-shared-documents',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shared-documents.component.css']
 })
 export class SharedDocumentsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  getDeviceWidth = (): string => {
+    return AppComponent.deviceWidth;
+  };
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

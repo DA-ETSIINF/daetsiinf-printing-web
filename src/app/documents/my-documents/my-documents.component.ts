@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-my-documents',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-documents.component.css']
 })
 export class MyDocumentsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  getDeviceWidth = (): string => {
+    return AppComponent.deviceWidth;
+  };
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

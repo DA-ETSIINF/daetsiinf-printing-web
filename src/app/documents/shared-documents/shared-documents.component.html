@@ -1,3 +1,7 @@
-<section class="shared-documents-section">
-  shared-documents works!
-</section>
+<app-documents></app-documents>
+<div style="display:flex;">
+  <app-aside-documents *ngIf="getDeviceWidth() == 'large'"></app-aside-documents>
+  <section class="shared-documents-section">
+    shared-documents works!
+  </section>
+</div>

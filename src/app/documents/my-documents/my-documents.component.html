@@ -1,16 +1,7 @@
-<section class="my-documents-section">
-  My documents wortks
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-</section>
+<app-documents></app-documents>
+<div style="display:flex;">
+  <app-aside-documents *ngIf="getDeviceWidth() == 'large'"></app-aside-documents>
+  <section class="my-documents-section">
+    My documents wortks
+  </section>
+</div>
