@@ -1,7 +1,8 @@
 <app-documents></app-documents>
 <div style="display:flex;">
   <app-aside-documents *ngIf="getDeviceWidth() == 'large'"></app-aside-documents>
-  <section class="shared-documents-section">
+  <div class="menu-swipe-listener" (swiperight)="openMenu()"></div>
+  <section class="shared-documents-section" (swiperight)="goToMyDocuments()">
     shared-documents works!
   </section>
 </div>

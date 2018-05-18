@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
+import { MenuComponent } from '../../header/sm/menu/menu.component';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shared-documents',
@@ -7,10 +10,18 @@ import { AppComponent } from '../../app.component';
   styleUrls: ['./shared-documents.component.css']
 })
 export class SharedDocumentsComponent implements OnInit {
-  constructor() {}
+  constructor(public router: Router) {}
 
   getDeviceWidth = (): string => {
     return AppComponent.deviceWidth;
+  };
+
+  goToMyDocuments = () => {
+    this.router.navigate(['my-documents']);
+  };
+
+  openMenu = () => {
+    MenuComponent.isOpen = true;
   };
 
   ngOnInit() {}

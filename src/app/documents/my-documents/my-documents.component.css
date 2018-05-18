@@ -1,0 +1,7 @@
+.menu-swipe-listener {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 100vh;
+  z-index: 1;
+}

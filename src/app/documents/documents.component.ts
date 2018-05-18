@@ -33,7 +33,7 @@ export class DocumentsComponent implements OnInit {
 
   ngOnInit() {
     DocumentsComponent.currentURL = this.location.path();
-    if (DocumentsComponent.currentURL == '/shared-with-me')
-      DocumentsComponent.myDocumentsShowing = false;
+    DocumentsComponent.myDocumentsShowing =
+      DocumentsComponent.currentURL == '/shared-with-me' ? false : true;
   }
 }
