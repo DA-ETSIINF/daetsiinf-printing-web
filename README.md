@@ -9,8 +9,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Run
 
-* production: `make prod`
-* development: `make dev` (with hot-reload)
+### production
+
+* `make prod`
+* open `http://0.0.0.0:4200/daetsiinf-printing-web/` in the browser
+
+### development
+
+* `make dev` (with hot-reload)
+* open `http://0.0.0.0:4201/` in the browser
 
 ## Credits
 
