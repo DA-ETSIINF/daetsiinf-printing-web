@@ -1,0 +1,9 @@
+ARG FROM=daetsiinf-printing-web_base
+FROM ${FROM} as builder
+
+# Set app workdir
+ARG APP_CONTAINER_PATH=/app
+WORKDIR ${APP_CONTAINER_PATH}
+
+# Start app
+CMD ng serve --host 0.0.0.0

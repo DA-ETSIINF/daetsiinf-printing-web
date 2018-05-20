@@ -1,0 +1,5 @@
+# excluding
+node_modules/
+.git/
+Dockerfiles*
+Makefile*
