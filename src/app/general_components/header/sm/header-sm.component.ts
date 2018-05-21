@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header.component';
 import { MenuComponent } from './menu/menu.component';
-import { DocumentsComponent } from '../../documents/documents.component';
+import { DocumentsComponent } from '../../../documents/documents.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

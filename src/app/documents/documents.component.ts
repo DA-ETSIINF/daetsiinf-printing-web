@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../general_components/header/header.component';
 import { Location } from '@angular/common';
 
 @Component({
