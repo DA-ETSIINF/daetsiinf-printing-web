@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HeaderLgComponent } from './header/lg/header-lg.component';
-import { HeaderSmComponent } from './header/sm/header-sm.component';
-import { MenuComponent } from './header/sm/menu/menu.component';
+import { HeaderComponent } from './general_components/header/header.component';
+import { HeaderLgComponent } from './general_components/header/lg/header-lg.component';
+import { HeaderSmComponent } from './general_components/header/sm/header-sm.component';
+import { MenuComponent } from './general_components/header/sm/menu/menu.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { MyDocumentsComponent } from './documents/my-documents/my-documents.component';
 import { SharedDocumentsComponent } from './documents/shared-documents/shared-documents.component';
 import { AsideDocumentsComponent } from './documents/aside-documents/aside-documents.component';
+import { UploadBtnComponent } from './general_components/upload-btn/upload-btn.component';
 
 const appRoutes: Routes = [
   { path: 'my-documents', component: MyDocumentsComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     MenuComponent,
     MyDocumentsComponent,
     SharedDocumentsComponent,
-    AsideDocumentsComponent
+    AsideDocumentsComponent,
+    UploadBtnComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   providers: [],
