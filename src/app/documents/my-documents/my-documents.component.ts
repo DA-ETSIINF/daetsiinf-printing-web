@@ -12,17 +12,17 @@ import { Router } from '@angular/router';
 export class MyDocumentsComponent implements OnInit {
   constructor(public router: Router) {}
 
-  getDeviceWidth = (): string => {
+  getDeviceWidth(): string {
     return AppComponent.deviceWidth;
-  };
+  }
 
-  goToSharedDocuments = () => {
+  goToSharedDocuments() {
     this.router.navigate(['shared-with-me']);
-  };
+  }
 
-  openMenu = () => {
+  openMenu() {
     MenuComponent.isOpen = true;
-  };
+  }
 
   ngOnInit() {}
 }

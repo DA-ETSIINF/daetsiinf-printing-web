@@ -9,9 +9,9 @@ import { AppComponent } from '../../app.component';
 export class HeaderComponent implements OnInit {
   constructor() {}
 
-  getDeviceWidth = (): string => {
+  getDeviceWidth(): string {
     return AppComponent.deviceWidth;
-  };
+  }
 
   ngOnInit() {}
 }
