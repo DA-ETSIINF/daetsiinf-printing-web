@@ -58,6 +58,7 @@ input[type='password'] {
   border-bottom: 2px solid var(--dark-2);
   padding: 5px 10px;
   width: calc(100% - 20px);
+  color: var(--dark-3)
 }
 
 .email {
