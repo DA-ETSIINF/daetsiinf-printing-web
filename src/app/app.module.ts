@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ModuleRouting } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './general_components/header/header.component';
@@ -12,13 +12,9 @@ import { MyDocumentsComponent } from './documents/my-documents/my-documents.comp
 import { SharedDocumentsComponent } from './documents/shared-documents/shared-documents.component';
 import { AsideDocumentsComponent } from './documents/aside-documents/aside-documents.component';
 import { UploadBtnComponent } from './general_components/upload-btn/upload-btn.component';
-
-const appRoutes: Routes = [
-  { path: 'my-documents', component: MyDocumentsComponent },
-  { path: 'shared-with-me', component: SharedDocumentsComponent },
-  { path: '', component: AppComponent }
-];
-
+import { LoginComponent } from './login/login/login.component';
+import { RegisterComponent } from './login/register/register.component';
+import { FooterComponent } from './general_components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +26,12 @@ const appRoutes: Routes = [
     MyDocumentsComponent,
     SharedDocumentsComponent,
     AsideDocumentsComponent,
-    UploadBtnComponent
+    UploadBtnComponent,
+    LoginComponent,
+    RegisterComponent,
+    FooterComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+  imports: [BrowserModule, ModuleRouting],
   providers: [],
   bootstrap: [AppComponent]
 })

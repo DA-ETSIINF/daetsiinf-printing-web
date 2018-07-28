@@ -8,32 +8,32 @@ import { Location } from '@angular/common';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
-  static myDocumentsShowing: boolean = true;
+  static myDocumentsShowing = true;
   static currentURL: string;
 
   constructor(private location: Location) {}
 
-  static showDocumentsOptions = () => {
+  static showDocumentsOptions() {
     return (
-      DocumentsComponent.currentURL == '/my-documents' ||
-      DocumentsComponent.currentURL == '/shared-with-me'
+      DocumentsComponent.currentURL === '/my-documents' ||
+      DocumentsComponent.currentURL === '/shared-with-me'
     );
-  };
+  }
 
-  static getMyDocumentsShowing = () => {
+  static getMyDocumentsShowing() {
     return DocumentsComponent.myDocumentsShowing;
-  };
-  static viewMyDocuments = () => {
+  }
+  static viewMyDocuments() {
     DocumentsComponent.myDocumentsShowing = true;
-  };
+  }
 
-  static viewSharedDocuments = () => {
+  static viewSharedDocuments() {
     DocumentsComponent.myDocumentsShowing = false;
-  };
+  }
 
   ngOnInit() {
     DocumentsComponent.currentURL = this.location.path();
     DocumentsComponent.myDocumentsShowing =
-      DocumentsComponent.currentURL == '/shared-with-me' ? false : true;
+      DocumentsComponent.currentURL === '/shared-with-me' ? false : true;
   }
 }
