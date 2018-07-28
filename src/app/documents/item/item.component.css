@@ -1,0 +1,19 @@
+.item {
+  text-align: center;
+  margin: auto;
+}
+
+.item i {
+  width: 100%;
+  font-size: 55px;
+  color: var(--dark-2);
+}
+
+h5 {
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--dark-4);
+  white-space: nowrap;
+  padding: 0 3px;
+}

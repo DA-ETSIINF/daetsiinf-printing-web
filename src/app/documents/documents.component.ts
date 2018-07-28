@@ -1,39 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../general_components/header/header.component';
-import { Location } from '@angular/common';
-
+import { Router } from '@angular/router';
+import { FilesService } from './files.service';
+import { Item } from '../models';
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
-  static myDocumentsShowing = true;
-  static currentURL: string;
+  currentPage: string;
+  status: string;
+  items: Item[];
 
-  constructor(private location: Location) {}
-
-  static showDocumentsOptions() {
-    return (
-      DocumentsComponent.currentURL === '/my-documents' ||
-      DocumentsComponent.currentURL === '/shared-with-me'
-    );
+  constructor(private router: Router, private fileService: FilesService) {
+    router.events.subscribe(() => {
+      this.currentPage = this.router.routerState.snapshot.url;
+      this.items =
+        this.currentPage === '/my-documents'
+          ? this.fileService.getMyDocuments()
+          : (this.items = this.fileService.getSharedDocuments());
+      this.shortenNames();
+    });
   }
 
-  static getMyDocumentsShowing() {
-    return DocumentsComponent.myDocumentsShowing;
-  }
-  static viewMyDocuments() {
-    DocumentsComponent.myDocumentsShowing = true;
-  }
+  ngOnInit() {}
 
-  static viewSharedDocuments() {
-    DocumentsComponent.myDocumentsShowing = false;
+  shortenNames() {
+    this.items.map(e => {
+      if (e.name.length > 13) {
+        const begin = e.name.substring(0, 8);
+        const end = e.name.substring(e.name.length - 5);
+        e.shorten = `${begin} ... ${end}`;
+      }
+    });
   }
-
-  ngOnInit() {
-    DocumentsComponent.currentURL = this.location.path();
-    DocumentsComponent.myDocumentsShowing =
-      DocumentsComponent.currentURL === '/shared-with-me' ? false : true;
+  deselect() {}
+  select(event) {
+    const items = document.querySelectorAll('.selected');
+    if (items.length > 0) {
+      items[0].classList.remove('selected');
+    }
+    if (event.target.className.includes('item')) {
+      event.target.parentElement.classList.add('selected');
+    } else {
+      event.target.parentElement.parentElement.classList.add('selected');
+    }
   }
 }

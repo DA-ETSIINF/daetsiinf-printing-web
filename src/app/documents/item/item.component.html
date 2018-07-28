@@ -1,0 +1,10 @@
+<div class="item">
+  <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
+  <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
+  <h5 *ngIf="item.shorten">
+    {{item.shorten}}
+  </h5>
+  <h5 *ngIf="!item.shorten">
+    {{item.name}}
+  </h5>
+</div>
