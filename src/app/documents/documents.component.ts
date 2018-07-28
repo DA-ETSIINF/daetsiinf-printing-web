@@ -11,6 +11,7 @@ export class DocumentsComponent implements OnInit {
   currentPage: string;
   status: string;
   items: Item[];
+  currentSelected: Item[];
 
   constructor(private router: Router, private fileService: FilesService) {
     router.events.subscribe(() => {
@@ -34,16 +35,28 @@ export class DocumentsComponent implements OnInit {
       }
     });
   }
-  deselect() {}
-  select(event) {
+  deselect() {
     const items = document.querySelectorAll('.selected');
-    if (items.length > 0) {
-      items[0].classList.remove('selected');
+    for (let i = 0; i < items.length; i++) {
+      items[i].classList.remove('selected');
     }
-    if (event.target.className.includes('item')) {
+    this.currentSelected = [];
+  }
+  selectOne(event) {
+    if (event.target.localName === 'app-item') {
+      event.target.classList.add('selected');
+    } else if (event.target.className.includes('item')) {
       event.target.parentElement.classList.add('selected');
     } else {
       event.target.parentElement.parentElement.classList.add('selected');
     }
+  }
+  select(event, itemInfo) {
+    if (!event.ctrlKey) {
+      this.deselect();
+    }
+    this.selectOne(event);
+    this.currentSelected.push(itemInfo);
+    console.log(this.currentSelected);
   }
 }

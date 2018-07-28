@@ -1,7 +1,7 @@
 <app-header></app-header>
-<main (click)="deselect()">
+<main>
   <section>
-    <app-item *ngFor="let item of items" [item]="item" (click)="select($event)"></app-item>
+    <app-item *ngFor="let item of items" [item]="item" (click)="select($event, item)"></app-item>
   </section>
 </main>
 <app-upload-btn></app-upload-btn>
