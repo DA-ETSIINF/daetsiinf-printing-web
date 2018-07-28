@@ -57,6 +57,5 @@ export class DocumentsComponent implements OnInit {
     }
     this.selectOne(event);
     this.currentSelected.push(itemInfo);
-    console.log(this.currentSelected);
   }
 }
