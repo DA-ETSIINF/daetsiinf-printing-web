@@ -1,3 +1,30 @@
-<p>
-  register works!
-</p>
+<div class="container">
+  <main>
+    <h1 class="header">Bienvenido al servicio de Reprografía de la ETSIINF</h1>
+    <form action="">
+      <h4 class="form__title">
+        registro
+      </h4>
+      <input type="text" placeholder="Nombre">
+      <div class="email">
+        <input type="text" name="email" placeholder="Correo">
+        <label for="email">@alumnos.upm.es</label>
+      </div>
+      <input type="password" placeholder="Contraseña">
+      <input type="password" placeholder="Repita la contraseña">
+      <div class="conditions">
+        <label>
+          <input type="checkbox">
+          <span class="conditions__pseudo-checkbox"></span>Aceptar términos y Condiciones
+        </label>
+      </div>
+      <button>Registro</button>
+    </form>
+    <div class="register">
+      <span>¿Ya tienes cuenta?</span>
+      <a href="" routerLink="/login">Iniciar sesión</a>
+    </div>
+
+    <div class="lang">English</div>
+  </main>
+</div>
