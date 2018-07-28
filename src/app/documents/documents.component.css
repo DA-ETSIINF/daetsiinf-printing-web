@@ -1,0 +1,24 @@
+main {
+  min-height: calc(100vh - 122px);
+}
+
+main section {
+  max-width: 95vw;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  margin-top: 25px;
+}
+
+app-item {
+  height: 100%;
+  border: 5px solid rgba(255, 255, 255, 0);
+  cursor: pointer;
+}
+
+.selected {
+  border-radius: 15px;
+  border: 5px solid var(--purple);
+  background: rgb(233, 233, 233);
+}
