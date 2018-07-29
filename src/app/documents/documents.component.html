@@ -1,5 +1,5 @@
 <app-header></app-header>
-<main>
+<main (click)="goTo('/my-documents')" (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-documents')">
   <section>
     <app-item *ngFor="let item of items" [item]="item" (click)="select($event, item)"></app-item>
   </section>
