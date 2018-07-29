@@ -26,6 +26,10 @@ export class DocumentsComponent implements OnInit {
 
   ngOnInit() {}
 
+  goTo(page: string) {
+    this.router.navigate([page]);
+  }
+
   shortenNames() {
     this.items.map(e => {
       if (e.name.length > 13) {
