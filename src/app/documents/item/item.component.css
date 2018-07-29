@@ -29,9 +29,11 @@
 
 @keyframes options {
   0% {
+    opacity: 0;
     top: 0;
   }
   80% {
+    opacity: 1;
     top: 30px;
   }
   100% {
