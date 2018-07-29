@@ -1,5 +1,6 @@
 main {
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 202px);
+  position: relative
 }
 
 main section {

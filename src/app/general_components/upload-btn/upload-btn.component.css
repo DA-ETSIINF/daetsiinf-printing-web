@@ -1,7 +1,7 @@
 .upload-btn {
   position: fixed;
-  right: 120px;
-  bottom: 40px;
+  right: 50px;
+  bottom: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@
 @media only screen and (max-width: 992px) {
   .upload-btn {
     right: 20px;
-    bottom: 20px;
+    bottom: 170px;
   }
 }
 
@@ -27,6 +27,7 @@
   color: var(--white);
   font-size: 22px;
 }
+
 .upload-btn:before {
   content: '';
   background-color: aliceblue;

@@ -3,6 +3,6 @@
   <section>
     <app-item *ngFor="let item of items" [item]="item" (click)="select($event, item)"></app-item>
   </section>
+  <app-upload-btn></app-upload-btn>
 </main>
-<app-upload-btn></app-upload-btn>
 <app-footer></app-footer>
