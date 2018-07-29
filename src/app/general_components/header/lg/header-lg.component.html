@@ -5,15 +5,16 @@
     <div class="header__right">
       <div class="balance">3.09 €</div>
       <div class="vertical-divider"></div>
-      <div class="dropdown" (mouseover)="showUserDropdown()" (mouseleave)="hideUserDropdown()">
+
+      <div class="dropdown" (mouseover)="setShowUserDropdown()" (mouseleave)="setHideUserDropdown()">
         <div class="dropdown__toggle">
           <div class="dropdown__text">Javier</div>
           <i class="material-icons">
             keyboard_arrow_down
           </i>
         </div>
-        <nav class="dropdown__menu" [ngStyle]="{'zIndex':getShowUserDropdown()?'1000':'-1'}">
-          <ul [ngStyle]="{'margin-top':getHideUserDropdown()?'10px':'0','opacity':getHideUserDropdown()?'1':'0'}">
+        <nav class="dropdown__menu" [ngStyle]="{'zIndex':showUserDropdown?'1000':'-1'}">
+          <ul [ngStyle]="{'margin-top':hideUserDropdown?'10px':'0','opacity':hideUserDropdown?'1':'0'}">
             <li>
               <i class="material-icons">insert_drive_file</i>
               <span>Documentos</span>

@@ -1,4 +1,4 @@
-<div class="menu" [ngStyle]="{'marginLeft':getStatus() ? '0' : '-80%' }">
+<div class="menu" [ngStyle]="{'marginLeft': getIsOpen() ? '0' : '-80%' }">
   <div class="menu__top">
     <div class="menu__top-row">
       <i class="material-icons user-icon">person</i>
@@ -39,4 +39,4 @@
     </ul>
   </nav>
 </div>
-<div id="close-menu" [ngClass]="{'hidding': !getStatus(),'showing': getStatus()}" (click)="toogleMenu()"></div>
+<div id="close-menu" [ngClass]="[getIsOpen() ? 'showing' : 'hidding']" (click)="toogleMenu()"></div>

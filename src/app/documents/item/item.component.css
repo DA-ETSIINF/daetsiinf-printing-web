@@ -1,12 +1,49 @@
 .item {
   text-align: center;
   margin: auto;
+  position: relative;
 }
 
-.item i {
+.item .file,
+.item .folder {
   width: 100%;
   font-size: 55px;
   color: var(--dark-2);
+}
+
+.options-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  font-size: 20px;
+}
+
+.options {
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+
+.options ul {
+  list-style: none;
+  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.75);
+  background: var(--bck);
+  border-radius: 4px;
+  font-family: 'Lato';
+}
+
+.options ul li {
+  padding: 10px 15px;
+}
+
+.options ul li:hover {
+  background: #e2e2e2;
+  border-radius: inherit;
+}
+
+.options ul li.delete {
+  color: var(--red);
 }
 
 h5 {
