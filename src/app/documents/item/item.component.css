@@ -2,6 +2,7 @@
   text-align: center;
   margin: auto;
   position: relative;
+  padding-top: 10px;
 }
 
 .item .file,
@@ -13,8 +14,8 @@
 
 .options-icon {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 5px;
   display: none;
   font-size: 20px;
 }
@@ -22,7 +23,26 @@
 .options {
   position: absolute;
   right: 0;
-  top: 20px;
+  top: 0;
+  transition: .3s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes options {
+  0% {
+    top: 0;
+  }
+  80% {
+    top: 30px;
+  }
+  100% {
+    top: 25px;
+  }
+}
+
+.show-options {
+  animation-name: options;
+  animation-duration: .3s;
+  top: 25px;
 }
 
 .options ul {

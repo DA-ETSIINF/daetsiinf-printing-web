@@ -1,6 +1,6 @@
 <div class="item" #file (mouseover)="toggleOptionsIcon(file, 'inherit')" (mouseleave)="toggleOptionsIcon(file, 'none')">
   <i class="material-icons options-icon" (click)="toggleOptions()">more_vert</i>
-  <nav class="options" *ngIf="showOptions">
+  <nav class="options" *ngIf="showOptions" [ngClass]="{'show-options':showOptions}">
     <ul>
       <li>Imprimir</li>
       <li class="delete">Eliminar</li>
