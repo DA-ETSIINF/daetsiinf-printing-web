@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -6,17 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  static isOpen: boolean = false;
-
+  static isOpen = false;
   constructor() {}
 
-  getStatus = (): boolean => {
+  getIsOpen() {
     return MenuComponent.isOpen;
-  };
-
-  toogleMenu = () => {
+  }
+  toogleMenu() {
     MenuComponent.isOpen = !MenuComponent.isOpen;
-  };
-
+  }
   ngOnInit() {}
 }

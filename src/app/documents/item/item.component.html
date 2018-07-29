@@ -1,6 +1,13 @@
-<div class="item">
-  <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
-  <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
+<div class="item" #file (mouseover)="toggleOptionsIcon(file, 'inherit')" (mouseleave)="toggleOptionsIcon(file, 'none')">
+  <i class="material-icons options-icon" (click)="toggleOptions()">more_vert</i>
+  <nav class="options" *ngIf="showOptions">
+    <ul>
+      <li>Imprimir</li>
+      <li class="delete">Eliminar</li>
+    </ul>
+  </nav>
+  <i class="material-icons folder" *ngIf="item.type === 'folder'">folder</i>
+  <i class="material-icons file" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
   <h5 *ngIf="item.shorten">
     {{item.shorten}}
   </h5>

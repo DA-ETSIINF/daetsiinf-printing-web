@@ -10,10 +10,10 @@
   --dark-2: #56595b;
   --dark-3: #3f3f3f;
   --dark-4: #1b1b1c;
-
   --primary: #7593c7;
   --purple: #8c7ebb;
   --blue: #65a5c9;
+  --red: #DE1E1E;
 }
 
 body,
@@ -21,11 +21,13 @@ html {
   background: var(--bck);
   font-family: 'Oswald', sans-serif;
   z-index: 1;
+  overflow: hidden;
 }
 
 .material-icons {
   cursor: pointer;
 }
+
 .horizontal-divider {
   width: 100%;
   background: var(--dark-2);

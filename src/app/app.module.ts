@@ -8,13 +8,11 @@ import { HeaderLgComponent } from './general_components/header/lg/header-lg.comp
 import { HeaderSmComponent } from './general_components/header/sm/header-sm.component';
 import { MenuComponent } from './general_components/header/sm/menu/menu.component';
 import { DocumentsComponent } from './documents/documents.component';
-import { MyDocumentsComponent } from './documents/my-documents/my-documents.component';
-import { SharedDocumentsComponent } from './documents/shared-documents/shared-documents.component';
-import { AsideDocumentsComponent } from './documents/aside-documents/aside-documents.component';
 import { UploadBtnComponent } from './general_components/upload-btn/upload-btn.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
 import { FooterComponent } from './general_components/footer/footer.component';
+import { ItemComponent } from './documents/item/item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,16 +21,14 @@ import { FooterComponent } from './general_components/footer/footer.component';
     HeaderSmComponent,
     DocumentsComponent,
     MenuComponent,
-    MyDocumentsComponent,
-    SharedDocumentsComponent,
-    AsideDocumentsComponent,
     UploadBtnComponent,
     LoginComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    ItemComponent
   ],
   imports: [BrowserModule, ModuleRouting],
-  providers: [],
+  providers: [MenuComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

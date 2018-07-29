@@ -7,7 +7,18 @@ import { Item } from '../../models';
 })
 export class ItemComponent implements OnInit {
   @Input() item: Item;
+  showOptions = false;
   constructor() {}
 
   ngOnInit() {}
+
+  toggleOptionsIcon(item, status) {
+    if (!this.showOptions) {
+      item.children[0].style.display = status;
+    }
+  }
+
+  toggleOptions() {
+    this.showOptions = !this.showOptions;
+  }
 }
