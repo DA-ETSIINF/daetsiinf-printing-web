@@ -28,7 +28,7 @@ import { ItemComponent } from './documents/item/item.component';
     ItemComponent
   ],
   imports: [BrowserModule, ModuleRouting],
-  providers: [MenuComponent],
+  providers: [MenuComponent, AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
