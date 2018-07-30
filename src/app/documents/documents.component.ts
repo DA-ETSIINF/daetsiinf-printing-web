@@ -59,6 +59,8 @@ export class DocumentsComponent implements OnInit {
     if (!event.ctrlKey) {
       this.deselect();
     }
+    console.log(event);
+
     this.selectOne(event);
     this.currentSelected.push(itemInfo);
   }
