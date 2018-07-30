@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DocumentsComponent } from '../../documents/documents.component';
 import { AppComponent } from '../../app.component';
 
 @Component({
@@ -7,10 +6,10 @@ import { AppComponent } from '../../app.component';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private appComponent: AppComponent) {}
 
   getDeviceWidth(): string {
-    return AppComponent.deviceWidth;
+    return this.appComponent.deviceWidth;
   }
 
   ngOnInit() {}

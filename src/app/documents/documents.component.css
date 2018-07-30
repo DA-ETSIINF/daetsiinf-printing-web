@@ -1,15 +1,78 @@
-main {
-  min-height: calc(100vh - 202px);
-  position: relative
+.container {
+  display: flex;
+  margin-top: 25px;
 }
 
-main section {
+aside {
+  width: 210px;
+}
+
+aside nav ul li {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  height: 34px;
+  border-radius: 0 5px 5px 0;
+  margin: 10px;
+  margin-left: 9px;
+  margin-right: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+aside nav ul li.active {
+  border-left: 9px solid var(--blue);
+  background: #E4E4E4;
+  margin-left: 0;
+}
+
+aside nav ul li i {
+  padding-right: 5px;
+}
+
+aside nav ul li:active {
+  border: non;
+}
+
+.divider {
+  background: #c0c0c0;
+  height: 1px;
+  width: 190px;
+  margin: 10px 0;
+}
+
+.lang span {
+  margin-left: 29px;
+}
+
+main {
+  min-height: calc(100vh - 202px);
+  position: relative;
+  flex: 1px;
+}
+
+main.grid section {
   max-width: 95vw;
   margin: 0 auto;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  margin-top: 25px;
+}
+
+.empty p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.empty .gif {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.empty iframe {
+  max-width: 480px;
+  max-height: 204px;
 }
 
 app-item {

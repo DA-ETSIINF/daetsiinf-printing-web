@@ -9,12 +9,12 @@ import { log } from 'util';
 export class UploadBtnComponent implements OnInit {
   constructor() {}
 
-  uploadClicked = () => {
-    //Clears focus on button so it can make the animation more than once
+  uploadClicked() {
+    // Clears focus on button so it can make the animation more than once
     setTimeout(() => {
       document.getElementById('upload-btn').blur();
     }, 100);
-  };
+  }
 
   ngOnInit() {}
 }

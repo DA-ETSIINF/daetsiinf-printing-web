@@ -9,11 +9,11 @@ import { Component, OnInit } from '@angular/core';
   }
 })
 export class AppComponent implements OnInit {
-  static deviceWidth: string;
+  deviceWidth: string;
 
-  widthStatus = size => {
-    AppComponent.deviceWidth = size < 992 ? 'small' : 'large';
-  };
+  widthStatus(size) {
+    this.deviceWidth = size < 992 ? 'small' : 'large';
+  }
 
   ngOnInit() {
     this.widthStatus(window.innerWidth);

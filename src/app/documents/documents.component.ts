@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FilesService } from './files.service';
 import { Item } from '../models';
+import { AppComponent } from '../app.component';
+
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -13,7 +15,11 @@ export class DocumentsComponent implements OnInit {
   items: Item[];
   currentSelected: Item[];
 
-  constructor(private router: Router, private fileService: FilesService) {
+  constructor(
+    private router: Router,
+    private fileService: FilesService,
+    public appComponent: AppComponent
+  ) {
     router.events.subscribe(() => {
       this.currentPage = this.router.routerState.snapshot.url;
       this.items =
