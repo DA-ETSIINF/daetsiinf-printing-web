@@ -1,7 +1,7 @@
 <app-header></app-header>
 <main (click)="goTo('/my-documents')" (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-documents')">
   <section>
-    <app-item *ngFor="let item of items" [item]="item" (click)="select($event, item)"></app-item>
+    <app-item *ngFor="let item of items" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
   </section>
   <app-upload-btn></app-upload-btn>
 </main>
