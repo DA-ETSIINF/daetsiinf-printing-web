@@ -3,6 +3,7 @@
   <aside *ngIf="appComponent.deviceWidth === 'large'">
     <nav>
       <ul>
+<<<<<<< HEAD
         <li [ngClass]="{'active': currentPage === '/my-documents'}">
           <div class="documents-menu__option">
             <i (click)="showMyDocumentsAside=!showMyDocumentsAside" [ngStyle]="showMyDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
@@ -30,6 +31,15 @@
               <span>{{item.name}}</span>
             </li>
           </ul>
+=======
+        <li [ngClass]="{'active': currentPage === '/my-documents'}" routerLink="/my-documents">
+          <i class="material-icons">arrow_right</i>
+          <span>Mis documentos</span>
+        </li>
+        <li [ngClass]="{'active': currentPage === '/shared-with-me'}" routerLink="/shared-with-me">
+          <i class="material-icons">arrow_right</i>
+          <span>Compartidos conmigo</span>
+>>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
         </li>
         <div class="divider"></div>
         <li class="lang">
@@ -38,6 +48,7 @@
       </ul>
     </nav>
   </aside>
+<<<<<<< HEAD
   <main (click)="goTo('/my-documents')" [ngClass]="{'grid': (getCurrentItems().length !== 0)}" (swipeleft)="goTo('/shared-with-me')"
     (swiperight)="goTo('/my-documents')">
     <section>
@@ -46,13 +57,22 @@
         <video src="./assets/loading/printer.avi"></video>
       </div>
       <div class="empty" *ngIf="!loading && getCurrentItems().length === 0">
+=======
+  <main (click)="goTo('/my-documents')" [ngClass]="{'grid': items.length !== 0}" (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-documents')">
+    <section>
+      <div class="empty" *ngIf="items.length === 0">
+>>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
         <p *ngIf="currentPage === '/my-documents'">No has subido nada aún :(</p>
         <p *ngIf="currentPage === '/shared-with-me'">No te han compartido nada aún :(</p>
         <div class="gif">
           <iframe src="https://giphy.com/embed/3o7aTskHEUdgCQAXde" frameBorder="0"></iframe>
         </div>
       </div>
+<<<<<<< HEAD
       <app-item *ngFor="let item of getCurrentItems()" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
+=======
+      <app-item *ngFor="let item of items" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
+>>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
     </section>
     <app-upload-btn></app-upload-btn>
   </main>

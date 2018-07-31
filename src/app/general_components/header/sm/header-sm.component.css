@@ -15,6 +15,7 @@ header {
   letter-spacing: 1px;
 }
 
+<<<<<<< HEAD
 .title span {
   font-size: 11px;
   font-family: 'Lato';
@@ -26,6 +27,8 @@ header {
   border-radius: 3px;
 }
 
+=======
+>>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .logo-daetsiinf {
   height: 25px;
 }

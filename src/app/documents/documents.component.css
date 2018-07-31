@@ -4,6 +4,7 @@
 }
 
 aside {
+<<<<<<< HEAD
   width: 220px;
 }
 
@@ -21,19 +22,48 @@ aside nav ul li .documents-menu__option {
 }
 
 aside nav ul li.active .documents-menu__option {
+=======
+  width: 210px;
+}
+
+aside nav ul li {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  height: 34px;
+  border-radius: 0 5px 5px 0;
+  margin: 10px;
+  margin-left: 9px;
+  margin-right: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+aside nav ul li.active {
+>>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
   border-left: 9px solid var(--blue);
   background: #E4E4E4;
   margin-left: 0;
 }
 
+<<<<<<< HEAD
 aside nav ul li .documents-menu__option i {
   padding-right: 5px;
   transition: .1s all ease;
+=======
+aside nav ul li i {
+  padding-right: 5px;
+}
+
+aside nav ul li:active {
+  border: non;
+>>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 }
 
 .divider {
   background: #c0c0c0;
   height: 1px;
+<<<<<<< HEAD
   width: 200px;
   margin: 10px 0;
 }
@@ -73,6 +103,12 @@ aside nav ul li .documents-menu__option i {
   margin-right: 5px;
 }
 
+=======
+  width: 190px;
+  margin: 10px 0;
+}
+
+>>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .lang span {
   margin-left: 29px;
 }
@@ -91,8 +127,12 @@ main.grid section {
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
 }
 
+<<<<<<< HEAD
 .empty p,
 .loading p {
+=======
+.empty p {
+>>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
   text-align: center;
   margin-bottom: 10px;
 }
