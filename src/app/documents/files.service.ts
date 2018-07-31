@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Item } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +10,12 @@ export class FilesService {
 
   getJSON(route: string) {
     // console.log(`${environment.server}:${environment.port}/${route}`);
-    return this.http.get(`${environment.server}:${environment.port}/${route}`);
+    return !environment.production
+      ? this.http.get(`${environment.server}:${environment.port}/${route}`)
+      : this.http.get(
+          `https://firebasestorage.googleapis.com/v0/b/reprografia-daetsiinf.appspot.com/o/reprografia.json?alt=media&token=${
+            environment.firebase_token
+          }`
+        );
   }
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FilesService } from './files.service';
 import { Item } from '../models';
 import { AppComponent } from '../app.component';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-documents',
@@ -28,13 +29,22 @@ export class DocumentsComponent implements OnInit {
 
       this.currentPage = this.router.routerState.snapshot.url;
 
-      this.fileService
-        .getJSON('my-documents')
-        .subscribe(data => (this.myDocumentsItems = this.shortenNames(data)));
+      this.fileService.getJSON('my-documents').subscribe(data => {
+        if (environment.production) {
+          data = data['my-documents'];
+        }
+        this.myDocumentsItems = this.shortenNames(data);
+      });
 
-      this.fileService
-        .getJSON('shared-with-me')
-        .subscribe(data => (this.sharedWithMeItems = this.shortenNames(data)));
+      this.fileService.getJSON('shared-with-me').subscribe(data => {
+        if (environment.production) {
+          console.log(data);
+
+          data = data['shared-with-me'];
+        }
+
+        this.sharedWithMeItems = this.shortenNames(data);
+      });
       this.loading = false;
     });
   }
@@ -49,7 +59,7 @@ export class DocumentsComponent implements OnInit {
 
   goTo(page: string, submenu?: string) {
     if (submenu) {
-      this.router.navigate([page], { queryParams: { showSubmenu: submenu } });
+      this.router.navigate([page]);
     } else {
       this.router.navigate([page]);
     }
