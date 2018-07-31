@@ -3,42 +3,62 @@ header {
   background: var(--white);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 25px 50px;
 }
+
 .logo-daetsiinf {
   height: 32px;
 }
+
 .title {
   font-size: 25px;
   font-weight: 400;
   letter-spacing: 1px;
 }
+
+.title span {
+  font-size: 11px;
+  font-family: 'Lato';
+  letter-spacing: 0px;
+  font-weight: 700;
+  background: linear-gradient(-45deg, var(--blue), var(--purple));
+  color: white;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
+
 .header__right {
   display: flex;
   align-items: center;
   font-family: 'Lato';
 }
+
 .header__right div:not(.vertical-divider) {
   cursor: pointer;
 }
+
 .vertical-divider {
   height: 15px;
   background: var(--dark-2);
   width: 1px;
   margin: 0px 11px;
 }
+
 .dropdown__toggle {
   display: flex;
   align-items: center;
 }
+
 .dropdown__menu {
   position: absolute;
   right: 50px;
 }
+
 .dropdown__menu ul {
   list-style: none;
   background: var(--white);
@@ -48,6 +68,7 @@ header {
   color: var(--dark-4);
   transition: 0.3s all cubic-bezier(0.19, 1, 0.22, 1);
 }
+
 .dropdown__menu ul li {
   padding: 10px 15px;
   padding-right: 3px;
@@ -58,14 +79,17 @@ header {
 .dropdown__menu ul li i {
   font-size: 19px;
 }
+
 .dropdown__menu ul li:hover {
   color: var(--white);
   background: var(--primary);
   transition: 0.3s all cubic-bezier(0.19, 1, 0.22, 1);
 }
+
 .dropdown__menu ul li span {
   margin-left: 10px;
 }
+
 .horizontal-divider {
   margin: 0;
 }

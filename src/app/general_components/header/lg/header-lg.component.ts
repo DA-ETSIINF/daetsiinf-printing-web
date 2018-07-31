@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-header-lg',
   templateUrl: './header-lg.component.html',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderLgComponent implements OnInit {
   showUserDropdown = false;
   hideUserDropdown = false;
+  version: string = environment.version;
   constructor() {}
 
   setShowUserDropdown() {

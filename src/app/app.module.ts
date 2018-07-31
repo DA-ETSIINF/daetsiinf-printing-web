@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ModuleRouting } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './general_components/header/header.component';
@@ -27,7 +28,7 @@ import { ItemComponent } from './documents/item/item.component';
     FooterComponent,
     ItemComponent
   ],
-  imports: [BrowserModule, ModuleRouting],
+  imports: [BrowserModule, ModuleRouting, HttpClientModule],
   providers: [MenuComponent, AppComponent],
   bootstrap: [AppComponent]
 })

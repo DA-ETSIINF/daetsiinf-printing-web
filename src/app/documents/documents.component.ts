@@ -12,38 +12,54 @@ import { AppComponent } from '../app.component';
 export class DocumentsComponent implements OnInit {
   currentPage: string;
   status: string;
-  items: Item[];
-  currentSelected: Item[];
-
+  currentSelected: Item[] = [];
+  myDocumentsItems: Item[] = [];
+  sharedWithMeItems: Item[] = [];
+  loading: boolean;
+  showMyDocumentsAside: boolean;
+  showSharedDocumentsAside: boolean;
   constructor(
     private router: Router,
     private fileService: FilesService,
     public appComponent: AppComponent
   ) {
     router.events.subscribe(() => {
+      this.loading = true;
+
       this.currentPage = this.router.routerState.snapshot.url;
-      this.items =
-        this.currentPage === '/my-documents'
-          ? this.fileService.getMyDocuments()
-          : (this.items = this.fileService.getSharedDocuments());
-      this.shortenNames();
+
+      this.fileService
+        .getJSON('my-documents')
+        .subscribe(data => (this.myDocumentsItems = this.shortenNames(data)));
+
+      this.fileService
+        .getJSON('shared-with-me')
+        .subscribe(data => (this.sharedWithMeItems = this.shortenNames(data)));
+      this.loading = false;
     });
   }
 
   ngOnInit() {}
 
+  getCurrentItems() {
+    return this.currentPage === '/my-documents'
+      ? this.myDocumentsItems
+      : this.sharedWithMeItems;
+  }
+
   goTo(page: string) {
     this.router.navigate([page]);
   }
 
-  shortenNames() {
-    this.items.map(e => {
+  shortenNames(files): Item[] {
+    files.map(e => {
       if (e.name.length > 13) {
         const begin = e.name.substring(0, 8);
         const end = e.name.substring(e.name.length - 5);
         e.shorten = `${begin} ... ${end}`;
       }
     });
+    return files;
   }
   deselect() {
     const items = document.querySelectorAll('.selected');
@@ -65,8 +81,6 @@ export class DocumentsComponent implements OnInit {
     if (!event.ctrlKey) {
       this.deselect();
     }
-    console.log(event);
-
     this.selectOne(event);
     this.currentSelected.push(itemInfo);
   }

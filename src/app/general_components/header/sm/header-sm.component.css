@@ -15,6 +15,17 @@ header {
   letter-spacing: 1px;
 }
 
+.title span {
+  font-size: 11px;
+  font-family: 'Lato';
+  letter-spacing: 0px;
+  font-weight: 700;
+  background: linear-gradient(-45deg, var(--blue), var(--purple));
+  color: white;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
+
 .logo-daetsiinf {
   height: 25px;
 }
