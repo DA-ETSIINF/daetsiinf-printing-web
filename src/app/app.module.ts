@@ -1,10 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ModuleRouting } from './app.routing';
-<<<<<<< HEAD
 import { HttpClientModule } from '@angular/common/http';
-=======
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './general_components/header/header.component';
@@ -31,11 +28,7 @@ import { ItemComponent } from './documents/item/item.component';
     FooterComponent,
     ItemComponent
   ],
-<<<<<<< HEAD
   imports: [BrowserModule, ModuleRouting, HttpClientModule],
-=======
-  imports: [BrowserModule, ModuleRouting],
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
   providers: [MenuComponent, AppComponent],
   bootstrap: [AppComponent]
 })

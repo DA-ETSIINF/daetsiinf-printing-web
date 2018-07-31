@@ -3,33 +3,17 @@ header {
   background: var(--white);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 25px 50px;
 }
-<<<<<<< HEAD
 
 .logo-daetsiinf {
   height: 32px;
 }
-
-=======
-.logo-daetsiinf {
-  height: 32px;
-}
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
-.title {
-  font-size: 25px;
-  font-weight: 400;
-  letter-spacing: 1px;
-}
-<<<<<<< HEAD
 
 .title span {
   font-size: 11px;
@@ -42,50 +26,33 @@ header {
   border-radius: 3px;
 }
 
-=======
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .header__right {
   display: flex;
   align-items: center;
   font-family: 'Lato';
 }
-<<<<<<< HEAD
 
 .header__right div:not(.vertical-divider) {
   cursor: pointer;
 }
 
-=======
-.header__right div:not(.vertical-divider) {
-  cursor: pointer;
-}
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .vertical-divider {
   height: 15px;
   background: var(--dark-2);
   width: 1px;
   margin: 0px 11px;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .dropdown__toggle {
   display: flex;
   align-items: center;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .dropdown__menu {
   position: absolute;
   right: 50px;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .dropdown__menu ul {
   list-style: none;
   background: var(--white);
@@ -95,10 +62,7 @@ header {
   color: var(--dark-4);
   transition: 0.3s all cubic-bezier(0.19, 1, 0.22, 1);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .dropdown__menu ul li {
   padding: 10px 15px;
   padding-right: 3px;
@@ -109,26 +73,17 @@ header {
 .dropdown__menu ul li i {
   font-size: 19px;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .dropdown__menu ul li:hover {
   color: var(--white);
   background: var(--primary);
   transition: 0.3s all cubic-bezier(0.19, 1, 0.22, 1);
 }
-<<<<<<< HEAD
 
 .dropdown__menu ul li span {
   margin-left: 10px;
 }
 
-=======
-.dropdown__menu ul li span {
-  margin-left: 10px;
-}
->>>>>>> c1869ec0d956963bace6f48749257e175a8f47fa
 .horizontal-divider {
   margin: 0;
 }
