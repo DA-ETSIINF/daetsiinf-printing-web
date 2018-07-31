@@ -4,43 +4,42 @@
 }
 
 aside {
-  width: 220px;
+  width: 250px;
 }
 
-aside nav ul li .documents-menu__option {
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-  height: 34px;
-  border-radius: 0 5px 5px 0;
-  margin: 10px 20px 0 9px;
-  cursor: pointer;
-  padding: 5px;
-  font-family: 'Lato';
-  font-weight: 700;
-}
-
-aside nav ul li.active .documents-menu__option {
-  width: 210px;
+aside nav ul {
+  list-style: none;
 }
 
 aside nav ul li {
-  display: flex;
-  align-items: center;
   font-size: 17px;
-  height: 34px;
   border-radius: 0 5px 5px 0;
-  margin: 10px;
-  margin-left: 9px;
-  margin-right: 20px;
   cursor: pointer;
-  padding: 5px;
 }
 
-aside nav ul li.active {
+aside nav ul li .documents-menu__option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-family: 'Lato';
+  font-weight: 700;
+  height: 34px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+aside nav ul li.active .documents-menu__option {
+  width: 220px;
   border-left: 9px solid var(--blue);
   background: #E4E4E4;
   margin-left: 0;
+}
+
+aside nav ul li .documents-menu__option span {
+  width: 180px;
 }
 
 aside nav ul li .documents-menu__option i {
@@ -51,7 +50,7 @@ aside nav ul li .documents-menu__option i {
 .divider {
   background: #c0c0c0;
   height: 1px;
-  <<<<<<< HEAD width: 200px;
+  width: 200px;
   margin: 10px 0;
 }
 
@@ -69,19 +68,14 @@ aside nav ul li .documents-menu__option i {
   height: inherit;
 }
 
-@keyframes toggleSlide {
-  from {
-    height: 0;
-  }
-  to {
-    height: initial;
-  }
-}
-
 .items li {
   display: flex;
   align-items: center;
   margin: 10px 0;
+}
+
+.items li span {
+  font-size: 13px;
 }
 
 .items i {
@@ -90,13 +84,10 @@ aside nav ul li .documents-menu__option i {
   margin-right: 5px;
 }
 
-/*
-width: 190px;
-margin: 10px 0;
-}*/
-
-.lang span {
-  margin-left: 29px;
+.lang {
+  font-family: 'Lato';
+  margin-left: 46px;
+  font-size: 14px;
 }
 
 main {

@@ -21,7 +21,7 @@
           <div class="documents-menu__option">
             <i (click)="showSharedDocumentsAside=!showSharedDocumentsAside" [ngStyle]="showSharedDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
               class="material-icons">arrow_right</i>
-            <span routerLink="/shared-with-me">Compartidos conmigo</span>
+            <span (click)="goTo('/shared-with-me', 'shared-with-me')">Compartidos conmigo</span>
           </div>
           <ul class="items" [ngClass]="{'show-aside-subjects':showSharedDocumentsAside}">
             <li *ngFor="let item of sharedWithMeItems">
@@ -38,8 +38,7 @@
       </ul>
     </nav>
   </aside>
-  <main (click)="goTo('/my-documents')" [ngClass]="{'grid': (getCurrentItems().length !== 0)}" (swipeleft)="goTo('/shared-with-me')"
-    (swiperight)="goTo('/my-documents')">
+  <main [ngClass]="{'grid': (getCurrentItems().length !== 0)}" (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-documents')">
     <section>
       <div class="loading" *ngIf="loading">
         <p>Cargando</p>

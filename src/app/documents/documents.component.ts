@@ -19,7 +19,7 @@ export class DocumentsComponent implements OnInit {
   showMyDocumentsAside: boolean;
   showSharedDocumentsAside: boolean;
   constructor(
-    private router: Router,
+    public router: Router,
     private fileService: FilesService,
     public appComponent: AppComponent
   ) {
@@ -47,8 +47,12 @@ export class DocumentsComponent implements OnInit {
       : this.sharedWithMeItems;
   }
 
-  goTo(page: string) {
-    this.router.navigate([page]);
+  goTo(page: string, submenu?: string) {
+    if (submenu) {
+      this.router.navigate([page], { queryParams: { showSubmenu: submenu } });
+    } else {
+      this.router.navigate([page]);
+    }
   }
 
   shortenNames(files): Item[] {
