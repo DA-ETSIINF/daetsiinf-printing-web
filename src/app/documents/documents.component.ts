@@ -33,17 +33,15 @@ export class DocumentsComponent implements OnInit {
         if (environment.production) {
           data = data['my-documents'];
         }
-        this.myDocumentsItems = this.shortenNames(data);
+        this.myDocumentsItems = this.shortenNames(<Item[]>data);
       });
 
       this.fileService.getJSON('shared-with-me').subscribe(data => {
         if (environment.production) {
-          console.log(data);
-
           data = data['shared-with-me'];
         }
 
-        this.sharedWithMeItems = this.shortenNames(data);
+        this.sharedWithMeItems = this.shortenNames(<Item[]>data);
       });
       this.loading = false;
     });
@@ -65,7 +63,7 @@ export class DocumentsComponent implements OnInit {
     }
   }
 
-  shortenNames(files): Item[] {
+  shortenNames(files: Item[]): Item[] {
     files.map(e => {
       if (e.name.length > 13) {
         const begin = e.name.substring(0, 8);

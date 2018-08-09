@@ -17,16 +17,20 @@ header {
 
 .title {
   font-weight: 400;
-  font-family: 'Oswald'
+  font-family: 'Oswald';
+  position: relative;
 }
 
 .title span {
-  font-size: 11px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 9px;
   font-family: 'Lato';
   letter-spacing: 0px;
-  background: linear-gradient(-45deg, var(--blue), var(--purple));
-  color: white;
-  padding: 3px 5px;
+  background: white;
+  color: #222;
+  padding: 1px;
   border-radius: 3px;
 }
 

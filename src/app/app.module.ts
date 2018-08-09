@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ModuleRouting } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './general_components/header/header.component';
 import { HeaderLgComponent } from './general_components/header/lg/header-lg.component';
@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
 import { FooterComponent } from './general_components/footer/footer.component';
 import { ItemComponent } from './documents/item/item.component';
+import { ProfileComponent } from './documents/profile/profile.component';
+import { AsideComponent } from './general_components/aside/aside.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,9 +28,11 @@ import { ItemComponent } from './documents/item/item.component';
     LoginComponent,
     RegisterComponent,
     FooterComponent,
-    ItemComponent
+    ItemComponent,
+    ProfileComponent,
+    AsideComponent
   ],
-  imports: [BrowserModule, ModuleRouting, HttpClientModule],
+  imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent],
   bootstrap: [AppComponent]
 })

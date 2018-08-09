@@ -1,0 +1,86 @@
+aside {
+  width: 250px;
+}
+
+aside nav ul {
+  list-style: none;
+}
+
+aside nav ul li {
+  font-size: 17px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+aside nav ul li .documents-menu__option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-family: 'Lato';
+  font-weight: 700;
+  height: 34px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+aside nav ul li.active .documents-menu__option {
+  width: 220px;
+  border-left: 9px solid var(--blue);
+  background: #E4E4E4;
+  margin-left: 0;
+}
+
+aside nav ul li .documents-menu__option span {
+  width: 180px;
+}
+
+aside nav ul li .documents-menu__option i {
+  padding-right: 5px;
+  transition: .1s all ease;
+}
+
+.divider {
+  background: #c0c0c0;
+  height: 1px;
+  width: 200px;
+  margin: 10px 0;
+}
+
+.items {
+  font-size: 13px;
+  font-family: 'Lato';
+  margin-left: 30px;
+  margin-right: 5px;
+  list-style: none;
+  height: 0;
+  overflow: hidden;
+}
+
+.show-aside-subjects {
+  height: inherit;
+}
+
+.items li {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.items li span {
+  font-size: 13px;
+}
+
+.items i {
+  color: var(--dark-2);
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.lang {
+  font-family: 'Lato';
+  margin-left: 46px;
+  font-size: 14px;
+}

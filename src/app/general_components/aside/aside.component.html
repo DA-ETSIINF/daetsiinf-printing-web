@@ -1,0 +1,38 @@
+<aside *ngIf="appComponent.deviceWidth === 'large'">
+  <nav>
+    <ul>
+      <li [ngClass]="{'active': currentPage === '/my-documents'}">
+        <div class="documents-menu__option">
+          <i (click)="showMyDocumentsAside=!showMyDocumentsAside" [ngStyle]="showMyDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
+            class="material-icons">arrow_right</i>
+          <span routerLink="/my-documents">Mis documentos</span>
+        </div>
+        <ul class="items" [ngClass]="{'show-aside-subjects':showMyDocumentsAside}">
+          <li *ngFor="let item of myDocumentsItems">
+            <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
+            <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
+            <span>{{item.name}}</span>
+          </li>
+        </ul>
+      </li>
+      <li [ngClass]="{'active': currentPage === '/shared-with-me'}">
+        <div class="documents-menu__option">
+          <i (click)="showSharedDocumentsAside=!showSharedDocumentsAside" [ngStyle]="showSharedDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
+            class="material-icons">arrow_right</i>
+          <span (click)="goTo('/shared-with-me', 'shared-with-me')">Compartidos conmigo</span>
+        </div>
+        <ul class="items" [ngClass]="{'show-aside-subjects':showSharedDocumentsAside}">
+          <li *ngFor="let item of sharedWithMeItems">
+            <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
+            <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
+            <span>{{item.name}}</span>
+          </li>
+        </ul>
+      </li>
+      <div class="divider"></div>
+      <li class="lang">
+        <span>English</span>
+      </li>
+    </ul>
+  </nav>
+</aside>
