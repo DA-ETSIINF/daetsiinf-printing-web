@@ -1,14 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Item } from '../../models';
+import { FilesService } from '../files.service';
+import { Item, InfoFile } from '../../models';
+
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  @Input() item: Item;
+  @Input()
+  item: Item;
   showOptions = false;
-  constructor() {}
+  constructor(private filesService: FilesService) {}
 
   ngOnInit() {}
 
@@ -20,5 +23,12 @@ export class ItemComponent implements OnInit {
 
   toggleOptions() {
     this.showOptions = !this.showOptions;
+  }
+
+  addFileToQueue(id: number, name: string, pages: number) {
+    let b: InfoFile[];
+    this.filesService.itemsInQueue.subscribe(a => (b = a)).unsubscribe();
+    b.push({ id, name, pages, doubledSided: true });
+    this.filesService.itemsInQueue.next(b);
   }
 }

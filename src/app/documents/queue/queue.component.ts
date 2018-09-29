@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FilesService } from '../files.service';
 import { AppComponent } from '../../app.component';
+import { InfoFile } from '../../models';
 
 @Component({
   selector: 'app-queue',
@@ -12,7 +13,17 @@ export class QueueComponent implements OnInit {
   step = 'first';
   lastChanged = new Date().getTime();
 
-  constructor(private appComponent: AppComponent) {}
+  itemsInQueue: InfoFile[];
+
+  constructor(
+    private appComponent: AppComponent,
+    private filesService: FilesService
+  ) {
+    this.filesService.itemsInQueue.subscribe(e => {
+      this.itemsInQueue = e;
+      console.log(e);
+    });
+  }
 
   ngOnInit() {}
 

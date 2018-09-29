@@ -18,23 +18,9 @@
           <span class="price">Precio</span>
           <span class="remove"></span>
         </div>
-        <div class="file">
-          <span class="name">NombredelFichero</span>
-          <span class="npages">10</span>
-          <div class="doubled-sided options">
-            <div class="active">
-              <span>No</span>
-            </div>
-            <div>
-              <span>Si</span>
-            </div>
-          </div>
-          <span class="price">0,56 €</span>
-          <span class="remove">Eliminar</span>
-        </div>
-        <div class="file">
-          <span class="name">NombredelFichero</span>
-          <span class="npages">10</span>
+        <div class="file" *ngFor="let file of itemsInQueue">
+          <span class="name">{{file.name}}</span>
+          <span class="npages">{{file.pages}}</span>
           <div class="doubled-sided options">
             <div class="active">
               <span>No</span>

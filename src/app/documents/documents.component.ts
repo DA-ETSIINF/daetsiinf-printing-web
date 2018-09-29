@@ -19,6 +19,7 @@ export class DocumentsComponent implements OnInit {
   loading: boolean;
   showMyDocumentsAside: boolean;
   showSharedDocumentsAside: boolean;
+
   constructor(
     public router: Router,
     private fileService: FilesService,

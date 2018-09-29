@@ -2,7 +2,7 @@
   <i class="material-icons options-icon" (click)="toggleOptions()">more_vert</i>
   <nav class="options" *ngIf="showOptions" [ngClass]="{'show-options':showOptions}">
     <ul>
-      <li>Imprimir</li>
+      <li *ngIf="item.type !== 'folder'" (click)="addFileToQueue(item.id, item.name, item.pages)">Imprimir</li>
       <li class="delete">Eliminar</li>
     </ul>
   </nav>

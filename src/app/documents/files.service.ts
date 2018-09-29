@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { InfoFile } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilesService {
+  itemsInQueue = new BehaviorSubject<InfoFile[]>([]);
+
   constructor(private http: HttpClient) {}
 
   getJSON(route: string) {
-    // console.log(`${environment.server}:${environment.port}/${route}`);
     return !environment.production
       ? this.http.get(`${environment.server}:${environment.port}/${route}`)
       : this.http.get(
