@@ -23,8 +23,8 @@
 .options {
   position: absolute;
   right: 0;
-  top: 0;
-  transition: .3s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  top: 10px;
+  transition: .1s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes options {
@@ -32,10 +32,7 @@
     opacity: 0;
     top: 0;
   }
-  80% {
-    opacity: 1;
-    top: 30px;
-  }
+
   100% {
     top: 25px;
   }

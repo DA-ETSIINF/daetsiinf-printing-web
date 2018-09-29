@@ -7,6 +7,7 @@ main {
   min-height: calc(100vh - 212px);
   position: relative;
   flex: 1px;
+  margin-bottom: 25px;
 }
 
 main section {
@@ -47,6 +48,7 @@ section .header button {
   section .header {
     font-size: 10px;
   }
+
   section .header button {
     font-size: 12px;
     letter-spacing: .7px;
@@ -61,7 +63,7 @@ section .header button {
 .personal-data,
 .change-password {
   flex: 1px;
-  padding: 15px 20px;
+  padding: 15px 0;
 }
 
 .personal-data h5,
@@ -74,12 +76,14 @@ section .header button {
   background: #555;
   width: 1px;
   border-radius: 1px;
+  margin: 0 30px;
 }
 
 @media screen and (max-width:992px) {
   .change-info {
     display: inherit;
   }
+
   .vertical-divider {
     display: none;
   }
@@ -87,10 +91,9 @@ section .header button {
 
 .personal-data form,
 .change-password form {
-  margin-left: 10px;
   font-family: 'Lato';
-  width: 90%;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .personal-data .input {
@@ -106,10 +109,23 @@ section .header button {
   flex: 1
 }
 
-.personal-data .input input {
+.personal-data .input input,
+.change-password input {
   border: none;
   padding: 5px;
-  width: 100px;
+  flex: 1;
+  width: 100%;
+  background: none;
+  border-bottom: 2px solid var(--dark-2);
+  box-shadow: none;
+  color: var(--dark-3);
+  padding: 5px 10px;
+  max-width: 200px;
+}
+
+.change-password input {
+  margin-top: 10px;
+  width: calc(100% - 20px);
 }
 
 .personal-data .input i {

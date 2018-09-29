@@ -1,0 +1,77 @@
+<section class="queue">
+  <header (click)="toggleQueue()">
+    <h4>Ver cola de impresión</h4>
+    <i class="material-icons" [ngStyle]="{'transform': showQueue ? 'rotate(-45deg)': 'none'}">add</i>
+  </header>
+  <div class="content">
+    <div class="first-step">
+      <div class="step-title" (click)="setStep('first')">
+        <h5><span class="step-number">1</span><span>Ajustes</span></h5>
+        <button class="next" [ngStyle]="{'transform': step !== 'first' ? 'scale(0)': 'scale(1)'}" (click)="setStep('second')">siguiente
+          paso</button>
+      </div>
+      <div class="grid">
+        <div class="header">
+          <span class="name">Nombre</span>
+          <span class="npages">Nº páginas</span>
+          <span class="doubled-sided">Doble cara</span>
+          <span class="price">Precio</span>
+          <span class="remove"></span>
+        </div>
+        <div class="file">
+          <span class="name">NombredelFichero</span>
+          <span class="npages">10</span>
+          <div class="doubled-sided options">
+            <div class="active">
+              <span>No</span>
+            </div>
+            <div>
+              <span>Si</span>
+            </div>
+          </div>
+          <span class="price">0,56 €</span>
+          <span class="remove">Eliminar</span>
+        </div>
+        <div class="file">
+          <span class="name">NombredelFichero</span>
+          <span class="npages">10</span>
+          <div class="doubled-sided options">
+            <div class="active">
+              <span>No</span>
+            </div>
+            <div>
+              <span>Si</span>
+            </div>
+          </div>
+          <span class="price">0,56 €</span>
+          <span class="remove">Eliminar</span>
+        </div>
+        <p class="more-info" *ngIf="getWindowSize() < 500">Hay más información hacia la derecha <i class="material-icons">arrow_right_alt</i></p>
+      </div>
+    </div>
+    <div class="second-step bottom" [ngClass]="{'show-step': step === 'second'}">
+      <div class="step-title" (click)="step = 'second'">
+        <h5><span class="step-number">2</span><span>Precio</span></h5>
+        <button class="next cancel" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Cancelar</button>
+        <button class="next" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Imprimir</button>
+      </div>
+      <div class="data">
+        <div class="current">
+          <span class="text">Saldo actual:</span>
+          <span class="amount">3,06€</span>
+        </div>
+        <span class="difference">-</span>
+        <div class="cost">
+          <span class="text">Coste total:</span>
+          <span class="amount">1,10€</span>
+        </div>
+        <hr class="difference-separator">
+        <div class="cost">
+          <span class="text">Saldo posterior:</span>
+          <span class="amount">1,96€</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div (click)="toggleQueue()" class="overlay" [ngClass]="{'show':showQueue}"></div>

@@ -16,6 +16,10 @@
               <input type="text" [(ngModel)]="nameEdited" name="name" placeholder="Escriba su nuevo nombre">
               <i class="material-icons">edit</i>
             </div>
+            <div class="input email">
+              <label for="email">Email</label>
+              <span>javier.garcia@alumnos.upm.es</span>
+            </div>
             <div class="submit-changes">
               <button [ngClass]="(name!==nameEdited)?'enabled':'disabled'">Cambiar datos</button>
             </div>
@@ -28,13 +32,12 @@
             <input type="password" placeholder="Nueva contraseña">
             <input type="password" placeholder="Repita la nueva contraseña">
             <div class="submit-changes">
-              <button [ngClass]="(name!==nameEdited)?'enabled':'disabled'">Cambiar datos</button>
+              <button [ngClass]="(name!==nameEdited)?'enabled':'disabled'">Cambiar contraseña</button>
             </div>
           </form>
         </div>
       </div>
     </section>
-    <app-upload-btn></app-upload-btn>
   </main>
 
 </div>

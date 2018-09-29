@@ -16,6 +16,7 @@
       </div>
       <app-item *ngFor="let item of getCurrentItems()" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
     </section>
+    <app-queue></app-queue>
     <app-upload-btn></app-upload-btn>
   </main>
 </div>
