@@ -92,6 +92,4 @@ export class QueueComponent implements OnInit {
       );
     }, 0);
   }
-
-  changeCopies(file: InfoFile, e) {}
 }
