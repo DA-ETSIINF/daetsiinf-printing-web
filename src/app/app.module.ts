@@ -17,6 +17,7 @@ import { ItemComponent } from './documents/item/item.component';
 import { ProfileComponent } from './documents/profile/profile.component';
 import { AsideComponent } from './general_components/aside/aside.component';
 import { QueueComponent } from './documents/queue/queue.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { QueueComponent } from './documents/queue/queue.component';
     ItemComponent,
     ProfileComponent,
     AsideComponent,
-    QueueComponent
+    QueueComponent,
+    NotFoundComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent],
