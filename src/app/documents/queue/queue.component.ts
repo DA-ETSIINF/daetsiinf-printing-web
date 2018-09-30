@@ -55,7 +55,7 @@ export class QueueComponent implements OnInit {
   }
 
   getPrice(file: InfoFile) {
-    let price = file.pages * 0.04;
+    let price = file.pages * 0.04 * file.ncopies;
     if (!file.doubledSided) {
       price = price * 2;
     }
@@ -86,7 +86,12 @@ export class QueueComponent implements OnInit {
 
   cost(): number {
     return this.itemsInQueue.reduce((cost, e) => {
-      return cost + (e.doubledSided ? e.pages * 0.04 : e.pages * 2 * 0.04);
+      return (
+        cost +
+        (e.doubledSided ? e.pages * 0.04 : e.pages * 2 * 0.04) * e.ncopies
+      );
     }, 0);
   }
+
+  changeCopies(file: InfoFile, e) {}
 }

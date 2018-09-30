@@ -11,4 +11,5 @@ export interface InfoFile {
   name: string;
   pages: number;
   doubledSided: boolean;
+  ncopies: number;
 }
