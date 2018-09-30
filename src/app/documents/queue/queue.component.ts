@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../files.service';
 import { AppComponent } from '../../app.component';
 import { InfoFile } from '../../models';
+import { elementStart } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-queue',
@@ -21,7 +22,6 @@ export class QueueComponent implements OnInit {
   ) {
     this.filesService.itemsInQueue.subscribe(e => {
       this.itemsInQueue = e;
-      console.log(e);
     });
   }
 
@@ -47,5 +47,42 @@ export class QueueComponent implements OnInit {
 
   getWindowSize() {
     return this.appComponent.size;
+  }
+
+  setDoubledSided(bool: boolean, id: number) {
+    this.itemsInQueue.map(a => {
+      if (a.id === id) {
+        a.doubledSided = bool;
+      }
+    });
+  }
+
+  getPrice(file: InfoFile) {
+    let price = file.pages * 0.04;
+    if (!file.doubledSided) {
+      price = price * 2;
+    }
+    return `${price}€`;
+  }
+
+  cancel() {
+    this.toggleQueue();
+    setTimeout(() => this.setStep('first'), 100);
+  }
+  removeFile(id: number) {
+    let elems;
+    this.filesService.itemsInQueue.subscribe(a => (elems = a));
+    let index = elems.find(e => e.id === id);
+    elems.splice(elems.indexOf(index), 1);
+
+    if (elems.length === 0) {
+      this.cancel();
+    }
+
+    setTimeout(() => {
+      console.log('0000');
+
+      // this.filesService.itemsInQueue.next(elems);
+    }, 3000);
   }
 }

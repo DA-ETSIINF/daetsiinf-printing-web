@@ -2,5 +2,13 @@ export interface Item {
   id: number;
   name: string;
   type: string;
+  pages?: number;
   shorten?: string;
+}
+
+export interface InfoFile {
+  id: number;
+  name: string;
+  pages: number;
+  doubledSided: boolean;
 }

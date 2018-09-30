@@ -3,12 +3,12 @@
     <ul>
       <li [ngClass]="{'active': currentPage === '/my-documents'}">
         <div class="documents-menu__option">
-          <i (click)="showMyDocumentsAside=!showMyDocumentsAside" [ngStyle]="showMyDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
+          <i (click)="toggleMyDocumentsView('myDocuments')" [ngStyle]="showMyDocumentsAside !== 0 && {'transform': 'rotate(90deg)','margin-top':'4px'}"
             class="material-icons">arrow_right</i>
           <span routerLink="/my-documents">Mis documentos</span>
         </div>
-        <ul class="items" [ngClass]="{'show-aside-subjects':showMyDocumentsAside}">
-          <li *ngFor="let item of myDocumentsItems">
+        <ul class="items" id="myDocuments" [ngStyle]="{'max-height': showMyDocumentsAside !== 0 ? showMyDocumentsAside + 'px' : 0}">
+          <li *ngFor="let item of myDocuments">
             <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
             <span>{{item.name}}</span>
@@ -17,12 +17,12 @@
       </li>
       <li [ngClass]="{'active': currentPage === '/shared-with-me'}">
         <div class="documents-menu__option">
-          <i (click)="showSharedDocumentsAside=!showSharedDocumentsAside" [ngStyle]="showSharedDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
+          <i (click)="toggleSharedDocumentsView('myDocuments')" [ngStyle]="showSharedDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
             class="material-icons">arrow_right</i>
           <span (click)="goTo('/shared-with-me', 'shared-with-me')">Compartidos conmigo</span>
         </div>
-        <ul class="items" [ngClass]="{'show-aside-subjects':showSharedDocumentsAside}">
-          <li *ngFor="let item of sharedWithMeItems">
+        <ul class="items" id="sharedDocuments" [ngStyle]="{'max-height': showSharedDocumentsAside !== 0 ? showSharedDocumentsAside + 'px' : 0}">
+          <li *ngFor="let item of sharedWithMe">
             <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
             <span>{{item.name}}</span>

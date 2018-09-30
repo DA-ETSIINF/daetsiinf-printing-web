@@ -16,6 +16,7 @@ import { FooterComponent } from './general_components/footer/footer.component';
 import { ItemComponent } from './documents/item/item.component';
 import { ProfileComponent } from './documents/profile/profile.component';
 import { AsideComponent } from './general_components/aside/aside.component';
+import { QueueComponent } from './documents/queue/queue.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { AsideComponent } from './general_components/aside/aside.component';
     FooterComponent,
     ItemComponent,
     ProfileComponent,
-    AsideComponent
+    AsideComponent,
+    QueueComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent],

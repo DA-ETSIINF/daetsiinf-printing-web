@@ -12,10 +12,10 @@ import { Item } from '../../models';
 })
 export class AsideComponent implements OnInit {
   currentPage: string;
-  showMyDocumentsAside = false;
-  showSharedDocumentsAside = false;
-  myDocumentsItems: Item[] = [];
-  sharedWithMeItems: Item[] = [];
+  showMyDocumentsAside = 0;
+  showSharedDocumentsAside = 0;
+  myDocuments: Item[] = [];
+  sharedWithMe: Item[] = [];
 
   constructor(
     public router: Router,
@@ -27,14 +27,14 @@ export class AsideComponent implements OnInit {
       if (environment.production) {
         data = data['my-documents'];
       }
-      this.myDocumentsItems = <Item[]>data;
+      this.myDocuments = <Item[]>data;
     });
 
     this.fileService.getJSON('shared-with-me').subscribe(data => {
       if (environment.production) {
         data = data['shared-with-me'];
       }
-      this.sharedWithMeItems = <Item[]>data;
+      this.sharedWithMe = <Item[]>data;
     });
   }
 
@@ -46,5 +46,17 @@ export class AsideComponent implements OnInit {
     } else {
       this.router.navigate([page]);
     }
+  }
+
+  toggleMyDocumentsView(id: string) {
+    const ul = document.getElementById(id);
+    this.showMyDocumentsAside =
+      this.showMyDocumentsAside === 0 ? ul.scrollHeight : 0;
+  }
+
+  toggleSharedDocumentsView(id: string) {
+    const ul = document.getElementById(id);
+    this.showSharedDocumentsAside =
+      this.showSharedDocumentsAside === 0 ? ul.scrollHeight : 0;
   }
 }

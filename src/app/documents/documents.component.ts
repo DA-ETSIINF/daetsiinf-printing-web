@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FilesService } from './files.service';
-import { Item } from '../models';
+import { Item, InfoFile } from '../models';
 import { AppComponent } from '../app.component';
 import { environment } from '../../environments/environment';
 
@@ -19,7 +19,7 @@ export class DocumentsComponent implements OnInit {
   loading: boolean;
   showMyDocumentsAside: boolean;
   showSharedDocumentsAside: boolean;
-
+  itemsInQueue: InfoFile[];
   constructor(
     public router: Router,
     private fileService: FilesService,
@@ -48,7 +48,9 @@ export class DocumentsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fileService.itemsInQueue.subscribe(a => (this.itemsInQueue = a));
+  }
 
   getCurrentItems() {
     return this.currentPage === '/my-documents'

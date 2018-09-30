@@ -5,6 +5,7 @@ footer {
   align-items: center;
   background: rgb(231, 231, 231);
   padding: 0 50px;
+  z-index: 99;
 }
 
 .footer__left {
@@ -48,15 +49,18 @@ footer {
     min-height: initial;
     padding: 0;
   }
+
   .footer__left {
     justify-content: space-around;
     font-size: 13px;
   }
+
   .footer__left,
   .copyright {
     flex-basis: inherit;
     padding: 20px;
   }
+
   .daetsiinf {
     flex: initial;
   }

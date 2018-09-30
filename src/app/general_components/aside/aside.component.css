@@ -55,12 +55,13 @@ aside nav ul li .documents-menu__option i {
   margin-left: 30px;
   margin-right: 5px;
   list-style: none;
-  height: 0;
-  overflow: hidden;
+  max-height: 0;
+  overflow-y: hidden;
+  transition: .2s all ease;
 }
 
 .show-aside-subjects {
-  height: inherit;
+  max-height: 200px;
 }
 
 .items li {

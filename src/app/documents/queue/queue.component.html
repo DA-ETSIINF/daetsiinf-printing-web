@@ -1,6 +1,9 @@
 <section class="queue">
   <header (click)="toggleQueue()">
-    <h4>Ver cola de impresión</h4>
+    <h4>Ver cola de impresión -
+      <span>{{itemsInQueue.length}} elemento</span>
+      <span *ngIf="itemsInQueue.length !== 1">s</span>
+    </h4>
     <i class="material-icons" [ngStyle]="{'transform': showQueue ? 'rotate(-45deg)': 'none'}">add</i>
   </header>
   <div class="content">
@@ -22,15 +25,15 @@
           <span class="name">{{file.name}}</span>
           <span class="npages">{{file.pages}}</span>
           <div class="doubled-sided options">
-            <div class="active">
+            <div (click)="setDoubledSided(false, file.id)" [ngClass]="{'active':!file.doubledSided}">
               <span>No</span>
             </div>
-            <div>
+            <div (click)="setDoubledSided(true, file.id)" [ngClass]="{'active':file.doubledSided}">
               <span>Si</span>
             </div>
           </div>
-          <span class="price">0,56 €</span>
-          <span class="remove">Eliminar</span>
+          <span class="price">{{getPrice(file)}}</span>
+          <span class="remove" (click)="removeFile(file.id)">Eliminar</span>
         </div>
         <p class="more-info" *ngIf="getWindowSize() < 500">Hay más información hacia la derecha <i class="material-icons">arrow_right_alt</i></p>
       </div>
@@ -38,7 +41,7 @@
     <div class="second-step bottom" [ngClass]="{'show-step': step === 'second'}">
       <div class="step-title" (click)="step = 'second'">
         <h5><span class="step-number">2</span><span>Precio</span></h5>
-        <button class="next cancel" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Cancelar</button>
+        <button class="next cancel" (click)="cancel()" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Cancelar</button>
         <button class="next" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Imprimir</button>
       </div>
       <div class="data">

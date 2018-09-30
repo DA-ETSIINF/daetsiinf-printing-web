@@ -30,5 +30,6 @@ export class ItemComponent implements OnInit {
     this.filesService.itemsInQueue.subscribe(a => (b = a)).unsubscribe();
     b.push({ id, name, pages, doubledSided: true });
     this.filesService.itemsInQueue.next(b);
+    this.toggleOptions();
   }
 }
