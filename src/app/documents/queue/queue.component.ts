@@ -30,10 +30,7 @@ export class QueueComponent implements OnInit {
   toggleQueue() {
     this.showQueue = !this.showQueue;
     const queueElem = document.querySelector('app-queue') as any;
-    const top =
-      queueElem.style.top === 'calc(100vh - 44px)' || queueElem.style.top === ''
-        ? queueElem.offsetHeight
-        : 44;
+    const top = this.showQueue ? queueElem.offsetHeight : 44;
     queueElem.style.top = `calc(100vh - ${top}px)`;
   }
 
@@ -71,18 +68,25 @@ export class QueueComponent implements OnInit {
   }
   removeFile(id: number) {
     let elems;
-    this.filesService.itemsInQueue.subscribe(a => (elems = a));
-    let index = elems.find(e => e.id === id);
-    elems.splice(elems.indexOf(index), 1);
+    this.filesService.itemsInQueue.subscribe(a => (elems = a)).unsubscribe();
+    const index = elems.find(e => e.id === id);
 
-    if (elems.length === 0) {
+    if (elems.length === 1) {
       this.cancel();
     }
 
     setTimeout(() => {
-      console.log('0000');
+      elems.splice(elems.indexOf(index), 1);
+    }, 150);
+  }
 
-      // this.filesService.itemsInQueue.next(elems);
-    }, 3000);
+  currentAmount(): number {
+    return 3.04;
+  }
+
+  cost(): number {
+    return this.itemsInQueue.reduce((cost, e) => {
+      return cost + (e.doubledSided ? e.pages * 0.04 : e.pages * 2 * 0.04);
+    }, 0);
   }
 }

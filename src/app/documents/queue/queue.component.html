@@ -47,17 +47,17 @@
       <div class="data">
         <div class="current">
           <span class="text">Saldo actual:</span>
-          <span class="amount">3,06€</span>
+          <span class="amount">{{currentAmount().toLocaleString('es')}}€</span>
         </div>
         <span class="difference">-</span>
         <div class="cost">
           <span class="text">Coste total:</span>
-          <span class="amount">1,10€</span>
+          <span class="amount">{{cost().toLocaleString('es')}}€</span>
         </div>
         <hr class="difference-separator">
         <div class="cost">
           <span class="text">Saldo posterior:</span>
-          <span class="amount">1,96€</span>
+          <span class="amount">{{(currentAmount() - cost()).toLocaleString('es')}}€</span>
         </div>
       </div>
     </div>
