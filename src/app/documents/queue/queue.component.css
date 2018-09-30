@@ -94,7 +94,7 @@ header i {
 }
 
 .step-title .next.cancel {
-  background: #cecece;
+  background: none;
   color: var(--dark-3);
   margin-right: 10px;
 }
@@ -254,7 +254,7 @@ input.ncopies {
 }
 
 .data {
-  max-width: 200px;
+  max-width: 190px;
   margin: 0 auto;
 }
 

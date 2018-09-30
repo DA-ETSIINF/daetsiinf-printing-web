@@ -30,20 +30,14 @@ export class DocumentsComponent implements OnInit {
 
       this.currentPage = this.router.routerState.snapshot.url;
 
-      this.fileService.getJSON('my-documents').subscribe(data => {
-        if (environment.production) {
-          data = data['my-documents'];
-        }
-        this.myDocumentsItems = this.shortenNames(<Item[]>data);
-      });
+      this.myDocumentsItems = this.shortenNames(<Item[]>(
+        this.fileService.getFake('my-documents')
+      ));
 
-      this.fileService.getJSON('shared-with-me').subscribe(data => {
-        if (environment.production) {
-          data = data['shared-with-me'];
-        }
+      this.sharedWithMeItems = this.shortenNames(<Item[]>(
+        this.fileService.getFake('shared-with-me')
+      ));
 
-        this.sharedWithMeItems = this.shortenNames(<Item[]>data);
-      });
       this.loading = false;
     });
   }
