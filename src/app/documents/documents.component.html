@@ -1,8 +1,8 @@
 <app-header></app-header>
 <div class="container">
   <app-aside></app-aside>
-  <main [ngClass]="{'grid': (getCurrentItems().length !== 0)}" (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-documents')">
-    <section>
+  <main [ngClass]="{'grid': (getCurrentItems().length !== 0)}">
+    <section (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-documents')">
       <div class="loading" *ngIf="loading">
         <p>Cargando</p>
         <video src="./assets/loading/printer.avi"></video>
