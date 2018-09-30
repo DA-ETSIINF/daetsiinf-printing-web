@@ -22,14 +22,14 @@
           <span class="price">Precio</span>
           <span class="remove"></span>
         </div>
-        <div class="file" *ngFor="let file of itemsInQueue">
+        <div class="file" *ngFor="let file of itemsInQueue; let i = index">
           <span class="name">{{file.name}}</span>
           <span class="npages">{{file.pages}}</span>
           <div class="doubled-sided options">
-            <div (click)="setDoubledSided(false, file.id)" [ngClass]="{'active':!file.doubledSided}">
+            <div (click)="setDoubledSided(false, i)" [ngClass]="{'active':!file.doubledSided}">
               <span>No</span>
             </div>
-            <div (click)="setDoubledSided(true, file.id)" [ngClass]="{'active':file.doubledSided}">
+            <div (click)="setDoubledSided(true, i)" [ngClass]="{'active':file.doubledSided}">
               <span>Si</span>
             </div>
           </div>

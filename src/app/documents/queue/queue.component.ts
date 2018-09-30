@@ -46,12 +46,8 @@ export class QueueComponent implements OnInit {
     return this.appComponent.size;
   }
 
-  setDoubledSided(bool: boolean, id: number) {
-    this.itemsInQueue.map(a => {
-      if (a.id === id) {
-        a.doubledSided = bool;
-      }
-    });
+  setDoubledSided(bool: boolean, i: number) {
+    this.itemsInQueue[i].doubledSided = bool;
   }
 
   getPrice(file: InfoFile) {
