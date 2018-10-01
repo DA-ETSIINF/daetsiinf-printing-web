@@ -1,0 +1,82 @@
+main {
+  min-height: calc(100vh - 212px);
+  position: relative;
+  flex: 1px;
+  margin-bottom: 25px;
+}
+
+.card {
+  margin-top: 25px;
+}
+
+.header {
+  text-transform: uppercase;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header button {
+  padding: 5px 15px;
+  font-size: 15px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: none;
+  background: var(--purple);
+  text-transform: uppercase;
+  color: var(--white);
+  font-family: 'Oswald'
+}
+
+@media screen and (max-width:992px) {
+  .header {
+    font-size: 10px;
+  }
+
+  .header button {
+    font-size: 12px;
+    letter-spacing: .7px;
+  }
+}
+
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+}
+
+.timeline {
+  position: absolute;
+  width: 2px;
+  background: var(--dark-2);
+  animation: .4s all ease;
+  animation-name: height;
+  height: 100%;
+}
+
+@keyframes height {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
+
+.current-amount {
+  background: var(--blue);
+  padding: 4px 7px;
+  max-width: 60px;
+  text-align: center;
+  color: var(--white);
+}
+
+.movements>div {
+  display: flex;
+  justify-content: space-between;
+}

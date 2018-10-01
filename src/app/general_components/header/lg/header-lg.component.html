@@ -21,13 +21,13 @@
               <i class="material-icons">insert_drive_file</i>
               <span>Documentos</span>
             </li>
-            <li [routerLink]="['/profile']">
+            <li (click)="goTo('profile')">
               <i class="material-icons">settings</i>
               <span>Mis datos</span>
             </li>
-            <li>
+            <li (click)="goTo('funds')">
               <i class="material-icons">history</i>
-              <span>Mi historial</span>
+              <span>Historial de fondos</span>
             </li>
             <div class="horizontal-divider"></div>
             <li>

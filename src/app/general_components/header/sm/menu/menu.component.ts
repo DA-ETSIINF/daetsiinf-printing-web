@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   static isOpen = false;
-  constructor() {}
+  constructor(private router: Router) {}
 
   getIsOpen() {
     return MenuComponent.isOpen;
@@ -16,4 +17,9 @@ export class MenuComponent implements OnInit {
     MenuComponent.isOpen = !MenuComponent.isOpen;
   }
   ngOnInit() {}
+
+  goTo(route: string) {
+    MenuComponent.isOpen = false;
+    this.router.navigate([route]);
+  }
 }

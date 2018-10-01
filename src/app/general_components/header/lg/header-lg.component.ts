@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header-lg',
   templateUrl: './header-lg.component.html',
@@ -9,7 +10,7 @@ export class HeaderLgComponent implements OnInit {
   showUserDropdown = false;
   hideUserDropdown = false;
   version: string = environment.version;
-  constructor() {}
+  constructor(private router: Router) {}
 
   setShowUserDropdown() {
     this.showUserDropdown = true;
@@ -21,6 +22,10 @@ export class HeaderLgComponent implements OnInit {
     setTimeout(function() {
       this.showUserDropdown = false;
     }, 100);
+  }
+
+  goTo(route: string) {
+    this.router.navigate([route]);
   }
 
   ngOnInit() {}

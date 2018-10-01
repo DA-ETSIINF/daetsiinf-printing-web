@@ -22,6 +22,7 @@ html {
   font-family: 'Oswald', sans-serif;
   z-index: 1;
   overflow-x: hidden;
+  height: 100%;
 }
 
 .material-icons {
@@ -34,4 +35,19 @@ html {
   height: 1px;
   opacity: 0.4;
   margin: 7px 0;
+}
+
+
+.card {
+  background: var(--white);
+  margin: 0 100px;
+  padding: 25px 50px;
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.4);
+}
+
+@media screen and (max-width:992px) {
+  main .card {
+    margin: 0 25px;
+    padding: 15px 20px;
+  }
 }

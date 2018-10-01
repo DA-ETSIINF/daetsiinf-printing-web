@@ -10,21 +10,7 @@ main {
   margin-bottom: 25px;
 }
 
-main section {
-  background: var(--white);
-  margin: 0 100px;
-  padding: 25px 50px;
-  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.4);
-}
-
-@media screen and (max-width:992px) {
-  main section {
-    margin: 0 25px;
-    padding: 15px 20px;
-  }
-}
-
-section .header {
+.header {
   text-transform: uppercase;
   font-size: 13px;
   display: flex;
@@ -32,7 +18,7 @@ section .header {
   align-items: center;
 }
 
-section .header button {
+.header button {
   padding: 5px 15px;
   font-size: 15px;
   border-radius: 20px;
@@ -45,24 +31,22 @@ section .header button {
 }
 
 @media screen and (max-width:992px) {
-  section .header {
+  .header {
     font-size: 10px;
   }
 
-  section .header button {
+  .header button {
     font-size: 12px;
     letter-spacing: .7px;
   }
 }
 
 .change-info {
-  display: flex;
   margin-top: 25px;
 }
 
 .personal-data,
 .change-password {
-  flex: 1px;
   padding: 15px 0;
 }
 
@@ -71,13 +55,6 @@ section .header button {
   font-size: 15px
 }
 
-.vertical-divider {
-  height: 200px;
-  background: #555;
-  width: 1px;
-  border-radius: 1px;
-  margin: 0 30px;
-}
 
 @media screen and (max-width:992px) {
   .change-info {
@@ -89,14 +66,15 @@ section .header button {
   }
 }
 
-.personal-data form,
-.change-password form {
+form {
   font-family: 'Lato';
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.personal-data .input {
+form .input {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -104,13 +82,12 @@ section .header button {
   font-size: 14px;
 }
 
-.personal-data .input label {
+form .input label {
   color: var(--dark-3);
-  flex: 1
+  flex: 1;
 }
 
-.personal-data .input input,
-.change-password input {
+form input {
   border: none;
   padding: 5px;
   flex: 1;
@@ -123,19 +100,19 @@ section .header button {
   max-width: 200px;
 }
 
-.change-password input {
+input {
   margin-top: 10px;
   width: calc(100% - 20px);
 }
 
-.personal-data .input i {
+form .input i {
   color: var(--dark-3);
   font-size: 18px;
   margin-left: 5px;
 }
 
 .submit-changes {
-  margin-top: 50px;
+  margin-top: 10px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
