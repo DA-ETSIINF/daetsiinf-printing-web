@@ -74,7 +74,7 @@
   padding: 10px 10px 10px 5px;
   font-size: 13px;
   font-weight: 400;
-  background: var(--dark-1);
+  background: var(--bck);
   color: var(--dark-3);
   text-transform: uppercase;
 }

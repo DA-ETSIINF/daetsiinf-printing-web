@@ -40,43 +40,6 @@ main {
   }
 }
 
-
-.content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: 25px;
-}
-
-.timeline {
-  position: absolute;
-  width: 2px;
-  background: var(--dark-2);
-  animation: .4s all ease;
-  animation-name: height;
-  height: 100%;
-}
-
-@keyframes height {
-  from {
-    height: 0%;
-  }
-
-  to {
-    height: 100%;
-  }
-}
-
-
-.current-amount {
-  background: var(--blue);
-  padding: 4px 7px;
-  max-width: 60px;
-  text-align: center;
-  color: var(--white);
-}
-
-.movements>div {
-  display: flex;
-  justify-content: space-between;
+.chart{
+  margin-top: 25px;
 }

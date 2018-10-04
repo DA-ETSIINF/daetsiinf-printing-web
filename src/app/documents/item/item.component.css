@@ -62,7 +62,7 @@
 }
 
 .options ul li.delete {
-  color: var(--red);
+  color: var(--bad);
 }
 
 h5 {
