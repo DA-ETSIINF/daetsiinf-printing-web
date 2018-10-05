@@ -12,9 +12,9 @@ import { Item } from '../../models';
 })
 export class AsideComponent implements OnInit {
   currentPage: string;
-  showMyDocumentsAside = 0;
-  showSharedDocumentsAside = 0;
-  myDocuments: Item[] = [];
+  showMyFilesAside = 0;
+  showSharedFilesAside = 0;
+  myFiles: Item[] = [];
   sharedWithMe: Item[] = [];
 
   constructor(
@@ -24,13 +24,13 @@ export class AsideComponent implements OnInit {
   ) {
     this.currentPage = this.router.routerState.snapshot.url;
 
-    this.myDocuments = this.shortenNames(<Item[]>(
-      this.fileService.getFake('my-files')
-    ));
+    this.fileService.sharedWithMe$.subscribe(items => {
+      this.myFiles = items;
+    });
 
-    this.sharedWithMe = this.shortenNames(<Item[]>(
-      this.fileService.getFake('shared-with-me')
-    ));
+    this.fileService.myFiles$.subscribe(items => {
+      this.sharedWithMe = items;
+    });
   }
 
   ngOnInit() {}
@@ -53,15 +53,14 @@ export class AsideComponent implements OnInit {
     }
   }
 
-  toggleMyDocumentsView(id: string) {
+  toggleMyFilesView(id: string) {
     const ul = document.getElementById(id);
-    this.showMyDocumentsAside =
-      this.showMyDocumentsAside === 0 ? ul.scrollHeight : 0;
+    this.showMyFilesAside = this.showMyFilesAside === 0 ? ul.scrollHeight : 0;
   }
 
-  toggleSharedDocumentsView(id: string) {
+  toggleSharedFilesView(id: string) {
     const ul = document.getElementById(id);
-    this.showSharedDocumentsAside =
-      this.showSharedDocumentsAside === 0 ? ul.scrollHeight : 0;
+    this.showSharedFilesAside =
+      this.showSharedFilesAside === 0 ? ul.scrollHeight : 0;
   }
 }

@@ -3,12 +3,12 @@
     <ul>
       <li [ngClass]="{'active': currentPage === '/my-files'}">
         <div class="files-menu__option">
-          <i (click)="toggleMyDocumentsView('myDocuments')" [ngStyle]="showMyDocumentsAside !== 0 && {'transform': 'rotate(90deg)','margin-top':'4px'}"
+          <i (click)="toggleMyFilesView('myFiles')" [ngStyle]="showMyFilesAside !== 0 && {'transform': 'rotate(90deg)','margin-top':'4px'}"
             class="material-icons">arrow_right</i>
           <span routerLink="/my-files">Mis archivos</span>
         </div>
-        <ul class="items" id="myDocuments" [ngStyle]="{'max-height': showMyDocumentsAside !== 0 ? showMyDocumentsAside + 'px' : 0}">
-          <li *ngFor="let item of myDocuments">
+        <ul class="items" id="myFiles" [ngStyle]="{'max-height': showMyFilesAside !== 0 ? showMyFilesAside + 'px' : 0}">
+          <li *ngFor="let item of myFiles">
             <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
             <span>{{item.name}}</span>
@@ -17,11 +17,11 @@
       </li>
       <li [ngClass]="{'active': currentPage === '/shared-with-me'}">
         <div class="files-menu__option">
-          <i (click)="toggleSharedDocumentsView('myDocuments')" [ngStyle]="showSharedDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
+          <i (click)="toggleSharedFilesView('myFiles')" [ngStyle]="showSharedFilesAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
             class="material-icons">arrow_right</i>
           <span (click)="goTo('/shared-with-me', 'shared-with-me')">Compartidos conmigo</span>
         </div>
-        <ul class="items" id="sharedDocuments" [ngStyle]="{'max-height': showSharedDocumentsAside !== 0 ? showSharedDocumentsAside + 'px' : 0}">
+        <ul class="items" id="sharedFiles" [ngStyle]="{'max-height': showSharedFilesAside !== 0 ? showSharedFilesAside + 'px' : 0}">
           <li *ngFor="let item of sharedWithMe">
             <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>

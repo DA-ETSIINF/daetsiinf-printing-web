@@ -1,55 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { FilesService } from './files.service';
 import { Item, InfoFile } from '../models';
 import { AppComponent } from '../app.component';
-import { environment } from '../../environments/environment';
+import { interval, Subscription } from 'rxjs';
+import { throttle } from 'rxjs/operators';
 
 @Component({
   selector: 'app-files',
   templateUrl: './files.component.html',
   styleUrls: ['./files.component.css']
 })
-export class DocumentsComponent implements OnInit {
+export class FilesComponent implements OnInit, OnDestroy {
   currentPage: string;
   status: string;
   currentSelected: Item[] = [];
-  myDocumentsItems: Item[] = [];
-  sharedWithMeItems: Item[] = [];
+  myFiles: Item[] = [];
+  myFiles$: Subscription;
+  sharedWithMe: Item[] = [];
+  sharedWithMe$: Subscription;
   loading: boolean;
-  showMyDocumentsAside: boolean;
-  showSharedDocumentsAside: boolean;
+  showMyFilesAside: boolean;
+  showSharedFilesAside: boolean;
   itemsInQueue: InfoFile[];
   constructor(
     public router: Router,
     private fileService: FilesService,
     public appComponent: AppComponent
   ) {
-    router.events.subscribe(() => {
+    router.events.pipe(throttle(() => interval(100))).subscribe(() => {
       this.loading = true;
 
       this.currentPage = this.router.routerState.snapshot.url;
 
-      this.myDocumentsItems = this.shortenNames(<Item[]>(
-        this.fileService.getFake('my-files')
-      ));
+      if (this.myFiles$ !== undefined) {
+        this.myFiles$.unsubscribe();
+      }
+      this.myFiles$ = this.fileService.myFiles$
+        .pipe(map(items => this.shortenNames(items)))
+        .pipe(throttle(() => interval(1000)))
+        .subscribe(items => {
+          this.myFiles = items;
+        });
 
-      this.sharedWithMeItems = this.shortenNames(<Item[]>(
-        this.fileService.getFake('shared-with-me')
-      ));
+      if (this.sharedWithMe$ !== undefined) {
+        this.sharedWithMe$.unsubscribe();
+      }
+      this.sharedWithMe$ = this.fileService.sharedWithMe$
+        .pipe(map(items => this.shortenNames(items)))
+        .pipe(throttle(() => interval(1000)))
+        .subscribe(items => {
+          this.sharedWithMe = items;
+        });
 
       this.loading = false;
     });
   }
 
   ngOnInit() {
-    this.fileService.itemsInQueue.subscribe(a => (this.itemsInQueue = a));
+    this.fileService.itemsInQueue$.subscribe(a => (this.itemsInQueue = a));
+  }
+
+  ngOnDestroy() {
+    this.myFiles$.unsubscribe();
+    this.sharedWithMe$.unsubscribe();
   }
 
   getCurrentItems() {
-    return this.currentPage === '/my-files'
-      ? this.myDocumentsItems
-      : this.sharedWithMeItems;
+    return this.currentPage === '/my-files' ? this.myFiles : this.sharedWithMe;
   }
 
   goTo(page: string, submenu?: string) {

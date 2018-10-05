@@ -5,7 +5,7 @@ import { AuthGuard } from './login/_guards/auth.guard';
 
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
-import { DocumentsComponent } from './files/files.component';
+import { FilesComponent } from './files/files.component';
 import { ProfileComponent } from './files/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FundsComponent } from './general_components/funds/funds.component';
@@ -15,12 +15,12 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'my-files',
-    component: DocumentsComponent
+    component: FilesComponent
     /* canActivate: [AuthGuard] */
   },
   {
     path: 'shared-with-me',
-    component: DocumentsComponent
+    component: FilesComponent
     /* canActivate: [AuthGuard] */
   },
   {

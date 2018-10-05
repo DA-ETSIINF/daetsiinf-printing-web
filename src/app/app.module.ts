@@ -9,7 +9,7 @@ import { HeaderComponent } from './general_components/header/header.component';
 import { HeaderLgComponent } from './general_components/header/lg/header-lg.component';
 import { HeaderSmComponent } from './general_components/header/sm/header-sm.component';
 import { MenuComponent } from './general_components/header/sm/menu/menu.component';
-import { DocumentsComponent } from './files/files.component';
+import { FilesComponent } from './files/files.component';
 import { UploadBtnComponent } from './general_components/upload-btn/upload-btn.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
@@ -26,7 +26,7 @@ import { FundsComponent } from './general_components/funds/funds.component';
     HeaderComponent,
     HeaderLgComponent,
     HeaderSmComponent,
-    DocumentsComponent,
+    FilesComponent,
     MenuComponent,
     UploadBtnComponent,
     LoginComponent,

@@ -15,7 +15,7 @@ export class HeaderSmComponent implements OnInit {
   toggleMenu() {
     this.menu.toogleMenu();
   }
-  showDocumentsNav() {
+  showFilesNav() {
     return ['/my-files', '/shared-with-me'].includes(this.currentPage);
   }
   ngOnInit() {

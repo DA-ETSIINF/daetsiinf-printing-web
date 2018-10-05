@@ -27,9 +27,9 @@ export class ItemComponent implements OnInit {
 
   addFileToQueue(id: number, name: string, pages: number) {
     let b: InfoFile[];
-    this.filesService.itemsInQueue.subscribe(a => (b = a)).unsubscribe();
+    this.filesService.itemsInQueue$.subscribe(a => (b = a)).unsubscribe();
     b.push({ id, name, pages, doubledSided: true, ncopies: 1 });
-    this.filesService.itemsInQueue.next(b);
+    this.filesService.itemsInQueue$.next(b);
     this.toggleOptions();
   }
 }

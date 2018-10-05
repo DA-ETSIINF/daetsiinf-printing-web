@@ -20,7 +20,7 @@ export class QueueComponent implements OnInit {
     private appComponent: AppComponent,
     private filesService: FilesService
   ) {
-    this.filesService.itemsInQueue.subscribe(e => {
+    this.filesService.itemsInQueue$.subscribe(e => {
       this.itemsInQueue = e;
     });
   }
@@ -64,7 +64,7 @@ export class QueueComponent implements OnInit {
   }
   removeFile(id: number) {
     let elems;
-    this.filesService.itemsInQueue.subscribe(a => (elems = a)).unsubscribe();
+    this.filesService.itemsInQueue$.subscribe(a => (elems = a)).unsubscribe();
     const index = elems.find(e => e.id === id);
 
     if (elems.length === 1) {
