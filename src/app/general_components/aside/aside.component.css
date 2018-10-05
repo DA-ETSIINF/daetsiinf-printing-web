@@ -19,7 +19,7 @@ aside nav ul li {
   cursor: pointer;
 }
 
-aside nav ul li .documents-menu__option {
+aside nav ul li .files-menu__option {
   width: 100%;
   display: flex;
   align-items: center;
@@ -33,20 +33,20 @@ aside nav ul li .documents-menu__option {
   margin-left: 10px;
 }
 
-aside nav ul li.active .documents-menu__option {
+aside nav ul li.active .files-menu__option {
   width: 220px;
   border-left: 9px solid var(--blue);
-  background: #E4E4E4;
+  background: #e4e4e4;
   margin-left: 0;
 }
 
-aside nav ul li .documents-menu__option span {
+aside nav ul li .files-menu__option span {
   width: 180px;
 }
 
-aside nav ul li .documents-menu__option i {
+aside nav ul li .files-menu__option i {
   padding-right: 5px;
-  transition: .1s all ease;
+  transition: 0.1s all ease;
 }
 
 .divider {
@@ -64,7 +64,7 @@ aside nav ul li .documents-menu__option i {
   list-style: none;
   max-height: 0;
   overflow-y: hidden;
-  transition: .2s all ease;
+  transition: 0.2s all ease;
 }
 
 .show-aside-subjects {

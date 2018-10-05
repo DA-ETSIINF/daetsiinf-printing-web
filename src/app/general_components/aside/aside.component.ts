@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FilesService } from '../../documents/files.service';
+import { FilesService } from '../../files/files.service';
 import { AppComponent } from '../../app.component';
 import { environment } from '../../../environments/environment';
 import { Item } from '../../models';
@@ -25,14 +25,13 @@ export class AsideComponent implements OnInit {
     this.currentPage = this.router.routerState.snapshot.url;
 
     this.myDocuments = this.shortenNames(<Item[]>(
-      this.fileService.getFake('my-documents')
+      this.fileService.getFake('my-files')
     ));
 
     this.sharedWithMe = this.shortenNames(<Item[]>(
       this.fileService.getFake('shared-with-me')
     ));
   }
-
 
   ngOnInit() {}
 

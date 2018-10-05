@@ -11,7 +11,7 @@ export class FilesService {
   itemsInQueue = new BehaviorSubject<InfoFile[]>([]);
 
   files = {
-    'my-documents': [
+    'my-files': [
       {
         id: 1,
         name: 'Estructura de computadores',

@@ -5,8 +5,8 @@ import { AuthGuard } from './login/_guards/auth.guard';
 
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
-import { DocumentsComponent } from './documents/documents.component';
-import { ProfileComponent } from './documents/profile/profile.component';
+import { DocumentsComponent } from './files/files.component';
+import { ProfileComponent } from './files/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FundsComponent } from './general_components/funds/funds.component';
 
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
-    path: 'my-documents',
+    path: 'my-files',
     component: DocumentsComponent
     /* canActivate: [AuthGuard] */
   },
@@ -33,7 +33,7 @@ const routes: Routes = [
     component: FundsComponent
     /* canActivate: [AuthGuard] */
   },
-  { path: '', pathMatch: 'full', redirectTo: '/my-documents' },
+  { path: '', pathMatch: 'full', redirectTo: '/my-files' },
   { path: '**', component: NotFoundComponent }
 ];
 

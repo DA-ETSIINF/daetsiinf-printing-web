@@ -16,7 +16,7 @@ export class HeaderSmComponent implements OnInit {
     this.menu.toogleMenu();
   }
   showDocumentsNav() {
-    return ['/my-documents', '/shared-with-me'].includes(this.currentPage);
+    return ['/my-files', '/shared-with-me'].includes(this.currentPage);
   }
   ngOnInit() {
     this.currentPage = this.router.routerState.snapshot.url;

@@ -2,13 +2,13 @@
 <div class="container">
   <app-aside></app-aside>
   <main [ngClass]="{'grid': (getCurrentItems().length !== 0)}">
-    <section (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-documents')">
+    <section (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-files')">
       <div class="loading" *ngIf="loading">
         <p>Cargando</p>
         <video src="./assets/loading/printer.avi"></video>
       </div>
       <div class="empty" *ngIf="!loading && getCurrentItems().length === 0">
-        <p *ngIf="currentPage === '/my-documents'">No has subido nada aún :(</p>
+        <p *ngIf="currentPage === '/my-files'">No has subido nada aún :(</p>
         <p *ngIf="currentPage === '/shared-with-me'">No te han compartido nada aún :(</p>
         <div class="gif">
           <iframe src="https://giphy.com/embed/3o7aTskHEUdgCQAXde" frameBorder="0"></iframe>

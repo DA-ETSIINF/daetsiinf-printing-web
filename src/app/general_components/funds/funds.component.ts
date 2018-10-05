@@ -9,22 +9,25 @@ import Chart from 'chart.js';
   styleUrls: ['./funds.component.css']
 })
 export class FundsComponent implements OnInit {
-
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService) {}
 
   ngOnInit() {
     this.initChart();
   }
 
   getCSSVariable(CSSVar: string): string {
-    const computedStyle: CSSStyleDeclaration = getComputedStyle(document.querySelector(':root'));
+    const computedStyle: CSSStyleDeclaration = getComputedStyle(
+      document.querySelector(':root')
+    );
     return computedStyle.getPropertyValue(CSSVar).trim();
   }
 
   getPointColors(data: number[]) {
     const colors: String[] = [];
-    const [badColor, goodColor] =
-      [this.getCSSVariable('--bad'), this.getCSSVariable('--good')];
+    const [badColor, goodColor] = [
+      this.getCSSVariable('--bad'),
+      this.getCSSVariable('--good')
+    ];
     let lastValue = 0;
     data.map(newValue => {
       colors.push(lastValue < newValue ? goodColor : badColor);
@@ -33,7 +36,7 @@ export class FundsComponent implements OnInit {
     return colors;
   }
 
-  setExtremes(amounts: number[], dates: string[], pointsColors){
+  setExtremes(amounts: number[], dates: string[], pointsColors) {
     const createdAt = '';
 
     amounts.unshift(0);
@@ -48,38 +51,42 @@ export class FundsComponent implements OnInit {
   }
 
   initChart() {
-    const canvas = <HTMLCanvasElement> document.getElementById('chart');
+    const canvas = <HTMLCanvasElement>document.getElementById('chart');
     const ctx = canvas.getContext('2d');
 
     const funds = this.appService.fundsData;
     let amounts: number[] = funds.map(fund => fund.amount);
     let dates = funds.map(fund => fund.date);
     let pointsColors = this.getPointColors(amounts);
-    [amounts, dates, pointsColors] = this.setExtremes(amounts, dates, pointsColors);
+    [amounts, dates, pointsColors] = this.setExtremes(
+      amounts,
+      dates,
+      pointsColors
+    );
     const height = Math.round(Math.max.apply(Math, amounts.map(e => e)) * 1.1);
 
     const chart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: dates,
-        datasets: [{
-          data: amounts,
-          steppedLine: true,
-          backgroundColor: 'transparent',
-          borderColor: this.getCSSVariable('--dark-1'),
-          pointBackgroundColor: pointsColors,
-          pointBorderColor: 'white',
-          pointBorderWidth: 3,
-          pointRadius: 6
-        }]
+        datasets: [
+          {
+            data: amounts,
+            steppedLine: true,
+            backgroundColor: 'transparent',
+            borderColor: this.getCSSVariable('--dark-1'),
+            pointBackgroundColor: pointsColors,
+            pointBorderColor: 'white',
+            pointBorderWidth: 3,
+            pointRadius: 6
+          }
+        ]
       },
       options: {
         responsive: true,
-        scales: { yAxes: [{ticks: {suggestedMax: height}}]},
-        legend: {display: false}
+        scales: { yAxes: [{ ticks: { suggestedMax: height } }] },
+        legend: { display: false }
       }
     });
-
   }
-
 }

@@ -1,11 +1,11 @@
 <aside *ngIf="appComponent.deviceWidth === 'large'">
   <nav>
     <ul>
-      <li [ngClass]="{'active': currentPage === '/my-documents'}">
-        <div class="documents-menu__option">
+      <li [ngClass]="{'active': currentPage === '/my-files'}">
+        <div class="files-menu__option">
           <i (click)="toggleMyDocumentsView('myDocuments')" [ngStyle]="showMyDocumentsAside !== 0 && {'transform': 'rotate(90deg)','margin-top':'4px'}"
             class="material-icons">arrow_right</i>
-          <span routerLink="/my-documents">Mis documentos</span>
+          <span routerLink="/my-files">Mis archivos</span>
         </div>
         <ul class="items" id="myDocuments" [ngStyle]="{'max-height': showMyDocumentsAside !== 0 ? showMyDocumentsAside + 'px' : 0}">
           <li *ngFor="let item of myDocuments">
@@ -16,7 +16,7 @@
         </ul>
       </li>
       <li [ngClass]="{'active': currentPage === '/shared-with-me'}">
-        <div class="documents-menu__option">
+        <div class="files-menu__option">
           <i (click)="toggleSharedDocumentsView('myDocuments')" [ngStyle]="showSharedDocumentsAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
             class="material-icons">arrow_right</i>
           <span (click)="goTo('/shared-with-me', 'shared-with-me')">Compartidos conmigo</span>

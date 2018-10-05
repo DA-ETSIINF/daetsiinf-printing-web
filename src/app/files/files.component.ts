@@ -6,9 +6,9 @@ import { AppComponent } from '../app.component';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-documents',
-  templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.css']
+  selector: 'app-files',
+  templateUrl: './files.component.html',
+  styleUrls: ['./files.component.css']
 })
 export class DocumentsComponent implements OnInit {
   currentPage: string;
@@ -31,7 +31,7 @@ export class DocumentsComponent implements OnInit {
       this.currentPage = this.router.routerState.snapshot.url;
 
       this.myDocumentsItems = this.shortenNames(<Item[]>(
-        this.fileService.getFake('my-documents')
+        this.fileService.getFake('my-files')
       ));
 
       this.sharedWithMeItems = this.shortenNames(<Item[]>(
@@ -47,7 +47,7 @@ export class DocumentsComponent implements OnInit {
   }
 
   getCurrentItems() {
-    return this.currentPage === '/my-documents'
+    return this.currentPage === '/my-files'
       ? this.myDocumentsItems
       : this.sharedWithMeItems;
   }
