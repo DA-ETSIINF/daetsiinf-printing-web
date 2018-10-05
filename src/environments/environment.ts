@@ -5,9 +5,8 @@
 export const environment = {
   production: false,
   version: 'ALPHA v0.1',
-  firebase_token: '',
-  server: 'http://localhost',
-  port: '3000'
+  server: 'http://192.168.0.106',
+  port: '8000'
 };
 
 /*

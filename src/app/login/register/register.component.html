@@ -5,12 +5,12 @@
       <h4 class="form__title">
         registro
       </h4>
-      <input type="text" placeholder="Nombre">
+      <input type="text" placeholder="Nombre de usuario" name="username" [(ngModel)]="user.username">
       <div class="email">
-        <input type="text" name="email" placeholder="Correo">
+        <input type="text" name="email" placeholder="Correo" [(ngModel)]="user.email">
         <label for="email">@alumnos.upm.es</label>
       </div>
-      <input type="password" placeholder="Contraseña">
+      <input type="password" name="password" [(ngModel)]="user.password" placeholder="Contraseña">
       <input type="password" placeholder="Repita la contraseña">
       <div class="conditions">
         <label>
@@ -18,7 +18,7 @@
           <span class="conditions__pseudo-checkbox"></span>Aceptar términos y Condiciones
         </label>
       </div>
-      <button>Registro</button>
+      <button (click)="register()">Registro</button>
     </form>
     <div class="register">
       <span>¿Ya tienes cuenta?</span>

@@ -16,7 +16,7 @@ export class AppService {
     {
       amount: 5.76,
       date: '25/09/18'
-    }
+    },
     {
       amount: 7.01,
       date: '27/09/18'

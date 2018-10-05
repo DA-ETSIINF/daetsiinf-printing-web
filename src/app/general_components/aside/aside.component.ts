@@ -23,23 +23,29 @@ export class AsideComponent implements OnInit {
     public appComponent: AppComponent
   ) {
     this.currentPage = this.router.routerState.snapshot.url;
-    this.fileService.getJSON('my-documents').subscribe(data => {
-      if (environment.production) {
-        data = data['my-documents'];
-      }
-      this.myDocuments = <Item[]>data;
-    });
 
-    this.fileService.getJSON('shared-with-me').subscribe(data => {
-      if (environment.production) {
-        data = data['shared-with-me'];
-      }
-      this.sharedWithMe = <Item[]>data;
-    });
+    this.myDocuments = this.shortenNames(<Item[]>(
+      this.fileService.getFake('my-documents')
+    ));
+
+    this.sharedWithMe = this.shortenNames(<Item[]>(
+      this.fileService.getFake('shared-with-me')
+    ));
   }
+
 
   ngOnInit() {}
 
+  shortenNames(files: Item[]): Item[] {
+    files.map(e => {
+      if (e.name.length > 13) {
+        const begin = e.name.substring(0, 8);
+        const end = e.name.substring(e.name.length - 5);
+        e.shorten = `${begin} ... ${end}`;
+      }
+    });
+    return files;
+  }
   goTo(page: string, submenu?: string) {
     if (submenu) {
       this.router.navigate([page]);

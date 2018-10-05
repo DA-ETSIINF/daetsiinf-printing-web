@@ -13,3 +13,10 @@ export interface InfoFile {
   doubledSided: boolean;
   ncopies: number;
 }
+
+
+export interface RegisterUser {
+  username: string;
+  email: string;
+  password: string;
+}
