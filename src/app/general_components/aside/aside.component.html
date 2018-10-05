@@ -1,4 +1,8 @@
 <aside *ngIf="appComponent.deviceWidth === 'large'">
+  <button class="upload" (click)="triggerUpload()">
+    <i class="material-icons">cloud_upload</i>
+    <span>Subir archivo</span>
+  </button>
   <nav>
     <ul>
       <li [ngClass]="{'active': currentPage === '/my-files'}">

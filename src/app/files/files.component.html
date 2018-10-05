@@ -1,4 +1,5 @@
 <app-header></app-header>
+<input type="file" id="uploadInput" style="display: none" (change)="uploadChange()" multiple>
 <div class="container">
   <app-aside></app-aside>
   <main [ngClass]="{'grid': (getCurrentItems().length !== 0)}">

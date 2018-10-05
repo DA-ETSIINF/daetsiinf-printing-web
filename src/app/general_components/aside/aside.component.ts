@@ -63,4 +63,7 @@ export class AsideComponent implements OnInit {
     this.showSharedFilesAside =
       this.showSharedFilesAside === 0 ? ul.scrollHeight : 0;
   }
+  triggerUpload() {
+    this.fileService.triggerUpload();
+  }
 }

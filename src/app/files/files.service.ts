@@ -83,4 +83,14 @@ export class FilesService {
   private getSharedFiles() {
     return this.sharedWithMe;
   }
+
+  triggerUpload() {
+    const fileInput = document.getElementById('uploadInput');
+    fileInput.click();
+  }
+
+  uploadChange() {
+    const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
+    const files = fileInput.files;
+  }
 }

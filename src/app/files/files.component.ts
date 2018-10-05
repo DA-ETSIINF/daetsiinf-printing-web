@@ -24,6 +24,7 @@ export class FilesComponent implements OnInit, OnDestroy {
   showMyFilesAside: boolean;
   showSharedFilesAside: boolean;
   itemsInQueue: InfoFile[];
+
   constructor(
     public router: Router,
     private fileService: FilesService,
@@ -111,5 +112,9 @@ export class FilesComponent implements OnInit, OnDestroy {
     }
     this.selectOne(event);
     this.currentSelected.push(itemInfo);
+  }
+
+  uploadChange() {
+    this.fileService.uploadChange();
   }
 }
