@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { RegisterService } from '../_services/register.service';
+import { UserService } from '../user.service';
 
 import { RegisterUser } from '../../models';
 
@@ -16,13 +16,11 @@ export class RegisterComponent implements OnInit {
     password: ''
   };
 
-  constructor(private registerService: RegisterService) { }
+  constructor(private userService: UserService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   register() {
-    this.registerService.register(this.user);
+    this.userService.register(this.user);
   }
-
 }
