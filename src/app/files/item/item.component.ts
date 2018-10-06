@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FilesService } from '../files.service';
 import { Item, InfoFile } from '../../models';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-item',
@@ -10,11 +11,17 @@ import { Item, InfoFile } from '../../models';
 export class ItemComponent implements OnInit {
   @Input()
   item: Item;
-  showOptions = false;
+
+  showOptions$: Subscription;
+  showOptions: boolean;
 
   constructor(private filesService: FilesService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.showOptions$ = this.filesService.itemMenu$.subscribe(
+      b => (this.showOptions = b)
+    );
+  }
 
   toggleOptionsIcon(item, status) {
     if (!this.showOptions) {
@@ -23,6 +30,7 @@ export class ItemComponent implements OnInit {
   }
 
   toggleOptions(e?) {
+    this.filesService.itemMenu$.next(false);
     this.showOptions = !this.showOptions;
     if (e) {
       return false;

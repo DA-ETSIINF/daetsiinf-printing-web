@@ -76,6 +76,8 @@ export class FilesService {
   itemsInQueue$ = new BehaviorSubject<InfoFile[]>([]);
   updateItemName$ = new Subject<Item>();
 
+  itemMenu$ = new BehaviorSubject<boolean>(false);
+
   constructor(private http: HttpClient) {}
   private getMyFiles() {
     return this.myFiles;
@@ -86,7 +88,7 @@ export class FilesService {
   }
 
   triggerUpload() {
-    const fileInput = document.getElementById('uploadInput');
+    const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
     fileInput.click();
   }
 
