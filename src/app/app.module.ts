@@ -20,6 +20,8 @@ import { AsideComponent } from './general_components/aside/aside.component';
 import { QueueComponent } from './files/queue/queue.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FundsComponent } from './general_components/funds/funds.component';
+import { ChangeNameComponent } from './files/change-name/change-name.component';
+import { DeleteItemComponent } from './files/delete-item/delete-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,9 @@ import { FundsComponent } from './general_components/funds/funds.component';
     AsideComponent,
     QueueComponent,
     NotFoundComponent,
-    FundsComponent
+    FundsComponent,
+    ChangeNameComponent,
+    DeleteItemComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent],

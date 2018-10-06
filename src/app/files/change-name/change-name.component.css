@@ -53,6 +53,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: var(--dark-4);
 }
 
@@ -110,4 +111,33 @@
   background: none;
   color: var(--dark-3);
   margin-right: 10px;
+}
+
+@media screen and (max-width:992px) {
+  .change-name {
+    width: 85vw;
+    padding: 10px 20px;
+  }
+
+  .change-name header span {
+    font-size: 17px;
+  }
+
+  .change-name header i {
+    font-size: 17px;
+  }
+
+  .change-name input {
+    margin-top: 20px;
+    font-size: 15px;
+    border-bottom-width: 2px;
+  }
+
+  .change-name input:focus {
+    border-bottom-width: 2px;
+  }
+
+  .change-name .buttons button {
+    padding: 5px 10px;
+  }
 }
