@@ -23,7 +23,9 @@ export class ChangeNameComponent implements OnInit, OnDestroy {
         if (this.itemToUpdate !== undefined) {
           this.showModal = true;
           setTimeout(() => {
-            document.getElementById('nameItem').focus();
+            const input = document.getElementById('nameItem') as any;
+            input.select();
+            input.focus();
           }, 0);
         } else {
           this.showModal = false;

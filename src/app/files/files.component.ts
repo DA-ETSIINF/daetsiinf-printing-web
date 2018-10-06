@@ -123,7 +123,8 @@ export class FilesComponent implements OnInit, OnDestroy {
   uploadChange() {
     this.fileService.uploadChange();
   }
-  onChangeName(event) {
-    this.itemToUpdate = event;
+
+  hideOptions() {
+    this.fileService.itemMenu$.next(false);
   }
 }

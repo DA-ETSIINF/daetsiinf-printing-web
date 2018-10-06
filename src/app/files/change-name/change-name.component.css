@@ -26,6 +26,7 @@
 }
 
 .change-name {
+  max-width: 400px;
   width: 60vw;
   height: 20vh;
   background: var(--bck);
@@ -48,30 +49,39 @@
   }
 }
 
-
-
 .change-name header {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  color: var(--dark-4);
 }
 
+.change-name header span {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.change-name header i {
+  font-size: 25px;
+}
 
 .change-name input {
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
   border: 0;
+  color: var(--dark-4);
   border-bottom: 2px solid var(--dark-3);
   background: none;
   font-size: 17px;
   padding: 4px;
   margin-top: 50px;
   outline: none;
+  transition: .1s all ease;
 }
 
 .change-name input:focus {
   border: none;
-  border-bottom: 2px solid var(--blue);
+  border-bottom: 4px solid var(--blue);
 }
 
 .change-name .buttons {
@@ -79,4 +89,25 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+.change-name .buttons button {
+  font-size: 13px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  border: none;
+  padding: 9px 21px;
+  border-radius: 10px;
+  color: var(--white);
+  text-transform: uppercase;
+  height: 33px;
+  transition: .2s all ease;
+  cursor: pointer;
+  outline: none;
+}
+
+.change-name .buttons .cancel {
+  background: none;
+  color: var(--dark-3);
+  margin-right: 10px;
 }

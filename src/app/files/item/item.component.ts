@@ -48,4 +48,8 @@ export class ItemComponent implements OnInit {
   updateName(item: Item) {
     this.filesService.updateItemName$.next(item);
   }
+
+  deleteItem(item: Item) {
+    this.filesService.deleteItem$.next(item);
+  }
 }

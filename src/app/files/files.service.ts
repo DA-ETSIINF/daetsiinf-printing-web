@@ -75,6 +75,7 @@ export class FilesService {
   sharedWithMe$: Observable<Item[]> = of(this.getSharedFiles());
   itemsInQueue$ = new BehaviorSubject<InfoFile[]>([]);
   updateItemName$ = new Subject<Item>();
+  deleteItem$ = new Subject<Item>();
 
   itemMenu$ = new BehaviorSubject<boolean>(false);
 
@@ -95,5 +96,9 @@ export class FilesService {
   uploadChange() {
     const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
     const files = fileInput.files;
+  }
+
+  deleteItem(item: Item) {
+    console.log('Eliminar', item);
   }
 }

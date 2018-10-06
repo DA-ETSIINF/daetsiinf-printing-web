@@ -5,7 +5,7 @@
     <ul>
       <li *ngIf="item.type !== 'folder'" (click)="addFileToQueue(item.id, item.name, item.pages)">Añadir a la cola</li>
       <li (click)="updateName(item)">Cambiar nombre</li>
-      <li class="delete">Eliminar</li>
+      <li (click)="deleteItem(item)" class="delete">Eliminar</li>
     </ul>
   </nav>
   <i class="material-icons folder" *ngIf="item.type === 'folder'">folder</i>
