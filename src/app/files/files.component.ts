@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { FilesService } from './files.service';
@@ -116,5 +122,8 @@ export class FilesComponent implements OnInit, OnDestroy {
 
   uploadChange() {
     this.fileService.uploadChange();
+  }
+  onChangeName(event) {
+    this.itemToUpdate = event;
   }
 }

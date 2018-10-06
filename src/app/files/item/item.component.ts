@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FilesService } from '../files.service';
 import { Item, InfoFile } from '../../models';
 
@@ -11,6 +11,7 @@ export class ItemComponent implements OnInit {
   @Input()
   item: Item;
   showOptions = false;
+
   constructor(private filesService: FilesService) {}
 
   ngOnInit() {}
@@ -21,8 +22,11 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  toggleOptions() {
+  toggleOptions(e?) {
     this.showOptions = !this.showOptions;
+    if (e) {
+      return false;
+    }
   }
 
   addFileToQueue(id: number, name: string, pages: number) {
@@ -31,5 +35,9 @@ export class ItemComponent implements OnInit {
     b.push({ id, name, pages, doubledSided: true, ncopies: 1 });
     this.filesService.itemsInQueue$.next(b);
     this.toggleOptions();
+  }
+
+  updateName(item: Item) {
+    this.filesService.updateItemName$.next(item);
   }
 }

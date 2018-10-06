@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, of, Observable } from 'rxjs';
+import { BehaviorSubject, of, Observable, Subject } from 'rxjs';
 import { Item, InfoFile } from '../models';
 
 @Injectable({
@@ -74,6 +74,7 @@ export class FilesService {
   myFiles$: Observable<Item[]> = of(this.getMyFiles());
   sharedWithMe$: Observable<Item[]> = of(this.getSharedFiles());
   itemsInQueue$ = new BehaviorSubject<InfoFile[]>([]);
+  updateItemName$ = new Subject<Item>();
 
   constructor(private http: HttpClient) {}
   private getMyFiles() {
