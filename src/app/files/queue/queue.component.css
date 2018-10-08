@@ -108,12 +108,14 @@ header i {
   padding: 0 15px;
   background: var(--bck);
   transition: .3s all ease;
+  display: flex;
+  flex-direction: column;
 }
 
 
 .second-step.bottom.show-step {
   top: 67px;
-  height: 100%;
+  height: calc(100% - 110px);
 }
 
 .grid {
@@ -253,9 +255,13 @@ input.ncopies {
   font-weight: 700;
 }
 
+.second-step .step-title h5 {
+  margin-bottom: 6px;
+}
+
 .data {
   max-width: 190px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .data>div {
@@ -276,6 +282,23 @@ input.ncopies {
 
 .data>div .amount {
   font-weight: 700;
+  margin-left: 5px;
+}
+
+.data .error {
+  color: var(--bad);
+}
+
+.alert {
+  padding: 7px 5px;
+  border: 2px solid var(--bad);
+  width: 90%;
+  max-width: 300px;
+  border-radius: 5px;
+  text-align: center;
+  color: var(--bad);
+  font-weight: 700;
+  margin: 20px auto;
 }
 
 .difference-separator {
