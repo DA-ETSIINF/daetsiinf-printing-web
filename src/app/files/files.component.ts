@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  Output,
-  EventEmitter
-} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { FilesService } from './files.service';
@@ -30,6 +24,9 @@ export class FilesComponent implements OnInit, OnDestroy {
   showMyFilesAside: boolean;
   showSharedFilesAside: boolean;
   itemsInQueue: InfoFile[];
+
+  // State for dropzone CSS toggling
+  isHovering: boolean;
 
   constructor(
     public router: Router,
@@ -126,5 +123,16 @@ export class FilesComponent implements OnInit, OnDestroy {
 
   hideOptions() {
     this.fileService.itemMenu$.next(false);
+  }
+
+  toggleHover(event: boolean) {
+    console.log(event);
+
+    this.isHovering = event;
+  }
+
+  droppedFiles(event) {
+    console.log('dropped');
+    console.log(event);
   }
 }

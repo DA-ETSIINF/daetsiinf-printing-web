@@ -88,4 +88,7 @@ export class QueueComponent implements OnInit {
       );
     }, 0);
   }
+  printFiles() {
+    console.log(this.itemsInQueue);
+  }
 }

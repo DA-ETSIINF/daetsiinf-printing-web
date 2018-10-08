@@ -93,6 +93,11 @@ header i {
   cursor: pointer;
 }
 
+.step-title .next:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
 .step-title .next.cancel {
   background: none;
   color: var(--dark-3);

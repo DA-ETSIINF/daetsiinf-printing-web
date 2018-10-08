@@ -48,7 +48,7 @@
       <div class="step-title" (click)="step = 'second'">
         <h5><span class="step-number">2</span><span>Precio</span></h5>
         <button class="next cancel" (click)="cancel()" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Cancelar</button>
-        <button class="next" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Imprimir</button>
+        <button class="next" (click)="printFiles()" [disabled]="currentAmount() - cost() < 0" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Imprimir</button>
       </div>
       <div class="data">
         <div class="current">

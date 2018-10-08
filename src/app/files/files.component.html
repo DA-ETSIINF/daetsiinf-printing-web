@@ -2,7 +2,8 @@
 <input type="file" id="uploadInput" style="display: none" (change)="uploadChange()" multiple>
 <div class="container" (click)="hideOptions()">
   <app-aside></app-aside>
-  <main [ngClass]="{'grid': (getCurrentItems().length !== 0)}">
+  <main [ngClass]="{'grid': (getCurrentItems().length !== 0)}" appDropZone (hovered)="toggleHover($event)" (dropped)="droppedFiles($event)"
+    [class.hovering]="isHovering">
     <section (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-files')">
       <div class="loading" *ngIf="loading">
         <p>Cargando</p>
@@ -15,7 +16,8 @@
           <iframe src="https://giphy.com/embed/3o7aTskHEUdgCQAXde" frameBorder="0"></iframe>
         </div>
       </div>
-      <app-item *ngFor="let item of getCurrentItems()" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
+      <app-item *ngFor="let item of getCurrentItems()" [item]="item" draggable="true" (press)="select($event, item)"
+        (click)="select($event, item)"></app-item>
     </section>
     <app-change-name></app-change-name>
     <app-delete-item></app-delete-item>
