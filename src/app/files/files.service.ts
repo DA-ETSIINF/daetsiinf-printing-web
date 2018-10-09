@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, of, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, of, Observable, Subject, interval } from 'rxjs';
 import { Item, InfoFile } from '../models';
+import { throttle } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -78,8 +80,15 @@ export class FilesService {
   deleteItem$ = new Subject<Item>();
 
   itemMenu$ = new BehaviorSubject<boolean>(false);
+  dragableItem$ = new Subject<{ item: Item; x: number; y: number }>();
 
-  constructor(private http: HttpClient) {}
+  currentPage: string;
+
+  constructor(private http: HttpClient, public router: Router) {
+    this.router.events.pipe(throttle(() => interval(100))).subscribe(() => {
+      this.currentPage = this.router.routerState.snapshot.url;
+    });
+  }
   private getMyFiles() {
     return this.myFiles;
   }
@@ -100,5 +109,9 @@ export class FilesService {
 
   deleteItem(item: Item) {
     console.log('Eliminar', item);
+  }
+
+  isCurrentPath(path: string) {
+    return this.currentPage === path;
   }
 }

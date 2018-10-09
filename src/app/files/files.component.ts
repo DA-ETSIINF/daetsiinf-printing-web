@@ -13,7 +13,6 @@ import { throttle } from 'rxjs/operators';
   styleUrls: ['./files.component.css']
 })
 export class FilesComponent implements OnInit, OnDestroy {
-  currentPage: string;
   status: string;
   currentSelected: Item[] = [];
   myFiles: Item[] = [];
@@ -35,8 +34,6 @@ export class FilesComponent implements OnInit, OnDestroy {
   ) {
     router.events.pipe(throttle(() => interval(100))).subscribe(() => {
       this.loading = true;
-
-      this.currentPage = this.router.routerState.snapshot.url;
 
       if (this.myFiles$ !== undefined) {
         this.myFiles$.unsubscribe();
@@ -69,10 +66,6 @@ export class FilesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.myFiles$.unsubscribe();
     this.sharedWithMe$.unsubscribe();
-  }
-
-  getCurrentItems() {
-    return this.currentPage === '/my-files' ? this.myFiles : this.sharedWithMe;
   }
 
   goTo(page: string, submenu?: string) {
@@ -109,6 +102,17 @@ export class FilesComponent implements OnInit, OnDestroy {
       event.target.parentElement.parentElement.classList.add('selected');
     }
   }
+
+  getCurrentPath() {
+    return this.fileService.currentPage;
+  }
+
+  getCurrentItems() {
+    return this.fileService.isCurrentPath('/my-files')
+      ? this.myFiles
+      : this.sharedWithMe;
+  }
+
   select(event, itemInfo) {
     if (!event.ctrlKey) {
       this.deselect();
@@ -126,8 +130,6 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   toggleHover(event: boolean) {
-    console.log(event);
-
     this.isHovering = event;
   }
 

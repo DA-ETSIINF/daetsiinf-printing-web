@@ -10,13 +10,13 @@
         <video src="./assets/loading/printer.avi"></video>
       </div>
       <div class="empty" *ngIf="!loading && getCurrentItems().length === 0">
-        <p *ngIf="currentPage === '/my-files'">No has subido nada aún :(</p>
-        <p *ngIf="currentPage === '/shared-with-me'">No te han compartido nada aún :(</p>
+        <p *ngIf="getCurrentPath() === '/my-files'">No has subido nada aún :(</p>
+        <p *ngIf="getCurrentPath() === '/shared-with-me'">No te han compartido nada aún :(</p>
         <div class="gif">
           <iframe src="https://giphy.com/embed/3o7aTskHEUdgCQAXde" frameBorder="0"></iframe>
         </div>
       </div>
-      <app-item *ngFor="let item of getCurrentItems()" [item]="item" draggable="true" (press)="select($event, item)"
+      <app-item *ngFor="let item of getCurrentItems()" [item]="item" appDragItem draggable="true" (press)="select($event, item)"
         (click)="select($event, item)"></app-item>
     </section>
     <app-change-name></app-change-name>
@@ -24,4 +24,5 @@
     <app-queue *ngIf="itemsInQueue.length > 0"></app-queue>
     <app-upload-btn></app-upload-btn>
   </main>
+  <app-item-popover></app-item-popover>
 </div>
