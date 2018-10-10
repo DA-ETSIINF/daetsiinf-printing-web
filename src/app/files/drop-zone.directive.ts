@@ -52,7 +52,6 @@ export class DropZoneDirective implements OnDestroy {
       const section = Array.prototype.slice.call(
         itemElem.closest('section').children
       );
-      console.log(e);
 
       const index = section.indexOf(itemElem);
       if (this.filesService.isCurrentPath('/my-files')) {
