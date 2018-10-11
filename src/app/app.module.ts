@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { JwtInterceptor } from './login/_helpers/jwt.interceptor';
+import { DropZoneDirective } from './files/drop-zone.directive';
 import { ModuleRouting } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -44,7 +45,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     FundsComponent,
     ChangeNameComponent,
     DeleteItemComponent,
-    ItemPopoverComponent
+    ItemPopoverComponent,
+    DropZoneDirective
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent, {

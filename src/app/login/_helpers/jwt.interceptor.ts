@@ -18,10 +18,17 @@ export class JwtInterceptor implements HttpInterceptor {
     if (currentUser && currentUser.token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Authorization: JWT ${currentUser.token}`
+          Authorization: currentUser.token,
         }
       });
     }
+    request = request.clone({
+      setHeaders: {
+        // 'Content-Type': 'application/json',
+         // 'Content-Type': 'multipart/form-data'
+      }
+    });
+    console.log(request);
     return next.handle(request);
   }
 }

@@ -35,6 +35,7 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('dragover', ['$event'])
   onDragOver(e) {
+    console.log(e);
     e.preventDefault();
     this.hovered.emit(true);
   }

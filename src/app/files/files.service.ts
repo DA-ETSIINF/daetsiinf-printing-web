@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, of, Observable, Subject, interval, concat } from 'rxjs';
+import { BehaviorSubject, of, Observable, Subject, interval, concat, ReplaySubject } from 'rxjs';
 import { Item, InfoFile } from '../models';
 import { throttle } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -107,15 +107,17 @@ export class FilesService {
     const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
     const files: FileList = fileInput.files;
     const files$ = [];
+    let fd;
     Array.from(files).map(file => {
-      const fd = new FormData();
-      fd.append('file', files[0], files[0].name);
-      fd.append('folder', files[0], files[0].name);
+      fd = new FormData();
+      fd.set('file', files[0]);
+      fd.set('folder', 1);
       files$.push({
         file: fd,
-        folder: 'FOLDER'
+        folder: 1
       });
     });
+    console.log(files$[0]);
     /*
     concat(...files$).subscribe(fileData => {
       this.http
@@ -123,19 +125,14 @@ export class FilesService {
         .subscribe(res => console.log(res));
         });
     */
-    const afd = new FormData();
-    afd.append('file', files[0], files[0].name);
-    // afd.append('folder', files[0], files[0].name);
     this.http
-      .post(`${environment.server}:${environment.port}/print/upload/`, {
-        folder: 'adsfasf',
-        file: afd
-      })
+      .post(`${environment.server}:${environment.port}/print/upload/`, fd)
       .subscribe(res => console.log(res));
   }
 
+
   deleteItem(item: Item) {
-    console.log('Eliminar', item);
+    console.log('Eliminaar', item);
   }
 
   isCurrentPath(path: string) {

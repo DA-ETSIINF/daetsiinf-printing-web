@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 
@@ -29,6 +30,8 @@ export class UserService {
   }
 
   login(user: LoginUser) {
+    console.log(`${environment.server}:${environment.port}/auth/token/create/`);
+    console.log(user);
     this.http
       .post(`${environment.server}:${environment.port}/auth/token/create/`, user)
       .pipe(
@@ -50,7 +53,6 @@ export class UserService {
 
   private setUserInfo() {
     this.http.get(`${environment.server}:${environment.port}/auth/me/`).subscribe(info => {
-      console.log('_____________');
       console.log(info);
     });
   }
