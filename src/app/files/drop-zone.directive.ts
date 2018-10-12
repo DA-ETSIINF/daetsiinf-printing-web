@@ -35,6 +35,7 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('dragover', ['$event'])
   onDragOver(e) {
+    console.log(e);
     e.preventDefault();
     this.hovered.emit(true);
   }
@@ -52,7 +53,6 @@ export class DropZoneDirective implements OnDestroy {
       const section = Array.prototype.slice.call(
         itemElem.closest('section').children
       );
-      console.log(e);
 
       const index = section.indexOf(itemElem);
       if (this.filesService.isCurrentPath('/my-files')) {

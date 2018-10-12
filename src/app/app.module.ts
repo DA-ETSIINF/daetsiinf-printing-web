@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { JwtInterceptor } from './login/_helpers/jwt.interceptor';
+import { DropZoneDirective } from './files/drop-zone.directive';
 import { ModuleRouting } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -22,9 +23,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FundsComponent } from './general_components/funds/funds.component';
 import { ChangeNameComponent } from './files/change-name/change-name.component';
 import { DeleteItemComponent } from './files/delete-item/delete-item.component';
-import { DropZoneDirective } from './files/drop-zone.directive';
-import { DragItemDirective } from './files/drag-item.directive';
 import { ItemPopoverComponent } from './files/item-popover/item-popover.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,12 +45,15 @@ import { ItemPopoverComponent } from './files/item-popover/item-popover.componen
     FundsComponent,
     ChangeNameComponent,
     DeleteItemComponent,
-    DropZoneDirective,
-    DragItemDirective,
-    ItemPopoverComponent
+    ItemPopoverComponent,
+    DropZoneDirective
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
-  providers: [MenuComponent, AppComponent],
+  providers: [MenuComponent, AppComponent, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

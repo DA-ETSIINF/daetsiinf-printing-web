@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, of, Observable, Subject, interval } from 'rxjs';
+import { BehaviorSubject, of, Observable, Subject, interval, concat, ReplaySubject } from 'rxjs';
 import { Item, InfoFile } from '../models';
 import { throttle } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -104,11 +105,34 @@ export class FilesService {
 
   uploadChange() {
     const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
-    const files = fileInput.files;
+    const files: FileList = fileInput.files;
+    const files$ = [];
+    let fd;
+    Array.from(files).map(file => {
+      fd = new FormData();
+      fd.set('file', files[0]);
+      fd.set('folder', 1);
+      files$.push({
+        file: fd,
+        folder: 1
+      });
+    });
+    console.log(files$[0]);
+    /*
+    concat(...files$).subscribe(fileData => {
+      this.http
+        .post(`${environment.server}:${environment.port}/print/upload/`, fileData)
+        .subscribe(res => console.log(res));
+        });
+    */
+    this.http
+      .post(`${environment.server}:${environment.port}/print/upload/`, fd)
+      .subscribe(res => console.log(res));
   }
 
+
   deleteItem(item: Item) {
-    console.log('Eliminar', item);
+    console.log('Eliminaar', item);
   }
 
   isCurrentPath(path: string) {
