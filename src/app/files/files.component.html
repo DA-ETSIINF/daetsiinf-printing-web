@@ -16,8 +16,7 @@
           <iframe src="https://giphy.com/embed/3o7aTskHEUdgCQAXde" frameBorder="0"></iframe>
         </div>
       </div>
-      <app-item *ngFor="let item of getCurrentItems()" [item]="item" appDragItem draggable="true" (press)="select($event, item)"
-        (click)="select($event, item)"></app-item>
+      <app-item *ngFor="let item of getCurrentItems()" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
     </section>
     <app-change-name></app-change-name>
     <app-delete-item></app-delete-item>

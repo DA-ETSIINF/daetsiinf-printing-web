@@ -16,19 +16,11 @@ import { FilesService } from '../files.service';
   styleUrls: ['./item-popover.component.css']
 })
 export class ItemPopoverComponent implements OnInit, OnDestroy {
-  dragableItem: Item;
+  dragableItem: { item: Item; x: number; y: number };
   dragableItemSubscription: Subscription;
-  x = 0;
-  y = 0;
   constructor(private filesService: FilesService) {
     this.dragableItemSubscription = this.filesService.dragableItem$.subscribe(
-      item => {
-        if (item !== undefined) {
-          this.dragableItem = item.item;
-          this.x = item.x;
-          this.y = item.y;
-        }
-      }
+      item => (this.dragableItem = item !== null ? item : undefined)
     );
   }
 

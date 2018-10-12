@@ -20,9 +20,16 @@ export class DropZoneDirective implements OnDestroy {
   @Output()
   hovered = new EventEmitter<boolean>();
 
-  statusDragable: { item: Item; x: number; y: number };
+  statusDragable: { item: Item; x: number; y: number } = null;
+  statusDragableSubscription: Subscription;
 
-  constructor(private filesService: FilesService) {}
+  constructor(private filesService: FilesService) {
+    this.statusDragableSubscription = this.filesService.dragableItem$.subscribe(
+      file => {
+        this.statusDragable = file;
+      }
+    );
+  }
 
   ngOnDestroy() {}
 
@@ -48,30 +55,38 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('mousemove', ['$event'])
   dragItem(e) {
-    if (e.buttons === 1 && e.target.closest('app-item') !== null) {
+    let item;
+    if (e.buttons !== 1) {
+      return;
+    }
+    if (this.statusDragable === null) {
       const itemElem = e.target.closest('app-item');
       const section = Array.prototype.slice.call(
         itemElem.closest('section').children
       );
-
-      const index = section.indexOf(itemElem);
       if (this.filesService.isCurrentPath('/my-files')) {
+        const index = section.indexOf(itemElem);
         this.filesService.myFiles$
-          .pipe(map(item => item[index]))
-          .subscribe(item =>
-            this.filesService.dragableItem$.next({
-              item,
-              x: e.screenX,
-              y: e.screenY
+          .pipe(
+            map(files => {
+              return files[index];
             })
           )
-          .unsubscribe();
+          .subscribe(it => (item = it));
       }
+    } else {
+      item = this.statusDragable.item;
     }
+
+    this.filesService.dragableItem$.next({
+      item,
+      x: e.pageX,
+      y: e.pageY + 5
+    });
   }
 
   @HostListener('mouseup', ['$event'])
   mouseUp(e) {
-    this.filesService.dragableItem$.next(undefined);
+    this.filesService.dragableItem$.next(null);
   }
 }

@@ -1,3 +1,3 @@
-<div class="popover" [ngStyle]="{'top.px': y,'left.px': x}" *ngIf="dragableItem !== undefined">
-  <h5>{{dragableItem.name}}</h5>
+<div class="popover" appDropZone [ngStyle]="{'top.px': dragableItem.y,'left.px': dragableItem.x}" *ngIf="dragableItem !== undefined">
+  <h5>{{dragableItem.item.name}}</h5>
 </div>
