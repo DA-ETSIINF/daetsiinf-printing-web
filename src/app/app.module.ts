@@ -22,6 +22,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FundsComponent } from './general_components/funds/funds.component';
 import { ChangeNameComponent } from './files/change-name/change-name.component';
 import { DeleteItemComponent } from './files/delete-item/delete-item.component';
+import { DropZoneDirective } from './files/drop-zone.directive';
+import { DragItemDirective } from './files/drag-item.directive';
+import { ItemPopoverComponent } from './files/item-popover/item-popover.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,10 @@ import { DeleteItemComponent } from './files/delete-item/delete-item.component';
     NotFoundComponent,
     FundsComponent,
     ChangeNameComponent,
-    DeleteItemComponent
+    DeleteItemComponent,
+    DropZoneDirective,
+    DragItemDirective,
+    ItemPopoverComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent],
