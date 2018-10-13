@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, of, Observable, Subject, interval, concat, ReplaySubject } from 'rxjs';
+import {
+  BehaviorSubject,
+  of,
+  Observable,
+  Subject,
+  interval,
+  concat,
+  ReplaySubject
+} from 'rxjs';
+
+import { delay } from 'rxjs/operators';
 import { Item, InfoFile } from '../models';
 import { throttle } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -103,33 +113,29 @@ export class FilesService {
     fileInput.click();
   }
 
-  uploadChange() {
-    const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
-    const files: FileList = fileInput.files;
+  uploadChange(files: FileList) {
     const files$ = [];
     let fd;
     Array.from(files).map(file => {
       fd = new FormData();
       fd.set('file', files[0]);
       fd.set('folder', 1);
-      files$.push({
+      const fileInfo = {
         file: fd,
         folder: 1
-      });
+      };
+      files$.push(of(fileInfo));
     });
-    console.log(files$[0]);
-    /*
+
     concat(...files$).subscribe(fileData => {
       this.http
-        .post(`${environment.server}:${environment.port}/print/upload/`, fileData)
+        .post(
+          `${environment.server}:${environment.port}/print/upload/`,
+          fileData
+        )
         .subscribe(res => console.log(res));
-        });
-    */
-    this.http
-      .post(`${environment.server}:${environment.port}/print/upload/`, fd)
-      .subscribe(res => console.log(res));
+    });
   }
-
 
   deleteItem(item: Item) {
     console.log('Eliminaar', item);

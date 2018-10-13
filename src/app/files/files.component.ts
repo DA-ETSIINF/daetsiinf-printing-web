@@ -122,7 +122,9 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   uploadChange() {
-    this.fileService.uploadChange();
+    const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
+    const files: FileList = fileInput.files;
+    this.fileService.uploadChange(files);
   }
 
   hideOptions() {
@@ -134,7 +136,6 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   droppedFiles(event) {
-    console.log('dropped');
-    console.log(event);
+    this.fileService.uploadChange(event);
   }
 }
