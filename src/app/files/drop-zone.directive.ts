@@ -9,7 +9,7 @@ import {
 import { FilesService } from './files.service';
 import { map } from 'rxjs/operators';
 import { Item } from '../models';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Directive({
   selector: '[appDropZone]'
@@ -22,6 +22,7 @@ export class DropZoneDirective implements OnDestroy {
 
   statusDragable: { item: Item; x: number; y: number } = null;
   statusDragableSubscription: Subscription;
+  items$: Observable<Item[]>;
 
   constructor(private filesService: FilesService) {
     this.statusDragableSubscription = this.filesService.dragableItem$.subscribe(
@@ -58,21 +59,27 @@ export class DropZoneDirective implements OnDestroy {
     if (e.buttons !== 1) {
       return;
     }
+
     if (this.statusDragable === null) {
       const itemElem = e.target.closest('app-item');
+      if (itemElem === null) {
+        return;
+      }
       const section = Array.prototype.slice.call(
         itemElem.closest('section').children
       );
-      if (this.filesService.isCurrentPath('/my-files')) {
-        const index = section.indexOf(itemElem);
-        this.filesService.myFiles$
-          .pipe(
-            map(files => {
-              return files[index];
-            })
-          )
-          .subscribe(it => (item = it));
-      }
+      const index = section.indexOf(itemElem);
+      this.items$ = this.filesService.isCurrentPath('/my-files')
+        ? this.filesService.myFiles$
+        : this.filesService.sharedWithMe$;
+
+      this.items$
+        .pipe(
+          map(files => {
+            return files[index];
+          })
+        )
+        .subscribe(it => (item = it));
     } else {
       item = this.statusDragable.item;
     }
