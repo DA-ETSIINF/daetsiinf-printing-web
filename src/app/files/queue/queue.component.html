@@ -24,7 +24,7 @@
         </div>
         <div class="file" *ngFor="let file of itemsInQueue; let i = index">
           <span class="name">{{file.name}}</span>
-          <span class="npages">{{file.pages}}</span>
+          <span class="npages">{{file.npages}}</span>
           <div class="doubled-sided options">
             <div (click)="setDoubledSided(false, i)" [ngClass]="{'active':!file.doubledSided}">
               <span>No</span>

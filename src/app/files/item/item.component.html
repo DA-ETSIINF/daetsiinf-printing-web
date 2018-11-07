@@ -3,7 +3,7 @@
   <i class="material-icons options-icon" (click)="toggleOptions()">more_vert</i>
   <nav class="options" *ngIf="showOptions" [ngClass]="{'show-options':showOptions}">
     <ul>
-      <li *ngIf="item.type !== 'folder'" (click)="addFileToQueue(item.id, item.name, item.pages)">Añadir a la cola</li>
+      <li *ngIf="item.type !== 'folder'" (click)="addFileToQueue(item.id, item.name, item.npages)">Añadir a la cola</li>
       <li (click)="updateName(item)">Cambiar nombre</li>
       <li (click)="deleteItem(item)" class="delete">Eliminar</li>
     </ul>

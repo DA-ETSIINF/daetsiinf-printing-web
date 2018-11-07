@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../files.service';
 import { AppComponent } from '../../app.component';
-import { InfoFile } from '../../models';
+import { FileToPrint } from '../../models';
 import { elementStart } from '@angular/core/src/render3/instructions';
 
 @Component({
@@ -14,7 +14,7 @@ export class QueueComponent implements OnInit {
   step = 'first';
   lastChanged = new Date().getTime();
 
-  itemsInQueue: InfoFile[];
+  itemsInQueue: FileToPrint[];
 
   constructor(
     private appComponent: AppComponent,
@@ -50,8 +50,8 @@ export class QueueComponent implements OnInit {
     this.itemsInQueue[i].doubledSided = bool;
   }
 
-  getPrice(file: InfoFile) {
-    let price = file.pages * 0.04 * file.ncopies;
+  getPrice(file: FileToPrint) {
+    let price = file.npages * 0.04 * file.ncopies;
     if (!file.doubledSided) {
       price = price * 2;
     }
@@ -84,7 +84,7 @@ export class QueueComponent implements OnInit {
     return this.itemsInQueue.reduce((cost, e) => {
       return (
         cost +
-        (e.doubledSided ? e.pages * 0.04 : e.pages * 2 * 0.04) * e.ncopies
+        (e.doubledSided ? e.npages * 0.04 : e.npages * 2 * 0.04) * e.ncopies
       );
     }, 0);
   }

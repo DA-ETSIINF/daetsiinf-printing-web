@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { FilesService } from './files.service';
-import { Item, InfoFile, FolderItem } from '../models';
+import { FileToPrint, FolderItem } from '../models';
 import { AppComponent } from '../app.component';
 import { interval, Subscription } from 'rxjs';
 import { throttle } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { throttle } from 'rxjs/operators';
 })
 export class FilesComponent implements OnInit, OnDestroy {
   status: string;
-  currentSelected: Item[] = [];
+  currentSelected: FolderItem[] = [];
   myFiles: FolderItem[] = [];
   myFiles$: Subscription;
   sharedWithMe: FolderItem[] = [];
@@ -22,7 +22,7 @@ export class FilesComponent implements OnInit, OnDestroy {
   loading: boolean;
   showMyFilesAside: boolean;
   showSharedFilesAside: boolean;
-  itemsInQueue: InfoFile[];
+  itemsInQueue: FileToPrint[];
 
   // State for dropzone CSS toggling
   isHovering: boolean;

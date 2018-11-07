@@ -11,7 +11,7 @@ import {
 } from 'rxjs';
 
 import { delay } from 'rxjs/operators';
-import { Item, InfoFile, Folder, FolderItem } from '../models';
+import { FileToPrint, Folder, FolderItem } from '../models';
 import { throttle } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -26,18 +26,21 @@ export class FilesService {
       id: 1,
       files: [{
         name: 'File 1.pdf',
-        id: 2
+        id: 2,
+        npages: 10
       },
       {
         name: 'File 2.pdf',
-        id: 5
+        id: 5,
+        npages: 10
       }],
       folders: [{
         id: 3,
         name: 'Estructura',
         files: [{
-          name: 'Practica 1',
-          id: 4
+          name: 'Practica 1.pdf',
+          id: 4,
+          npages: 10
         }],
         folders: [
           {
@@ -45,8 +48,9 @@ export class FilesService {
             id: 10,
             folders: [],
             files: [{
-              name: 'dfsafds',
-              id: 16
+              name: 'dfsafds.pdf',
+              id: 16,
+              npages: 10
             }]
           }
         ]
@@ -57,18 +61,21 @@ export class FilesService {
       id: 1,
       files: [{
         name: 'File 1.pdf',
-        id: 200
+        id: 200,
+        npages: 10
       },
       {
         name: 'File 2.pdf',
-        id: 500
+        id: 500,
+        npages: 10
       }],
       folders: [{
         id: 344,
         name: 'Estructura',
         files: [{
-          name: 'Practica 1',
-          id: 41
+          name: 'Practica 1.pdf',
+          id: 41,
+          npages: 10
         }],
         folders: []
       }],
@@ -78,12 +85,12 @@ export class FilesService {
 
   myFiles$: Observable<FolderItem[]> = of(this.getFiles(0));
   sharedWithMe$: Observable<FolderItem[]> = of(this.getFiles(1));
-  itemsInQueue$ = new BehaviorSubject<InfoFile[]>([]);
-  updateItemName$ = new Subject<Item>();
-  deleteItem$ = new Subject<Item>();
+  itemsInQueue$ = new BehaviorSubject<FileToPrint[]>([]);
+  updateItemName$ = new Subject<FolderItem>();
+  deleteItem$ = new Subject<FolderItem>();
 
   itemMenu$ = new BehaviorSubject<boolean>(false);
-  dragableItem$ = new Subject<{ item: Item; x: number; y: number }>();
+  dragableItem$ = new Subject<{ item: FolderItem; x: number; y: number }>();
 
   currentPage: string;
 
@@ -97,11 +104,15 @@ export class FilesService {
     const arr: FolderItem[] = [];
     this.files[n][type].map(item => {
       const extension = type === 'folders' ? 'folder' : item.name.substring(item.name.length - 3);
-      arr.push({
+      const itemInfo: FolderItem = {
         name: item.name,
         id: item.id,
         type: extension
-      });
+      };
+      if (type !== 'folders') {
+        itemInfo.npages = item.npages;
+      }
+      arr.push(itemInfo);
     });
     return arr;
   }
@@ -139,7 +150,7 @@ export class FilesService {
     });
   }
 
-  deleteItem(item: Item) {
+  deleteItem(item: FolderItem) {
     console.log('Eliminaar', item);
   }
 

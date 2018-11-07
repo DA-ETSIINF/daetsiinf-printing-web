@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FilesService } from '../files.service';
-import { Item, InfoFile } from '../../models';
+import { FolderItem, FileToPrint } from '../../models';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class ItemComponent implements OnInit {
   @Input()
-  item: Item;
+  item: FolderItem;
 
   showOptions$: Subscription;
   showOptions: boolean;
@@ -37,19 +37,19 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  addFileToQueue(id: number, name: string, pages: number) {
-    let b: InfoFile[];
+  addFileToQueue(id: number, name: string, npages: number) {
+    let b: FileToPrint[];
     this.filesService.itemsInQueue$.subscribe(a => (b = a)).unsubscribe();
-    b.push({ id, name, pages, doubledSided: true, ncopies: 1 });
+    b.push({ id, name, npages, doubledSided: true, ncopies: 1 });
     this.filesService.itemsInQueue$.next(b);
     this.toggleOptions();
   }
 
-  updateName(item: Item) {
+  updateName(item: FolderItem) {
     this.filesService.updateItemName$.next(item);
   }
 
-  deleteItem(item: Item) {
+  deleteItem(item: FolderItem) {
     this.filesService.deleteItem$.next(item);
   }
 }
