@@ -25,7 +25,7 @@ export class JwtInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         // 'Content-Type': 'application/json',
-         // 'Content-Type': 'multipart/form-data'
+        // 'Content-Type': 'multipart/form-data'
       }
     });
     console.log(request);

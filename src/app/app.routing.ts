@@ -19,6 +19,11 @@ const routes: Routes = [
     /*canActivate: [AuthGuard]*/
   },
   {
+    path: 'my-files/:id',
+    component: FilesComponent
+    /*canActivate: [AuthGuard]*/
+  },
+  {
     path: 'shared-with-me',
     component: FilesComponent
     /* canActivate: [AuthGuard] */

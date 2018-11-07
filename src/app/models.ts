@@ -24,3 +24,18 @@ export interface LoginUser {
   username: string;
   password: string;
 }
+
+export interface Folder {
+  id: number;
+  name: string;
+  files: FolderItem[];
+  folders: Folder[];
+}
+
+
+export interface FolderItem {
+  id: number;
+  name: string;
+  type?: string;
+  shorten?: string;
+}

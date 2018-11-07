@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FilesService } from '../../files/files.service';
 import { AppComponent } from '../../app.component';
 import { environment } from '../../../environments/environment';
-import { Item } from '../../models';
+import { Item, FolderItem } from '../../models';
 
 @Component({
   selector: 'app-aside',
@@ -14,8 +14,8 @@ export class AsideComponent implements OnInit {
   currentPage: string;
   showMyFilesAside = 0;
   showSharedFilesAside = 0;
-  myFiles: Item[] = [];
-  sharedWithMe: Item[] = [];
+  myFiles: FolderItem[] = [];
+  sharedWithMe: FolderItem[] = [];
 
   constructor(
     public router: Router,
