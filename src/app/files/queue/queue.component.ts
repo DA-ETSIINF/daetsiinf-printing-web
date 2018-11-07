@@ -55,6 +55,7 @@ export class QueueComponent implements OnInit {
     if (!file.doubledSided) {
       price = price * 2;
     }
+    price = Math.round(price * 100) / 100;
     return `${price}€`;
   }
 
