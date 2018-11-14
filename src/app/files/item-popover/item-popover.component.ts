@@ -7,7 +7,7 @@ import {
   interval,
   Subscription
 } from 'rxjs';
-import { Item } from '../../models';
+import { FolderItem } from '../../models';
 import { FilesService } from '../files.service';
 
 @Component({
@@ -16,7 +16,7 @@ import { FilesService } from '../files.service';
   styleUrls: ['./item-popover.component.css']
 })
 export class ItemPopoverComponent implements OnInit, OnDestroy {
-  dragableItem: { item: Item; x: number; y: number };
+  dragableItem: { item: FolderItem; x: number; y: number };
   dragableItemSubscription: Subscription;
   constructor(private filesService: FilesService) {
     this.dragableItemSubscription = this.filesService.dragableItem$.subscribe(

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FilesService } from './files.service';
 import { map } from 'rxjs/operators';
-import { Item, FolderItem } from '../models';
+import { FolderItem } from '../models';
 import { Subscription, Observable } from 'rxjs';
 
 @Directive({
@@ -20,7 +20,7 @@ export class DropZoneDirective implements OnDestroy {
   @Output()
   hovered = new EventEmitter<boolean>();
 
-  statusDragable: { item: Item; x: number; y: number } = null;
+  statusDragable: { item: FolderItem; x: number; y: number } = null;
   statusDragableSubscription: Subscription;
   items$: Observable<FolderItem[]>;
 

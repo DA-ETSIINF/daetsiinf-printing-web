@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Item } from '../../models';
+import { FolderItem } from '../../models';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FilesService } from '../files.service';
@@ -11,7 +11,7 @@ import { FilesService } from '../files.service';
 })
 export class ChangeNameComponent implements OnInit, OnDestroy {
   showModal = false;
-  itemToUpdate: Item;
+  itemToUpdate: FolderItem;
   itemToUpdateSubscription: Subscription;
 
   constructor(private filesService: FilesService) {}

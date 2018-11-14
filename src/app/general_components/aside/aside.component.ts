@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FilesService } from '../../files/files.service';
 import { AppComponent } from '../../app.component';
 import { environment } from '../../../environments/environment';
-import { Item, FolderItem } from '../../models';
+import { FolderItem } from '../../models';
 
 @Component({
   selector: 'app-aside',
@@ -35,7 +35,7 @@ export class AsideComponent implements OnInit {
 
   ngOnInit() {}
 
-  shortenNames(files: Item[]): Item[] {
+  shortenNames(files: FolderItem[]): FolderItem[] {
     files.map(e => {
       if (e.name.length > 13) {
         const begin = e.name.substring(0, 8);

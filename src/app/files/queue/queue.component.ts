@@ -63,6 +63,7 @@ export class QueueComponent implements OnInit {
     this.toggleQueue();
     setTimeout(() => this.setStep('first'), 100);
   }
+  
   removeFile(id: number) {
     let elems;
     this.filesService.itemsInQueue$.subscribe(a => (elems = a)).unsubscribe();

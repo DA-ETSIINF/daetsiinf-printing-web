@@ -20,6 +20,7 @@ export interface Folder {
 export interface FolderItem {
   id: number;
   name: string;
+  link?: string;
   type?: string;
   shorten?: string;
   npages?: number;

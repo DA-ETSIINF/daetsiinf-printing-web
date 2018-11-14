@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Item } from '../../models';
+import { FolderItem } from '../../models';
 import { Subscription, BehaviorSubject, Observable, interval } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { FilesService } from '../files.service';
@@ -11,7 +11,7 @@ import { differenceInMilliseconds, lastDayOfISOWeek } from 'date-fns';
 })
 export class DeleteItemComponent implements OnInit, OnDestroy {
   showModal = false;
-  itemToDelete: Item;
+  itemToDelete: FolderItem;
   itemToDeleteSubscription: Subscription;
 
   interval$ = interval(50);

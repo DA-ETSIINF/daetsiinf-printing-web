@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { map ,  throttle } from 'rxjs/operators';
 import { FilesService } from './files.service';
 import { FileToPrint, FolderItem } from '../models';
 import { AppComponent } from '../app.component';
 import { interval, Subscription } from 'rxjs';
-import { throttle } from 'rxjs/operators';
 
 @Component({
   selector: 'app-files',

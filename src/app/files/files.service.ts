@@ -10,9 +10,8 @@ import {
   ReplaySubject
 } from 'rxjs';
 
-import { delay } from 'rxjs/operators';
+import { delay ,  throttle } from 'rxjs/operators';
 import { FileToPrint, Folder, FolderItem } from '../models';
-import { throttle } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
@@ -82,9 +81,12 @@ export class FilesService {
     }
   ];
 
+  myFiles: FolderItem[] = [];
 
-  myFiles$: Observable<FolderItem[]> = of(this.getFiles(0));
-  sharedWithMe$: Observable<FolderItem[]> = of(this.getFiles(1));
+
+  myFiles$: Observable<FolderItem[]> = of(this.getFolderItems(0, 'folders'));
+  sharedWithMe$: Observable<FolderItem[]> = of([]);
+  // sharedWithMe$: Observable<FolderItem[]> = of(this.getFiles(1));
   itemsInQueue$ = new BehaviorSubject<FileToPrint[]>([]);
   updateItemName$ = new Subject<FolderItem>();
   deleteItem$ = new Subject<FolderItem>();
@@ -100,19 +102,31 @@ export class FilesService {
     });
   }
 
+
+  fetchFiles(): Observable<any> {
+    return this.http.get(`${environment.server}:${environment.port}/print/files`);
+  }
+
   getFolderItems(n: number, type: string): FolderItem[] {
     const arr: FolderItem[] = [];
-    this.files[n][type].map(item => {
-      const extension = type === 'folders' ? 'folder' : item.name.substring(item.name.length - 3);
-      const itemInfo: FolderItem = {
-        name: item.name,
-        id: item.id,
-        type: extension
-      };
-      if (type !== 'folders') {
-        itemInfo.npages = item.npages;
-      }
-      arr.push(itemInfo);
+    let files: FolderItem[] = [];
+    this.fetchFiles().subscribe(data => {
+      files = data as FolderItem[];
+      console.log('sdfads', files[n]);
+      files[n]['files'].map(item => {
+        const itemInfo: FolderItem = {
+          name: item.name,
+          id: item.id,
+          type: item.name.substring(item.name.length - 3),
+        };
+        if (type !== 'folders') {
+          itemInfo.npages = item.npages;
+          itemInfo.link = item.file;
+        }
+        console.log(itemInfo);
+        arr.push(itemInfo);
+      });
+      console.log(arr);
     });
     return arr;
   }
@@ -139,8 +153,8 @@ export class FilesService {
       fd.set('folder', 1);
       files$.push(of(fd));
     });
-
     concat(...files$).subscribe(fileData => {
+      console.log(fileData);
       this.http
         .post(
           `${environment.server}:${environment.port}/print/upload/`,
@@ -151,7 +165,7 @@ export class FilesService {
   }
 
   deleteItem(item: FolderItem) {
-    console.log('Eliminaar', item);
+    console.log('Eliminar', item);
   }
 
   isCurrentPath(path: string) {
