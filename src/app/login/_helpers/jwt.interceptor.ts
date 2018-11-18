@@ -28,7 +28,7 @@ export class JwtInterceptor implements HttpInterceptor {
         // 'Content-Type': 'multipart/form-data'
       }
     });
-    console.log(request);
+    //console.log(request);
     return next.handle(request);
   }
 }

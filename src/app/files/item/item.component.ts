@@ -37,10 +37,10 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  addFileToQueue(id: number, name: string, npages: number) {
+  addFileToQueue(documentId: number, name: string, npages: number) {
     let b: FileToPrint[];
     this.filesService.itemsInQueue$.subscribe(a => (b = a)).unsubscribe();
-    b.push({ id, name, npages, doubledSided: true, ncopies: 1 });
+    b.push({ documentId, name, npages, doubleSided: true, ncopies: 1 });
     this.filesService.itemsInQueue$.next(b);
     this.toggleOptions();
   }

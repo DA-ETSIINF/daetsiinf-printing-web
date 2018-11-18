@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   version: 'v0.1',
-  server: 'http://192.168.0.112',
+  server: 'http://192.168.0.123',
   port: '8000'
 };
 

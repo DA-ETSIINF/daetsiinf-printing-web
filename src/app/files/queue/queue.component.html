@@ -1,8 +1,8 @@
 <section class="queue">
   <header (click)="toggleQueue()">
     <h4>Ver cola de impresión -
-      <span>{{itemsInQueue.length}} elemento</span>
-      <span *ngIf="itemsInQueue.length !== 1">s</span>
+      <span>{{filesInQueue.length}} elemento</span>
+      <span *ngIf="filesInQueue.length !== 1">s</span>
     </h4>
     <i class="material-icons" [ngStyle]="{'transform': showQueue ? 'rotate(-45deg)': 'none'}">add</i>
   </header>
@@ -22,7 +22,7 @@
           <span class="price">Precio</span>
           <span class="remove"></span>
         </div>
-        <div class="file" *ngFor="let file of itemsInQueue; let i = index">
+        <div class="file" *ngFor="let file of filesInQueue; let i = index">
           <span class="name">{{file.name}}</span>
           <span class="npages">{{file.npages}}</span>
           <div class="doubled-sided options">

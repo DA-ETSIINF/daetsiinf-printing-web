@@ -13,15 +13,14 @@ export class QueueComponent implements OnInit {
   showQueue = false;
   step = 'first';
   lastChanged = new Date().getTime();
-
-  itemsInQueue: FileToPrint[];
+  filesInQueue: FileToPrint[] = [];
 
   constructor(
     private appComponent: AppComponent,
     private filesService: FilesService
   ) {
     this.filesService.itemsInQueue$.subscribe(e => {
-      this.itemsInQueue = e;
+      this.filesInQueue = e;
     });
   }
 
@@ -47,13 +46,13 @@ export class QueueComponent implements OnInit {
   }
 
   setDoubledSided(bool: boolean, i: number) {
-    this.itemsInQueue[i].doubledSided = bool;
+    this.filesInQueue[i].doubleSided = bool;
   }
 
   getPrice(file: FileToPrint) {
     let price = file.npages * 0.04 * file.ncopies;
-    if (!file.doubledSided) {
-      price = price * 2;
+    if (!file.doubleSided) {
+      price /= 2;
     }
     price = Math.round(price * 100) / 100;
     return `${price}€`;
@@ -63,7 +62,7 @@ export class QueueComponent implements OnInit {
     this.toggleQueue();
     setTimeout(() => this.setStep('first'), 100);
   }
-  
+
   removeFile(id: number) {
     let elems;
     this.filesService.itemsInQueue$.subscribe(a => (elems = a)).unsubscribe();
@@ -83,14 +82,15 @@ export class QueueComponent implements OnInit {
   }
 
   cost(): number {
-    return this.itemsInQueue.reduce((cost, e) => {
+    return this.filesInQueue.reduce((cost, e) => {
       return (
         cost +
-        (e.doubledSided ? e.npages * 0.04 : e.npages * 2 * 0.04) * e.ncopies
+        (e.doubleSided ? e.npages * 0.04 : e.npages * 2 * 0.04) * e.ncopies
       );
     }, 0);
   }
+
   printFiles() {
-    console.log(this.itemsInQueue);
+    this.filesService.printFiles(this.filesInQueue);
   }
 }

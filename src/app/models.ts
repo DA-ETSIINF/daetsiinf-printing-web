@@ -26,11 +26,10 @@ export interface FolderItem {
   npages?: number;
 }
 
-
 export interface FileToPrint {
-  id: number;
+  documentId: number;
   name: string;
   npages: number;
-  doubledSided: boolean;
+  doubleSided: boolean;
   ncopies: number;
 }

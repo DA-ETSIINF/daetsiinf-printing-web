@@ -70,6 +70,7 @@ export class DeleteItemComponent implements OnInit, OnDestroy {
         }
       });
   }
+
   fakeProgress() {
     if (this.progress < 20) {
       this.progress = 20;
