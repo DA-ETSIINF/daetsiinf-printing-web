@@ -25,6 +25,7 @@ import { ChangeNameComponent } from './files/change-name/change-name.component';
 import { DeleteItemComponent } from './files/delete-item/delete-item.component';
 import { ItemPopoverComponent } from './files/item-popover/item-popover.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { QuickPrintComponent } from './quick-print/quick-print.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     ChangeNameComponent,
     DeleteItemComponent,
     ItemPopoverComponent,
-    DropZoneDirective
+    DropZoneDirective,
+    QuickPrintComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent, {
