@@ -10,7 +10,7 @@ import {
   ReplaySubject
 } from 'rxjs';
 
-import { delay ,  throttle, tap } from 'rxjs/operators';
+import { delay, throttle, tap } from 'rxjs/operators';
 import { FileToPrint, Folder, FolderItem } from '../models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -22,7 +22,6 @@ import { log } from 'util';
 export class FilesService implements OnInit {
   fetchedMyFiles: FolderItem[] = [];
   myFiles: FolderItem[] = [];
-
 
   myFiles$ = new Subject<FolderItem[]>();
   sharedWithMe$: Observable<FolderItem[]> = of([]);
@@ -43,19 +42,19 @@ export class FilesService implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   fetchFiles(n: number) {
-    this.http.get(`${environment.server}:${environment.port}/print/files`).subscribe(data => {
-      this.fetchedMyFiles = data as FolderItem[];
-      this.myFiles$.next([
-        ...this.getFolderItems(n, 'folders'),
-        ...this.getFolderItems(n, 'files'),
-      ]);
-    });
+    this.http
+      .get(`${environment.server}:${environment.port}/print/files`)
+      .subscribe(data => {
+        this.fetchedMyFiles = data as FolderItem[];
+        this.myFiles$.next([
+          ...this.getFolderItems(n, 'folders'),
+          ...this.getFolderItems(n, 'files')
+        ]);
+      });
   }
-
 
   getFolderItems(n: number, type: string) {
     const arr: FolderItem[] = [];
@@ -63,7 +62,7 @@ export class FilesService implements OnInit {
       const itemInfo: FolderItem = {
         name: item.name,
         id: item.id,
-        type: item.name.substring(item.name.length - 3),
+        type: item.name.substring(item.name.length - 3)
       };
       if (type !== 'folders') {
         itemInfo.npages = item.npages;
@@ -73,7 +72,6 @@ export class FilesService implements OnInit {
     });
     return arr;
   }
-
 
   triggerUpload() {
     const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
@@ -109,12 +107,24 @@ export class FilesService implements OnInit {
 
   printFiles(files: FileToPrint[]) {
     console.log(files[0]);
-    this.http.post(`${environment.server}:${environment.port}/print/send-to-printer/`, files[0])
+    this.http
+      .post(
+        `${environment.server}:${environment.port}/print/send-to-printer/`,
+        files[0]
+      )
       .subscribe(res => {
         console.log(res);
       });
     if (files.length > 1) {
       this.printFiles(files.slice(1));
     }
+  }
+
+  addFileToQueue(documentId: number, name: string, npages: number) {
+    let b: FileToPrint[];
+    this.itemsInQueue$.subscribe(a => (b = a)).unsubscribe();
+    b.push({ documentId, name, npages, doubleSided: true, ncopies: 1 });
+    this.itemsInQueue$.next(b);
+    console.log(b);
   }
 }

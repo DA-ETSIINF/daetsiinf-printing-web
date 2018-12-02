@@ -9,6 +9,9 @@ import { FilesComponent } from './files/files.component';
 import { ProfileComponent } from './files/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FundsComponent } from './general_components/funds/funds.component';
+import { QuickPrintComponent } from './quick-print/quick-print.component';
+
+import { QuickPrintModule } from './quick-print/quick-print.module';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,6 +42,7 @@ const routes: Routes = [
     /* canActivate: [AuthGuard] */
   },
   { path: '', pathMatch: 'full', redirectTo: '/my-files' },
+  { path: 'quick', pathMatch: 'full', component: QuickPrintComponent}
   { path: '**', component: NotFoundComponent }
 ];
 

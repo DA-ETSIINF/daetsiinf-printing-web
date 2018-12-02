@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { map ,  throttle } from 'rxjs/operators';
+import { map, throttle } from 'rxjs/operators';
 import { FilesService } from './files.service';
 import { FileToPrint, FolderItem } from '../models';
 import { AppComponent } from '../app.component';

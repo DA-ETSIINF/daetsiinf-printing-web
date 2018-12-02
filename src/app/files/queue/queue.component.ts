@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../files.service';
 import { AppComponent } from '../../app.component';
 import { FileToPrint } from '../../models';
-import { elementStart } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-queue',
