@@ -1,7 +1,7 @@
 <header>
   <div class="header">
     <i class="material-icons" (click)="toggleMenu()">menu</i>
-    <h1 class="title">REPROGRAFÍA
+    <h1 class="title">Ctrl + P
       <span>{{version}}</span>
     </h1>
     <img class="logo-daetsiinf" src=".\assets\img\logos\daetsiinf.png">
@@ -16,4 +16,4 @@
   </div>
 </header>
 <div class="active" *ngIf="showFilesNav()" [ngClass]="{'active-left': currentPage !== '/my-files'}"></div>
-<app-menu></app-menu>
+<app-menu [userInfo]="userInfo"></app-menu>

@@ -55,7 +55,7 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('mousemove', ['$event'])
   dragItem(e) {
-    let item;
+    let item: FolderItem;
     if (e.buttons !== 1) {
       return;
     }
@@ -76,13 +76,15 @@ export class DropZoneDirective implements OnDestroy {
       this.items$
         .pipe(
           map(files => {
+            console.log(files);
             return files[index];
           })
-        )
-        .subscribe(it => (item = it));
+          )
+        .subscribe(it => item = it);
     } else {
       item = this.statusDragable.item;
     }
+
 
     this.filesService.dragableItem$.next({
       item,

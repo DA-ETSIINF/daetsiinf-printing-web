@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
+import { UserInfo } from '../../../../models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,9 +7,16 @@ import { Router } from '@angular/router';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   static isOpen = false;
-  constructor(private router: Router) {}
+
+  @Input()
+  userInfo: UserInfo;
+
+  constructor(private router: Router) {
+
+
+  }
 
   getIsOpen() {
     return MenuComponent.isOpen;
@@ -16,8 +24,6 @@ export class MenuComponent implements OnInit {
   toogleMenu() {
     MenuComponent.isOpen = !MenuComponent.isOpen;
   }
-  ngOnInit() {}
-
   goTo(route: string) {
     MenuComponent.isOpen = false;
     this.router.navigate([route]);

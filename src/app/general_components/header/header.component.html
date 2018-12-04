@@ -1,6 +1,6 @@
 <div *ngIf="getDeviceWidth() == 'large'">
-  <app-header-lg></app-header-lg>
+  <app-header-lg [userInfo]="userInfo"></app-header-lg>
 </div>
 <div *ngIf="getDeviceWidth() == 'small'">
-  <app-header-sm></app-header-sm>
+  <app-header-sm [userInfo]="userInfo"></app-header-sm>
 </div>

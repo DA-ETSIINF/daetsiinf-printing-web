@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  version: 'v0.1',
-  server: 'http://192.168.0.123',
+  version: 'FECUNDADA',
+  server: 'http://192.168.0.113',
   port: '8000'
 };
 

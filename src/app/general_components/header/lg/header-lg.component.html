@@ -1,16 +1,16 @@
 <header>
   <div class="header">
     <img class="logo-daetsiinf" src=".\assets\img\logos\daetsiinf.png">
-    <h1 class="title">REPROGRAFÍA
+    <h1 class="title">Reprografia
       <span>{{version}}</span>
     </h1>
     <div class="header__right">
-      <div class="balance">3.09 €</div>
+      <div class="balance">{{userInfo.quantity}} €</div>
       <div class="vertical-divider"></div>
 
       <div class="dropdown" (mouseover)="setShowUserDropdown()" (mouseleave)="setHideUserDropdown()">
         <div class="dropdown__toggle">
-          <div class="dropdown__text">Javier</div>
+          <div class="dropdown__text">{{userInfo.username}}</div>
           <i class="material-icons">
             keyboard_arrow_down
           </i>

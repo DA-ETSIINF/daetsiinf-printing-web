@@ -23,7 +23,7 @@ header {
 
 .title span {
   position: absolute;
-  bottom: 0px;
+  bottom: -8px;
   right: 0px;
   font-size: 9px;
   font-family: 'Lato';

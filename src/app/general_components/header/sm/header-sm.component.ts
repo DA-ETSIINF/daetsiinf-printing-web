@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MenuComponent } from './menu/menu.component';
+import { UserInfo } from '../../../models';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 @Component({
@@ -10,6 +11,11 @@ import { environment } from '../../../../environments/environment';
 export class HeaderSmComponent implements OnInit {
   currentPage: string;
   version: string = environment.version;
+
+  @Input()
+  userInfo: UserInfo;
+
+
   constructor(private router: Router, private menu: MenuComponent) {}
 
   toggleMenu() {

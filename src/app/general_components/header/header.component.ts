@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
+import { UserService } from '../../user.service';
+import { UserInfo } from '../../models';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-  constructor(private appComponent: AppComponent) {}
+  userInfo: UserInfo;
+
+  constructor(private appComponent: AppComponent, private userService: UserService) {}
 
   getDeviceWidth(): string {
     return this.appComponent.deviceWidth;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.userInfo$.subscribe(info => this.userInfo = info);
+  }
 }

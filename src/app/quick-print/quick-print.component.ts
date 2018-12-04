@@ -22,11 +22,11 @@ export class QuickPrintComponent implements OnInit {
 
   onChangeFiles(event) {
     Object.values(event.target.files).map(file => {
-      console.log(file);
-      if (file.type !== 'application/pdf') {
+      const f = <any>file;
+      if (f.type !== 'application/pdf') {
         console.log('Formato de fichero no válido');
       } else {
-        this.filesService.addFileToQueue(0, file.name, 8);
+        this.filesService.addFileToQueue(0, f.name, 8);
       }
     });
   }

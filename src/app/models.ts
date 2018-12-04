@@ -9,6 +9,12 @@ export interface LoginUser {
   password: string;
 }
 
+export interface UserInfo {
+  username: string;
+  email: string;
+  quantity: number;
+}
+
 export interface Folder {
   id: number;
   name: string;

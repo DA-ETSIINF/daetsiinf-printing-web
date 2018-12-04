@@ -3,15 +3,15 @@
     <div class="menu__top-row">
       <i class="material-icons user-icon">person</i>
       <div class="user__info">
-        <h3 class="user__name">Javier García</h3>
+        <h3 class="user__name">{{userInfo.username}}</h3>
       </div>
       <i class="material-icons" (click)="toogleMenu()">close</i>
     </div>
-    <h5 class="user__email">maximo.garcia.martinez@alumnos.upm.es</h5>
+    <h5 class="user__email">{{userInfo.email}}</h5>
   </div>
   <div class="menu__balance">
     <span class="balance">SALDO: </span>
-    <span class="balance__quantity">3,09€</span>
+    <span class="balance__quantity">{{userInfo.quantity}} €</span>
     <span class="recharge">Recargar</span>
   </div>
 
