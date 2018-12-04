@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../files/files.service';
 import { FileToPrint } from '../models';
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-quick-print',
@@ -26,8 +27,20 @@ export class QuickPrintComponent implements OnInit {
       if (f.type !== 'application/pdf') {
         console.log('Formato de fichero no válido');
       } else {
-        this.filesService.addFileToQueue(0, f.name, 8);
+        this.getNPages(f).then(n => this.filesService.addFileToQueue(0, f.name, n)).catch(() => console.log('Something went wrong...'));
       }
+    });
+  }
+
+  async getNPages(file: any)  {
+    return new Promise<number>((res, rej) => {
+      const reader = new FileReader();
+      reader.readAsBinaryString(file);
+      let npages = 0;
+      return reader.onloadend = () => {
+          npages = (reader.result as string).match(/\/Type[\s]*\/Page[^s]/g).length;
+          res(npages);
+      };
     });
   }
 }
