@@ -1,3 +1,6 @@
+.container:hover{
+  cursor: pointer;
+}
 .upload-btn {
   position: fixed;
   right: 50px;
@@ -16,50 +19,40 @@
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
-@media only screen and (max-width: 992px) {
-  .upload-btn {
-    right: 20px;
-    bottom: 170px;
-  }
+.upload-btn {
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
 }
 
 .upload-btn i {
   color: var(--white);
   font-size: 22px;
+  transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.upload-btn:before {
-  content: '';
-  background-color: aliceblue;
-  border-radius: 50%;
-  display: block;
+.option{
   position: absolute;
-  top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-  transform: scale(0.001, 0.001);
+  color: var(--white);
+  font-size: 20px;
+  background: var(--dark-2);
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 1;
+  transition: .1s all ease-out;
 }
 
-.upload-btn:focus {
-  outline: 0;
+.show.add {
+  transform: rotate(45deg);
+}
+.show.upload {
+  bottom: 50px;
+  right: 27px;
 }
 
-.upload-btn:focus:before {
-  animation: button_tap_animation 0.8s ease-out;
-}
-
-@keyframes button_tap_animation {
-  50% {
-    transform: scale(1.5, 1.5);
-    opacity: 0;
-  }
-  99% {
-    transform: scale(0.001, 0.001);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(0.001, 0.001);
-    opacity: 1;
-  }
+.show.folder {
+  bottom: 10px;
+  right: 60px;
 }

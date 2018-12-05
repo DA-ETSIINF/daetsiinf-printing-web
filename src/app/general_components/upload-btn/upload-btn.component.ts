@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { log } from 'util';
+import { FilesService } from '../../files/files.service';
 
 @Component({
   selector: 'app-upload-btn',
@@ -7,7 +7,11 @@ import { log } from 'util';
   styleUrls: ['./upload-btn.component.css']
 })
 export class UploadBtnComponent implements OnInit {
-  constructor() {}
+  showOptions = false;
+
+  constructor(
+    private fileService: FilesService
+  ) {}
 
   uploadClicked() {
     // Clears focus on button so it can make the animation more than once
@@ -17,4 +21,8 @@ export class UploadBtnComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  triggerUpload() {
+    this.fileService.triggerUpload();
+  }
 }
