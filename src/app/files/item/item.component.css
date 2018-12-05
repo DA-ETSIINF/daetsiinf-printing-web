@@ -50,7 +50,6 @@
   box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.75);
   background: var(--bck);
   border-radius: 4px;
-  font-family: 'Lato';
 }
 
 .options ul li {
@@ -67,7 +66,6 @@
 }
 
 h5 {
-  font-family: 'Lato';
   font-weight: 400;
   font-size: 14px;
   color: var(--dark-4);

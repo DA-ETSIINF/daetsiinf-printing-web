@@ -31,7 +31,6 @@ header {
 }
 
 header h4 {
-  font-family: 'Lato';
   font-size: 13px;
   flex: 1;
 }
@@ -46,7 +45,6 @@ header i {
   background: var(--bck);
   color: var(--dark-4);
   padding: 0 15px;
-  font-family: 'Lato';
   height: 100%;
   position: relative;
 

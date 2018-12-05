@@ -9,7 +9,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Lato';
   transition: .2s all ease;
   opacity: 1;
   animation: opacity .2s ease;

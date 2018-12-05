@@ -26,7 +26,6 @@ main {
   background: var(--purple);
   text-transform: uppercase;
   color: var(--white);
-  font-family: 'Oswald'
 }
 
 @media screen and (max-width:992px) {

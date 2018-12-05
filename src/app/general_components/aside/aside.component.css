@@ -46,7 +46,6 @@ aside nav ul li .files-menu__option {
   font-size: 15px;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
-  font-family: 'Lato';
   font-weight: 700;
   height: 34px;
   padding: 5px;
@@ -78,7 +77,6 @@ aside nav ul li .files-menu__option i {
 
 .items {
   font-size: 13px;
-  font-family: 'Lato';
   margin-left: 30px;
   margin-right: 5px;
   list-style: none;
@@ -108,7 +106,6 @@ aside nav ul li .files-menu__option i {
 }
 
 .lang {
-  font-family: 'Lato';
   margin-left: 46px;
   font-size: 14px;
 }
