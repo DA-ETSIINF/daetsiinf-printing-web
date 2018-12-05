@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { JwtInterceptor } from './login/_helpers/jwt.interceptor';
@@ -24,8 +25,8 @@ import { FundsComponent } from './general_components/funds/funds.component';
 import { ChangeNameComponent } from './files/change-name/change-name.component';
 import { DeleteItemComponent } from './files/delete-item/delete-item.component';
 import { ItemPopoverComponent } from './files/item-popover/item-popover.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QuickPrintComponent } from './quick-print/quick-print.component';
+import { TutorialComponent } from './tutorial/tutorial.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { QuickPrintComponent } from './quick-print/quick-print.component';
     DeleteItemComponent,
     ItemPopoverComponent,
     DropZoneDirective,
-    QuickPrintComponent
+    QuickPrintComponent,
+    TutorialComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent, {
