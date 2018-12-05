@@ -102,10 +102,6 @@ export class FilesComponent implements OnInit, OnDestroy {
     }
   }
 
-  getCurrentPath() {
-    return this.fileService.currentPage;
-  }
-
   getCurrentItems() {
     return this.fileService.isCurrentPath('/my-files')
       ? this.myFiles

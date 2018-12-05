@@ -10,11 +10,8 @@
         <video src="./assets/loading/printer.avi"></video>
       </div>
       <div class="empty" *ngIf="!loading && getCurrentItems().length === 0">
-        <p *ngIf="getCurrentPath() === '/my-files'">No has subido nada aún :(</p>
-        <p *ngIf="getCurrentPath() === '/shared-with-me'">No te han compartido nada aún :(</p>
-        <div class="gif">
-          <iframe src="https://giphy.com/embed/3o7aTskHEUdgCQAXde" frameBorder="0"></iframe>
-        </div>
+        <img src="./assets/img/svg/empty.svg">
+        <p>No hay archivos :(</p>
       </div>
       <app-item *ngFor="let item of getCurrentItems()" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
     </section>

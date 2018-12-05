@@ -37,10 +37,10 @@ main.hovering {
   margin-bottom: 10px;
 }
 
-.empty .gif {
+img {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  max-height: 50vh;
+  margin: 30px auto;
 }
 
 .empty iframe {
