@@ -8,7 +8,7 @@
       <div class="balance">{{userInfo.quantity}} €</div>
       <div class="vertical-divider"></div>
 
-      <div class="dropdown" (mouseover)="setShowUserDropdown()" (mouseleave)="setHideUserDropdown()">
+      <div class="dropdown" (mouseover)="showUserDropdown = true" (mouseleave)="showUserDropdown = false">
         <div class="dropdown__toggle">
           <div class="dropdown__text">{{userInfo.username}}</div>
           <i class="material-icons">
@@ -16,7 +16,7 @@
           </i>
         </div>
         <nav class="dropdown__menu" [ngStyle]="{'zIndex':showUserDropdown?'1000':'-1'}">
-          <ul [ngStyle]="{'margin-top':hideUserDropdown?'10px':'0','opacity':hideUserDropdown?'1':'0'}">
+          <ul [ngStyle]="{'margin-top':showUserDropdown?'10px':'0','opacity':showUserDropdown?'1':'0'}">
             <li>
               <i class="material-icons">insert_drive_file</i>
               <span>Documentos</span>
