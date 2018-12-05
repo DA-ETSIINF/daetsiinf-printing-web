@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-lg.component.css']
 })
 export class HeaderLgComponent {
-  showUserDropdown = true;
+  showUserDropdown = false;
   version: string = environment.version;
 
   @Input()
