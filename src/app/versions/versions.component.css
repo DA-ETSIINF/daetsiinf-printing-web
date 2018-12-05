@@ -1,0 +1,36 @@
+main{
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.version {
+    padding: 40px 20px;
+    padding-top: 0;
+    border-bottom: 2px solid var(--dark-1);
+}
+
+h2{
+    font-size: 18px;
+}
+
+.date {
+    color: var(--dark-2);
+    font-size: 14px;
+}
+
+ul{
+    list-style-type: square;
+    margin-left: 20px;
+}
+
+li{
+    margin: 5px 0;
+    line-height: 15px;
+}

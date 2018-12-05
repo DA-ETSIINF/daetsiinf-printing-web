@@ -27,6 +27,7 @@ import { DeleteItemComponent } from './files/delete-item/delete-item.component';
 import { ItemPopoverComponent } from './files/item-popover/item-popover.component';
 import { QuickPrintComponent } from './quick-print/quick-print.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
+import { VersionsComponent } from './versions/versions.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { TutorialComponent } from './tutorial/tutorial.component';
     ItemPopoverComponent,
     DropZoneDirective,
     QuickPrintComponent,
-    TutorialComponent
+    TutorialComponent,
+    VersionsComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [MenuComponent, AppComponent, {
