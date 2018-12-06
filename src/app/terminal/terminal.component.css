@@ -1,0 +1,85 @@
+section.terminal {
+  position: absolute;
+  border: 1px solid var(--primary);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1px;
+  min-width: 180px;
+  height: 30vh;
+}
+
+header {
+  color: var(--dark-4);
+  background: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+}
+
+header h4 {
+  font-size: 14px;
+}
+
+header .options {
+  display: flex;
+}
+
+header i {
+  height: 100%;
+  padding: 0 5px;
+  transition: .1s all ease;
+  font-size: 22px;
+}
+
+header i:hover {
+  background: var(--dark-1);
+}
+
+header i.close:hover {
+  background: var(--bad);
+  color: var(--white);
+
+}
+
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  overflow-y: auto;
+}
+
+body::selection {
+  color: #000;
+  background: #fff;
+}
+
+.command {
+  margin-top: 9px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.command-text,
+input {
+  margin-left: 5px;
+}
+
+input {
+  border: 0;
+  box-shadow: none;
+  background: inherit;
+  color: #fff;
+  outline: none;
+  font-family: 'Courier New', Courier, monospace;
+  caret-color: #fff;
+  flex: 1;
+}
+
+input::selection {
+  color: #000;
+  background: #fff;
+}
