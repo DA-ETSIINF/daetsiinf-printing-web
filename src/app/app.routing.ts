@@ -42,9 +42,9 @@ const routes: Routes = [
     /* canActivate: [AuthGuard] */
   },
   { path: '', pathMatch: 'full', redirectTo: '/my-files' },
-  { path: 'quick', pathMatch: 'full', component: QuickPrintComponent},
-  { path: 'tutorial', pathMatch: 'full', component: TutorialComponent},
-  { path: 'versions', pathMatch: 'full', component: VersionsComponent},
+  { path: 'quick', pathMatch: 'full', component: QuickPrintComponent },
+  { path: 'tutorial', pathMatch: 'full', component: TutorialComponent },
+  { path: 'versions', pathMatch: 'full', component: VersionsComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

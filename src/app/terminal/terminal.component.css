@@ -6,7 +6,7 @@ section.terminal {
   transform: translate(-50%, -50%);
   border-radius: 1px;
   min-width: 180px;
-  height: 30vh;
+  height: 60vh;
 }
 
 header {
@@ -50,6 +50,7 @@ body {
   font-family: 'Courier New', Courier, monospace;
   font-size: 13px;
   overflow-y: auto;
+  position: relative;
 }
 
 body::selection {
@@ -82,4 +83,18 @@ input {
 input::selection {
   color: #000;
   background: #fff;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: grid;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
 }

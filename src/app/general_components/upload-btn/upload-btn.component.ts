@@ -9,9 +9,7 @@ import { FilesService } from '../../files/files.service';
 export class UploadBtnComponent implements OnInit {
   showOptions = false;
 
-  constructor(
-    private fileService: FilesService
-  ) {}
+  constructor(private fileService: FilesService) {}
 
   uploadClicked() {
     // Clears focus on button so it can make the animation more than once
@@ -24,5 +22,9 @@ export class UploadBtnComponent implements OnInit {
 
   triggerUpload() {
     this.fileService.triggerUpload();
+  }
+
+  triggerCreateFolder() {
+    this.fileService.createFolder$.next();
   }
 }

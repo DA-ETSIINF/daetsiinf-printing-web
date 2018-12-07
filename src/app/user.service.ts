@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import {UserInfo} from './models';
+import { UserInfo } from './models';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,7 @@ export class UserService implements OnInit {
 
   userInfo$ = new BehaviorSubject<UserInfo>(this.userInfo);
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

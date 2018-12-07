@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { FilesService } from '../files/files.service';
+import { SnakeService } from './games/snake.service';
 export interface CommandHistory {
   prompt: string;
   command: string;
@@ -11,6 +12,7 @@ export interface Command {
   minLength: number;
   maxLength: number;
   exec: Function;
+  signal?: Function;
 }
 @Injectable({
   providedIn: 'root'
@@ -33,9 +35,7 @@ export class CommandsService {
       name: 'mkdir',
       minLength: 2,
       maxLength: 2,
-      exec: name => {
-        this.filesService.createFolder(name);
-      }
+      exec: name => this.filesService.createFolder(name)
     },
     {
       name: 'prompt',
@@ -59,18 +59,33 @@ export class CommandsService {
         alert(argv[1]);
         return ['Alerta mostrada'];
       }
+    },
+    {
+      name: 'snake',
+      minLength: 1,
+      maxLength: 1,
+      exec: () => {
+        this.snakeService.init();
+        this.gameIsRunning = true;
+      },
+      signal: (type, value) => this.snakeService.signal(type, value)
     }
   ];
 
   history$ = new Subject<CommandHistory>();
   prompt = '/home/users/dani$';
+  gameIsRunning = false;
+  currentSignal: Function;
 
   errors = {
     COMMAND_NOT_FOUND: 'El comando no está disponible',
     ARGC_WRONG: 'El número de parámetro es incorrecto'
   };
 
-  constructor(private filesService: FilesService) {}
+  constructor(
+    private filesService: FilesService,
+    private snakeService: SnakeService
+  ) {}
 
   private commandExists(command): Command {
     let c: Command;
@@ -103,6 +118,12 @@ export class CommandsService {
       case 'alert':
         results = c.exec(argv);
         break;
+      case 'snake':
+        results = c.exec();
+        break;
+    }
+    if (c.signal) {
+      this.currentSignal = c.signal;
     }
     this.appendItemToHistory(argv, results, prompt);
   }

@@ -7,8 +7,7 @@ import Swiper from 'swiper';
   styleUrls: ['./tutorial.component.css']
 })
 export class TutorialComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     const swiper = new Swiper('.swiper-container', {
@@ -23,9 +22,8 @@ export class TutorialComponent implements OnInit {
       },
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        prevEl: '.swiper-button-prev'
       }
     });
   }
-
 }

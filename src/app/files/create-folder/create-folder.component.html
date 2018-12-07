@@ -4,11 +4,11 @@
       <span>Crear carpeta</span>
       <i class="material-icons" (click)="closeModal()">close</i>
     </header>
-    <input type="text" id="nameItem" name="nameItem" autofocus>
+    <input type="text" id="nameFolder" placeholder="{{randomName}}" name="nameFolder" [(ngModel)]="folderName"
+      autofocus>
     <div class="buttons">
       <button class="cancel" (click)="closeModal()">Cancelar</button>
-      <button class="submit">Cambiar</button>
+      <button class="submit" (click)="createFolder()">Crear</button>
     </div>
   </div>
 </div>
- 

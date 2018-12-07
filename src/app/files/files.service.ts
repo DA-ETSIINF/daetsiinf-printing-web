@@ -10,7 +10,7 @@ import {
   ReplaySubject
 } from 'rxjs';
 
-import { delay, throttle, tap } from 'rxjs/operators';
+import { delay, throttle, tap, throwIfEmpty } from 'rxjs/operators';
 import { FileToPrint, Folder, FolderItem } from '../models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -29,11 +29,18 @@ export class FilesService implements OnInit {
   itemsInQueue$ = new BehaviorSubject<FileToPrint[]>([]);
   updateItemName$ = new Subject<FolderItem>();
   deleteItem$ = new Subject<FolderItem>();
+  createFolder$ = new Subject();
 
   itemMenu$ = new BehaviorSubject<boolean>(false);
   dragableItem$ = new Subject<{ item: FolderItem; x: number; y: number }>();
 
   currentPage: string;
+
+  randomNames: { a: string; b: string }[] = [
+    { a: 'Un buen nombre sería', b: 'Asignatura chunga' },
+    { a: 'Nombre', b: 'Esta vez sacaré un 10' },
+    { a: '¿Y qué tal este nombre?', b: 'temp1' }
+  ];
 
   constructor(private http: HttpClient, public router: Router) {
     this.fetchFiles(0);
@@ -126,5 +133,21 @@ export class FilesService implements OnInit {
     b.push({ documentId, name, npages, doubleSided: true, ncopies: 1 });
     this.itemsInQueue$.next(b);
     console.log(b);
+  }
+
+  createFolder(name: string) {
+    console.log(name);
+  }
+
+  getRandomName(): string {
+    const a = [];
+    const b = [];
+    this.randomNames.map(c => {
+      a.push(c.a);
+      b.push(c.b);
+    });
+    return `${a[Math.floor(Math.random() * this.randomNames.length)]}: ${
+      b[Math.floor(Math.random() * this.randomNames.length)]
+    }`;
   }
 }

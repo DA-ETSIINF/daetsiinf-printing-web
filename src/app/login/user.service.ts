@@ -12,8 +12,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private http: HttpClient,
-    public router: Router) {}
+  constructor(private http: HttpClient, public router: Router) {}
 
   register(user: RegisterUser) {
     this.http
@@ -24,7 +23,7 @@ export class UserService {
       .pipe(map(data => (data as any).id))
       .subscribe(id => {
         if (id !== undefined) {
-          this.login({username: user.username, password: user.password});
+          this.login({ username: user.username, password: user.password });
         }
       });
   }
@@ -33,7 +32,10 @@ export class UserService {
     console.log(`${environment.server}:${environment.port}/auth/token/create/`);
     console.log(user);
     this.http
-      .post(`${environment.server}:${environment.port}/auth/token/create/`, user)
+      .post(
+        `${environment.server}:${environment.port}/auth/token/create/`,
+        user
+      )
       .pipe(
         map((res: any) => {
           // login successful if there's a jwt token in the response
@@ -47,14 +49,16 @@ export class UserService {
             this.router.navigate(['/my-files']);
           }
         })
-      ).subscribe();
+      )
+      .subscribe();
   }
 
-
   private setUserInfo() {
-    this.http.get(`${environment.server}:${environment.port}/auth/me/`).subscribe(info => {
-      console.log(info);
-    });
+    this.http
+      .get(`${environment.server}:${environment.port}/auth/me/`)
+      .subscribe(info => {
+        console.log(info);
+      });
   }
   logout() {
     localStorage.removeItem('currentUser');

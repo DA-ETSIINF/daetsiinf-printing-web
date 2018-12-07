@@ -28,6 +28,8 @@ import { ItemPopoverComponent } from './files/item-popover/item-popover.componen
 import { QuickPrintComponent } from './quick-print/quick-print.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { VersionsComponent } from './versions/versions.component';
+import { CreateFolderComponent } from './files/create-folder/create-folder.component';
+import { TerminalComponent } from './terminal/terminal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,14 +54,20 @@ import { VersionsComponent } from './versions/versions.component';
     DropZoneDirective,
     QuickPrintComponent,
     TutorialComponent,
-    VersionsComponent
+    VersionsComponent,
+    CreateFolderComponent,
+    TerminalComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
-  providers: [MenuComponent, AppComponent, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: JwtInterceptor,
-    multi: true
-  }],
+  providers: [
+    MenuComponent,
+    AppComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

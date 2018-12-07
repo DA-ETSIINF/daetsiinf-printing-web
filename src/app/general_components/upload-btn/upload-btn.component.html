@@ -3,5 +3,5 @@
     <i class="material-icons add" [ngClass]="{'show': showOptions}">add</i>
   </div>
   <i class="material-icons option upload" [ngClass]="{'show': showOptions}" (click)="triggerUpload()">cloud_upload</i>
-  <i class="material-icons option folder" [ngClass]="{'show': showOptions}">folder</i>
+  <i class="material-icons option folder" [ngClass]="{'show': showOptions}" (click)="triggerCreateFolder()">folder</i>
 </div>

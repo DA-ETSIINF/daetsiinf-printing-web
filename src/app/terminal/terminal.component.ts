@@ -15,6 +15,8 @@ export class TerminalComponent implements OnInit {
 
   ngOnInit() {
     this.commandsService.history$.subscribe(h => {
+      console.log(h);
+
       this.history.push(h);
     });
     this.prompt = this.commandsService.prompt;
@@ -26,5 +28,25 @@ export class TerminalComponent implements OnInit {
     }
     this.command = '';
     this.prompt = this.commandsService.prompt;
+  }
+
+  onKeyDown(e) {
+    if (e.code === 'KeyC' && e.ctrlKey) {
+      const screen = document.querySelector('.screen');
+      screen.className = 'screen';
+      this.history.push({
+        prompt: this.prompt,
+        command: this.command,
+        results: ['Keyboard Interruption']
+      });
+    } else if (
+      this.commandsService.gameIsRunning &&
+      ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)
+    ) {
+      console.log('lamo');
+      if (this.commandsService.currentSignal) {
+        this.commandsService.currentSignal('KEY', e.key);
+      }
+    }
   }
 }

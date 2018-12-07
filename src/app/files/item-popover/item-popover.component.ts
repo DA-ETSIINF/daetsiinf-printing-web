@@ -1,12 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {
-  BehaviorSubject,
-  of,
-  Observable,
-  Subject,
-  interval,
-  Subscription
-} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FolderItem } from '../../models';
 import { FilesService } from '../files.service';
 

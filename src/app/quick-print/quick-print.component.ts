@@ -27,20 +27,23 @@ export class QuickPrintComponent implements OnInit {
       if (f.type !== 'application/pdf') {
         console.log('Formato de fichero no válido');
       } else {
-        this.getNPages(f).then(n => this.filesService.addFileToQueue(0, f.name, n)).catch(() => console.log('Something went wrong...'));
+        this.getNPages(f)
+          .then(n => this.filesService.addFileToQueue(0, f.name, n))
+          .catch(() => console.log('Something went wrong...'));
       }
     });
   }
 
-  async getNPages(file: any)  {
+  async getNPages(file: any) {
     return new Promise<number>((res, rej) => {
       const reader = new FileReader();
       reader.readAsBinaryString(file);
       let npages = 0;
-      return reader.onloadend = () => {
-          npages = (reader.result as string).match(/\/Type[\s]*\/Page[^s]/g).length;
-          res(npages);
-      };
+      return (reader.onloadend = () => {
+        npages = (reader.result as string).match(/\/Type[\s]*\/Page[^s]/g)
+          .length;
+        res(npages);
+      });
     });
   }
 }
