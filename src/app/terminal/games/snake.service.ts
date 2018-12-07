@@ -9,6 +9,10 @@ export class SnakeService {
   movement = 'right';
   nBoxes = 1600;
   squaresInARow = Math.sqrt(this.nBoxes);
+  appleInGame = false;
+  appleBox: number;
+  score = 0;
+  stop = false;
 
   constructor() {}
 
@@ -30,20 +34,23 @@ export class SnakeService {
     }, 1fr)`;
   }
   drawSnake() {
-    this.screen.childNodes.forEach(child => {
-      (child as any).style.background = '#000';
+    this.screen.childNodes.forEach(c => {
+      (c as any).style.background = '#000';
     });
 
+    let child: any;
     this.snake.map(n => {
-      const child = this.screen.childNodes.item(n);
-      (child as any).style.background = '#fff';
+      child = this.screen.childNodes.item(n);
+      child.style.background = '#fff';
     });
+
+    child = this.screen.childNodes.item(this.appleBox);
+    child.style.background = '#fff';
   }
   checkForBorders() {
     const head = this.snake[this.snake.length - 1];
     const row = Math.floor(head / this.squaresInARow);
     const col = head % this.squaresInARow;
-    console.log(0 < row, row);
 
     switch (this.movement) {
       case 'right':
@@ -60,13 +67,19 @@ export class SnakeService {
   moveSnake() {
     if (!this.checkForBorders()) {
       console.log('Perdiste');
-      return ['Tocaste la pared'];
+      this.stop = true;
     }
-    this.snake.splice(0, 1);
 
     const head = this.snake[this.snake.length - 1];
     const row = Math.floor(head / this.squaresInARow);
     const col = head % this.squaresInARow;
+    if (head === this.appleBox) {
+      this.appleInGame = false;
+      this.score += 10;
+      console.log(this.score);
+    } else {
+      this.snake.splice(0, 1);
+    }
     switch (this.movement) {
       case 'right':
         this.snake.push(row * this.squaresInARow + col + 1);
@@ -85,20 +98,37 @@ export class SnakeService {
     this.drawSnake();
   }
 
+  spawnApple() {
+    if (!this.appleInGame) {
+      this.appleBox = Math.floor(Math.random() * this.nBoxes);
+      console.log(this.appleBox);
+      this.appleInGame = true;
+    }
+  }
+
   signal(type: string, value: any) {
     if (type === 'KEY') {
       switch (value) {
         case 'ArrowDown':
-          this.movement = 'down';
+          if (this.movement !== 'up') {
+            this.movement = 'down';
+          }
           break;
         case 'ArrowUp':
-          this.movement = 'up';
+          if (this.movement !== 'down') {
+            this.movement = 'up';
+          }
           break;
         case 'ArrowLeft':
-          this.movement = 'left';
+          if (this.movement !== 'right') {
+            this.movement = 'left';
+          }
           break;
         case 'ArrowRight':
-          this.movement = 'right';
+          if (this.movement !== 'left') {
+            this.movement = 'right';
+          }
+
           break;
       }
       console.log(value, this.movement);
@@ -109,8 +139,9 @@ export class SnakeService {
     this.setDisplay();
     this.drawSnake();
 
-    const ticks = interval(50);
+    const ticks = interval(40);
     ticks.subscribe(tick => {
+      this.spawnApple();
       this.moveSnake();
     });
   }
