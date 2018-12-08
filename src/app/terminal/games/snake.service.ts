@@ -65,14 +65,10 @@ export class SnakeService {
   }
 
   moveSnake() {
-    if (!this.checkForBorders()) {
-      console.log('Perdiste');
-      this.stop = true;
-    }
-
     const head = this.snake[this.snake.length - 1];
     const row = Math.floor(head / this.squaresInARow);
     const col = head % this.squaresInARow;
+
     if (head === this.appleBox) {
       this.appleInGame = false;
       this.score += 10;
@@ -80,19 +76,37 @@ export class SnakeService {
     } else {
       this.snake.splice(0, 1);
     }
-    switch (this.movement) {
-      case 'right':
-        this.snake.push(row * this.squaresInARow + col + 1);
-        break;
-      case 'down':
-        this.snake.push((row + 1) * this.squaresInARow + col);
-        break;
-      case 'left':
-        this.snake.push(row * this.squaresInARow + col - 1);
-        break;
-      case 'up':
-        this.snake.push((row - 1) * this.squaresInARow + col);
-        break;
+
+    if (!this.checkForBorders()) {
+      switch (this.movement) {
+        case 'right':
+          this.snake.push(row * this.squaresInARow);
+          break;
+        case 'down':
+          this.snake.push(col);
+          break;
+        case 'left':
+          this.snake.push((row + 1) * this.squaresInARow - 1);
+          break;
+        case 'up':
+          this.snake.push(this.nBoxes - this.squaresInARow + col);
+          break;
+      }
+    } else {
+      switch (this.movement) {
+        case 'right':
+          this.snake.push(row * this.squaresInARow + col + 1);
+          break;
+        case 'down':
+          this.snake.push((row + 1) * this.squaresInARow + col);
+          break;
+        case 'left':
+          this.snake.push(row * this.squaresInARow + col - 1);
+          break;
+        case 'up':
+          this.snake.push((row - 1) * this.squaresInARow + col);
+          break;
+      }
     }
 
     this.drawSnake();
