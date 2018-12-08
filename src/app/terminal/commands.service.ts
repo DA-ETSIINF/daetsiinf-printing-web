@@ -41,12 +41,12 @@ export class CommandsService {
       name: 'prompt',
       minLength: 1,
       maxLength: 2,
-      exec: argv => {
-        if (argv.length === 1) {
+      exec: () => {
+        if (this.argv.length === 1) {
           return [this.prompt];
         }
-        if (argv.length === 2) {
-          this.prompt = argv[1];
+        if (this.argv.length === 2) {
+          this.prompt = this.argv[1];
           return [''];
         }
       }
@@ -55,8 +55,8 @@ export class CommandsService {
       name: 'alert',
       minLength: 2,
       maxLength: 2,
-      exec: argv => {
-        alert(argv[1]);
+      exec: () => {
+        alert(this.argv[1]);
         return ['Alerta mostrada'];
       }
     },
@@ -68,7 +68,18 @@ export class CommandsService {
         this.snakeService.init();
         this.gameIsRunning = true;
       },
-      signal: (type, value) => this.snakeService.signal(type, value)
+      signal: (type, value) =>
+        console.log(this.snakeService.signal(type, value))
+    },
+    {
+      name: 'break',
+      minLength: 1,
+      maxLength: 1,
+      exec: () => {
+        if (this.currentSignal) {
+          return this.currentSignal('BREAK');
+        }
+      }
     }
   ];
 
@@ -76,6 +87,7 @@ export class CommandsService {
   prompt = '/home/users/dani$';
   gameIsRunning = false;
   currentSignal: Function;
+  argv: string[];
 
   errors = {
     COMMAND_NOT_FOUND: 'El comando no está disponible',
@@ -101,11 +113,11 @@ export class CommandsService {
     return c.minLength <= argc && c.maxLength >= argc;
   }
 
-  private execCommand(argv: string[], c: Command) {
+  execCommand(c: Command) {
     const prompt = this.prompt;
 
     let results: string[];
-    switch (argv[0]) {
+    switch (this.argv[0]) {
       case 'ls':
         results = c.exec();
         break;
@@ -113,24 +125,28 @@ export class CommandsService {
         results = c.exec(c.name);
         break;
       case 'prompt':
-        results = c.exec(argv);
+        results = c.exec();
         break;
       case 'alert':
-        results = c.exec(argv);
+        results = c.exec();
         break;
       case 'snake':
         results = c.exec();
+        break;
+      case 'break':
+        results = c.exec();
+        this.currentSignal = null;
         break;
     }
     if (c.signal) {
       this.currentSignal = c.signal;
     }
-    this.appendItemToHistory(argv, results, prompt);
+    this.appendItemToHistory(results, this.argv, prompt);
   }
 
   private appendItemToHistory(
-    argv: string[],
     results: string[],
+    argv: string[] = this.argv,
     prompt = this.prompt
   ) {
     let command = '';
@@ -143,17 +159,17 @@ export class CommandsService {
   }
 
   getResultFromCommand(command) {
-    const argv: string[] = command.split(' ').filter(a => a !== '');
+    this.argv = command.split(' ').filter(a => a !== '');
 
-    const c = this.commandExists(argv[0]);
+    const c = this.commandExists(this.argv[0]);
     if (c === undefined) {
-      this.appendItemToHistory(argv, [this.errors.COMMAND_NOT_FOUND]);
+      this.appendItemToHistory([this.errors.COMMAND_NOT_FOUND]);
       return;
     }
-    if (!this.argcOk(c, argv.length)) {
-      this.appendItemToHistory(argv, [this.errors.ARGC_WRONG]);
+    if (!this.argcOk(c, this.argv.length)) {
+      this.appendItemToHistory([this.errors.ARGC_WRONG]);
       return;
     }
-    this.execCommand(argv, c);
+    this.execCommand(c);
   }
 }

@@ -32,13 +32,7 @@ export class TerminalComponent implements OnInit {
 
   onKeyDown(e) {
     if (e.code === 'KeyC' && e.ctrlKey) {
-      const screen = document.querySelector('.screen');
-      screen.className = 'screen';
-      this.history.push({
-        prompt: this.prompt,
-        command: this.command,
-        results: ['Keyboard Interruption']
-      });
+      this.commandsService.getResultFromCommand('break');
     } else if (
       this.commandsService.gameIsRunning &&
       ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)
