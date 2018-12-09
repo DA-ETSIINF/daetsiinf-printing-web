@@ -1,9 +1,13 @@
 section {
-  position: relative;
+  position: fixed;
+  right: 20px;
+  top: 120px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-gap: 15px;
 }
 
 .notification {
-  position: fixed;
   background-color: var(--bck);
   color: var(--dark-4);
   border-top: 5px solid;
@@ -11,22 +15,9 @@ section {
   border-radius: 3px;
   box-shadow: var(--dark-4) 0px 3px 13px -5px;
   transition: .3s all ease;
-  right: 20px;
   max-width: 300px;
-  animation: slide-bottom .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
-@keyframes slide-bottom {
-  0% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(40px);
-  }
-}
 
 
 .error {
@@ -49,10 +40,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 header i {
   font-size: 16px;
   color: var(--dark-4);
   margin-left: 15px;
+}
+
+.description {
+  font-size: 13px;
+  margin-top: 32px;
+  color: var(--dark-2);
 }

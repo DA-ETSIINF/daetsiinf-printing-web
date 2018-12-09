@@ -10,7 +10,11 @@ export class NotificationsService {
   constructor() {}
 
   addNotification(n: Notification) {
-    this.notifications$.next([n, ...this.notifications]);
     this.notifications.push(n);
+    this.notifications$.next(this.notifications);
+  }
+  removeNotification(i: number) {
+    this.notifications.splice(i, 1);
+    this.notifications$.next(this.notifications);
   }
 }

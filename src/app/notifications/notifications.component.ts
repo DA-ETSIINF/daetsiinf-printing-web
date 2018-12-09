@@ -13,28 +13,11 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit() {
     this.notificationsService.notifications$.subscribe(n => {
-      console.log(n);
-
       this.notifications = n;
     });
   }
 
-  getMarginTop(i: number): any {
-    const notifications = document.querySelectorAll('.notification') as any;
-    let j = 0,
-      marginTop = 0;
-    Array.from(notifications).forEach(notification => {
-      if (i === j) {
-        return marginTop;
-      }
-      j++;
-      marginTop += (notification as any).offsetHeight + 15;
-      return marginTop;
-    });
-    return marginTop + 60;
-  }
-
   removeNotification(i: number) {
-    this.notifications.splice(i, 1);
+    this.notificationsService.removeNotification(i - 1);
   }
 }
