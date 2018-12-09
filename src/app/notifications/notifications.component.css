@@ -1,0 +1,58 @@
+section {
+  position: relative;
+}
+
+.notification {
+  position: fixed;
+  background-color: var(--bck);
+  color: var(--dark-4);
+  border-top: 5px solid;
+  padding: 10px 15px;
+  border-radius: 3px;
+  box-shadow: var(--dark-4) 0px 3px 13px -5px;
+  transition: .3s all ease;
+  right: 20px;
+  max-width: 300px;
+  animation: slide-bottom .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+}
+
+
+.error {
+  border-color: var(--bad);
+}
+
+.ok {
+  border-color: var(--good);
+}
+
+.info {
+  border-color: var(--info);
+}
+
+.loading {
+  border: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header i {
+  font-size: 16px;
+  color: var(--dark-4);
+  margin-left: 15px;
+}

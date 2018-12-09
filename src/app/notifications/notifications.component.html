@@ -1,0 +1,10 @@
+<div class="notification" *ngFor="let notification of notifications; let i = index" [ngClass]="notification.status"
+  [ngStyle]="{'top.px': getMarginTop(i)}">
+  <header>
+
+    <span class="title">{{notification.title}}</span>
+    <i class="material-icons" (click)="removeNotification(i)">
+      close
+    </i>
+  </header>
+</div>
