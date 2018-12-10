@@ -151,7 +151,12 @@ export class FilesService implements OnInit {
           `${environment.server}:${environment.port}/print/upload/`,
           fileData
         )
-        .subscribe(res => {});
+        .subscribe(res => {
+          this.notificationsService.addNotification({
+            title: 'Archivo subido',
+            status: 'ok'
+          });
+        });
     });
   }
 
