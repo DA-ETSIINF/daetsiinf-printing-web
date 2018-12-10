@@ -2,18 +2,18 @@
 <input type="file" id="uploadInput" style="display: none" (change)="uploadChange()" multiple>
 <div class="container" (click)="hideOptions()">
   <app-aside></app-aside>
-  <main [ngClass]="{'grid': (getCurrentItems().length !== 0)}" appDropZone (hovered)="toggleHover($event)" (dropped)="droppedFiles($event)"
+  <main [ngClass]="{'grid': (itemShowing.length !== 0)}" appDropZone (hovered)="toggleHover($event)" (dropped)="droppedFiles($event)"
     [class.hovering]="isHovering">
     <section (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-files')">
       <div class="loading" *ngIf="loading">
         <p>Cargando</p>
         <video src="./assets/loading/printer.avi"></video>
       </div>
-      <div class="empty" *ngIf="!loading && getCurrentItems().length === 0">
+      <div class="empty" *ngIf="itemShowing.length === 0">
         <img src="./assets/img/svg/empty.svg">
         <p>No hay archivos :(</p>
       </div>
-      <app-item *ngFor="let item of getCurrentItems()" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
+      <app-item *ngFor="let item of itemShowing" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
     </section>
     <app-change-name></app-change-name>
     <app-delete-item></app-delete-item>

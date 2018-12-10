@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FilesService } from './files.service';
 import { map } from 'rxjs/operators';
-import { FolderItem } from '../models';
+import { FolderItem, Folder } from '../models';
 import { Subscription, Observable } from 'rxjs';
 
 @Directive({
@@ -22,7 +22,7 @@ export class DropZoneDirective implements OnDestroy {
 
   statusDragable: { item: FolderItem; x: number; y: number } = null;
   statusDragableSubscription: Subscription;
-  items$: Observable<FolderItem[]>;
+  items$: Observable<Folder>;
 
   constructor(private filesService: FilesService) {
     this.statusDragableSubscription = this.filesService.dragableItem$.subscribe(
@@ -69,10 +69,11 @@ export class DropZoneDirective implements OnDestroy {
         itemElem.closest('section').children
       );
       const index = section.indexOf(itemElem);
+      /*
       this.items$ = this.filesService.isCurrentPath('/my-files')
         ? this.filesService.myFiles$
         : this.filesService.sharedWithMe$;
-
+        */
       this.items$
         .pipe(
           map(files => {

@@ -39,3 +39,9 @@ export interface FileToPrint {
   doubleSided: boolean;
   ncopies: number;
 }
+
+export interface Notification {
+  title: string;
+  status: 'error' | 'loading' | 'ok' | 'info';
+  description?: string;
+}

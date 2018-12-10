@@ -18,8 +18,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'my-files',
-    component: FilesComponent
-    /*canActivate: [AuthGuard]*/
+    component: FilesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'my-files/:id',

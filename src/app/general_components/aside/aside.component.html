@@ -12,7 +12,7 @@
           <span routerLink="/my-files">Mis archivos</span>
         </div>
         <ul class="items" id="myFiles" [ngStyle]="{'max-height': showMyFilesAside !== 0 ? showMyFilesAside + 'px' : 0}">
-          <li *ngFor="let item of myFiles">
+          <li *ngFor="let item of myFilesShowing">
             <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
             <span>{{item.name}}</span>
@@ -26,10 +26,13 @@
           <span (click)="goTo('/shared-with-me', 'shared-with-me')">Compartidos conmigo</span>
         </div>
         <ul class="items" id="sharedFiles" [ngStyle]="{'max-height': showSharedFilesAside !== 0 ? showSharedFilesAside + 'px' : 0}">
-          <li *ngFor="let item of sharedWithMe">
+          <li *ngFor="let item of myFilesShared">
             <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
             <span>{{item.name}}</span>
+          </li>
+          <li *ngIf="myFilesShared.length === 0">
+            <span>Carpeta vacía</span>
           </li>
         </ul>
       </li>

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, throttle } from 'rxjs/operators';
 import { FilesService } from './files.service';
-import { FileToPrint, FolderItem } from '../models';
+import { FileToPrint, FolderItem, Folder } from '../models';
 import { AppComponent } from '../app.component';
 import { interval, Subscription } from 'rxjs';
 
@@ -14,10 +14,9 @@ import { interval, Subscription } from 'rxjs';
 export class FilesComponent implements OnInit, OnDestroy {
   status: string;
   currentSelected: FolderItem[] = [];
-  myFiles: FolderItem[] = [];
-  myFiles$: Subscription;
-  sharedWithMe: FolderItem[] = [];
-  sharedWithMe$: Subscription;
+  itemShowing: FolderItem[] = [];
+  files: Folder[] = [];
+  index: 0 | 1 = 0;
   loading: boolean;
   showMyFilesAside: boolean;
   showSharedFilesAside: boolean;
@@ -31,40 +30,33 @@ export class FilesComponent implements OnInit, OnDestroy {
     private fileService: FilesService,
     public appComponent: AppComponent
   ) {
-    router.events.pipe(throttle(() => interval(100))).subscribe(() => {
-      this.loading = true;
-
-      if (this.myFiles$ !== undefined) {
-        this.myFiles$.unsubscribe();
-      }
-      this.myFiles$ = this.fileService.myFiles$
-        .pipe(map(items => this.shortenNames(items)))
-        .pipe(throttle(() => interval(1000)))
-        .subscribe(items => {
-          this.myFiles = items;
-        });
-
-      if (this.sharedWithMe$ !== undefined) {
-        this.sharedWithMe$.unsubscribe();
-      }
-      this.sharedWithMe$ = this.fileService.sharedWithMe$
-        .pipe(map(items => this.shortenNames(items)))
-        .pipe(throttle(() => interval(1000)))
-        .subscribe(items => {
-          this.sharedWithMe = items;
-        });
-
-      this.loading = false;
+    this.fileService.files$.subscribe(data => {
+      this.files = data;
     });
   }
 
   ngOnInit() {
     this.fileService.itemsInQueue$.subscribe(a => (this.itemsInQueue = a));
+    this.router.events.subscribe(() => {
+      const currentPage = this.router.routerState.snapshot.url;
+      if (currentPage === '/my-files') {
+        this.index = 0;
+      } else if (currentPage === '/shared-with-me') {
+        this.index = 1;
+      }
+      this.getItems();
+    });
+    this.getItems();
+  }
+
+  getItems() {
+    this.fileService.showingFiles$.subscribe(showingData => {
+      this.itemShowing = showingData[this.index];
+    });
   }
 
   ngOnDestroy() {
-    this.myFiles$.unsubscribe();
-    this.sharedWithMe$.unsubscribe();
+    this.fileService.files$.unsubscribe();
   }
 
   goTo(page: string, submenu?: string) {
@@ -103,9 +95,7 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   getCurrentItems() {
-    return this.fileService.isCurrentPath('/my-files')
-      ? this.myFiles
-      : this.sharedWithMe;
+    return this.files[this.index];
   }
 
   select(event, itemInfo) {

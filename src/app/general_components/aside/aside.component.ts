@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FilesService } from '../../files/files.service';
 import { AppComponent } from '../../app.component';
 import { environment } from '../../../environments/environment';
-import { FolderItem } from '../../models';
+import { FolderItem, Folder } from '../../models';
 
 @Component({
   selector: 'app-aside',
@@ -14,6 +14,9 @@ export class AsideComponent implements OnInit {
   currentPage: string;
   showMyFilesAside = 0;
   showSharedFilesAside = 0;
+  files: Folder[];
+  myFilesShowing: FolderItem[] = [];
+  myFilesShared: FolderItem[] = [];
   myFiles: FolderItem[] = [];
   sharedWithMe: FolderItem[] = [];
 
@@ -23,13 +26,12 @@ export class AsideComponent implements OnInit {
     public appComponent: AppComponent
   ) {
     this.currentPage = this.router.routerState.snapshot.url;
-
-    this.fileService.sharedWithMe$.subscribe(items => {
-      this.myFiles = items;
+    this.fileService.files$.subscribe(data => {
+      this.files = data;
     });
-
-    this.fileService.myFiles$.subscribe(items => {
-      this.sharedWithMe = items;
+    this.fileService.showingFiles$.subscribe(data => {
+      this.myFilesShowing = data[0];
+      this.myFilesShared = data[1];
     });
   }
 

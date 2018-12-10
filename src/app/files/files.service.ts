@@ -10,22 +10,19 @@ import {
   ReplaySubject
 } from 'rxjs';
 
-import { delay, throttle, tap, throwIfEmpty } from 'rxjs/operators';
 import { FileToPrint, Folder, FolderItem } from '../models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { log } from 'util';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilesService implements OnInit {
-  fetchedMyFiles: FolderItem[] = [];
-  myFiles: FolderItem[] = [];
+  files: Folder[] = [];
+  files$ = new Subject<Folder[]>();
+  showingFiles$ = new Subject<FolderItem[][]>();
 
-  myFiles$ = new Subject<FolderItem[]>();
-  sharedWithMe$: Observable<FolderItem[]> = of([]);
-  // sharedWithMe$: Observable<FolderItem[]> = of(this.getFiles(1));
   itemsInQueue$ = new BehaviorSubject<FileToPrint[]>([]);
   updateItemName$ = new Subject<FolderItem>();
   deleteItem$ = new Subject<FolderItem>();
@@ -42,42 +39,96 @@ export class FilesService implements OnInit {
     { a: '¿Y qué tal este nombre?', b: 'temp1' }
   ];
 
-  constructor(private http: HttpClient, public router: Router) {
-    this.fetchFiles(0);
-    this.router.events.pipe(throttle(() => interval(100))).subscribe(() => {
-      this.currentPage = this.router.routerState.snapshot.url;
-    });
+  constructor(private http: HttpClient, public router: Router, private notificationsService: NotificationsService) {
+    this.fetchFiles();
   }
 
   ngOnInit() {}
 
-  fetchFiles(n: number) {
+  private appendItem(folderArr: Folder): FolderItem[] {
+    if (folderArr === undefined) {
+      return [];
+    }
+    const results: FolderItem[] = [];
+    folderArr.folders.map(folder => {
+      results.push({
+        id: folder.id,
+        name: folder.name,
+        type: 'folder'
+      });
+    });
+    folderArr.files.map(file => {
+      results.push({
+        id: file.id,
+        name: file.name,
+        shorten: file.shorten,
+        type: file.type,
+        link: file.link
+      });
+    });
+    return results;
+  }
+
+  findFolder(id: number, i: number): Folder {
+    if (id === -1) {
+      return this.files[i];
+    }
+    return this.findFolderRecursion(id, this.files);
+  }
+
+  private findFolderRecursion(id: number, folder: Folder[]): Folder {
+    folder.forEach(f => {
+      if (f.id === id) {
+        return f;
+      }
+    });
+
+    folder.forEach(f => {
+      if (f.id === id) {
+        return this.findFolderRecursion(id, f.folders);
+      }
+    });
+    return undefined;
+  }
+
+  updateShowing(id: number, type: 'myFiles' | 'sharedWithMe'): FolderItem[] {
+    const i = (type === 'myFiles') ? 0 : 1;
+    let folderArr: Folder;
+    folderArr = this.findFolder(id, i);
+    return this.appendItem(folderArr);
+  }
+
+  private handleData(data: Folder[]): Folder[] {
+    data.map(_ => {
+      _.files.map(file => {
+        file.type = file.name.split('.').pop();
+        file.name = file.name.substr(0, file.name.length - 4);
+        if (file.name.length > 19) {
+          const begin = file.name.substring(0, 13);
+          const end = file.name.substring(file.name.length - 5);
+          file.shorten = `${begin} ... ${end}`;
+        }
+      });
+    });
+    return data;
+  }
+
+  fetchFiles() {
     this.http
       .get(`${environment.server}:${environment.port}/print/files`)
       .subscribe(data => {
-        this.fetchedMyFiles = data as FolderItem[];
-        this.myFiles$.next([
-          ...this.getFolderItems(n, 'folders'),
-          ...this.getFolderItems(n, 'files')
-        ]);
+        data = this.handleData(data  as Folder[]);
+        this.files = data as Folder[];
+        this.files$.next(this.files);
+        this.showingFiles$.next([this.updateShowing(-1, 'myFiles'), []]);
+        // this.updateShowing(-1, 'sharedWithMe');
+      },
+      () => {
+        this.notificationsService.addNotification({
+          title: 'No se ha podido conectar con la API',
+          status: 'error'
+        });
       });
-  }
-
-  getFolderItems(n: number, type: string) {
-    const arr: FolderItem[] = [];
-    this.fetchedMyFiles[n][type].map(item => {
-      const itemInfo: FolderItem = {
-        name: item.name,
-        id: item.id,
-        type: item.name.substring(item.name.length - 3)
-      };
-      if (type !== 'folders') {
-        itemInfo.npages = item.npages;
-        itemInfo.link = item.file;
-      }
-      arr.push(itemInfo);
-    });
-    return arr;
   }
 
   triggerUpload() {
@@ -100,16 +151,12 @@ export class FilesService implements OnInit {
           `${environment.server}:${environment.port}/print/upload/`,
           fileData
         )
-        .subscribe(res => console.log(res));
+        .subscribe(res => {});
     });
   }
 
   deleteItem(item: FolderItem) {
     console.log('Eliminar', item);
-  }
-
-  isCurrentPath(path: string) {
-    return this.currentPage === path;
   }
 
   printFiles(files: FileToPrint[]) {
@@ -121,7 +168,15 @@ export class FilesService implements OnInit {
       )
       .subscribe(res => {
         console.log(res);
+        this.notificationsService.addNotification({
+          title: 'Enviada la petición',
+          status: 'ok',
+          description: 'Ahora la carga de trabajo está en el backend y la impresora. Cruza los dedos.'});
       });
+    if (files[0].ncopies > 1) {
+      files[0].ncopies --;
+      this.printFiles(files);
+    }
     if (files.length > 1) {
       this.printFiles(files.slice(1));
     }
@@ -132,7 +187,6 @@ export class FilesService implements OnInit {
     this.itemsInQueue$.subscribe(a => (b = a)).unsubscribe();
     b.push({ documentId, name, npages, doubleSided: true, ncopies: 1 });
     this.itemsInQueue$.next(b);
-    console.log(b);
   }
 
   createFolder(name: string) {
