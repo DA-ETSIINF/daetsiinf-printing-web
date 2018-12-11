@@ -10,7 +10,7 @@ import {
   ReplaySubject
 } from 'rxjs';
 
-import { FileToPrint, Folder, FolderItem } from '../models';
+import { FileToPrint, Folder, FolderItem, ShowedItems } from '../models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { NotificationsService } from '../notifications/notifications.service';
@@ -21,7 +21,7 @@ import { NotificationsService } from '../notifications/notifications.service';
 export class FilesService implements OnInit {
   files: Folder[] = [];
   files$ = new Subject<Folder[]>();
-  showingFiles$ = new Subject<FolderItem[][]>();
+  showingFiles$ = new BehaviorSubject<ShowedItems[]>([]);
 
   itemsInQueue$ = new BehaviorSubject<FileToPrint[]>([]);
   updateItemName$ = new Subject<FolderItem>();
@@ -45,25 +45,28 @@ export class FilesService implements OnInit {
 
   ngOnInit() {}
 
-  private appendItem(folderArr: Folder): FolderItem[] {
+  private appendItem(folderArr: Folder): ShowedItems {
+    const results: ShowedItems = {
+      folders: [],
+      files: []
+    };
     if (folderArr === undefined) {
-      return [];
+      return results;
     }
-    const results: FolderItem[] = [];
     folderArr.folders.map(folder => {
-      results.push({
+      results.folders.push({
         id: folder.id,
-        name: folder.name,
-        type: 'folder'
+        name: folder.name
       });
     });
     folderArr.files.map(file => {
-      results.push({
+      results.files.push({
         id: file.id,
         name: file.name,
         shorten: file.shorten,
         type: file.type,
-        link: file.link
+        link: file.link,
+        npages: file.npages
       });
     });
     return results;
@@ -91,7 +94,7 @@ export class FilesService implements OnInit {
     return undefined;
   }
 
-  updateShowing(id: number, type: 'myFiles' | 'sharedWithMe'): FolderItem[] {
+  updateShowing(id: number, type: 'myFiles' | 'sharedWithMe'): ShowedItems {
     const i = (type === 'myFiles') ? 0 : 1;
     let folderArr: Folder;
     folderArr = this.findFolder(id, i);
@@ -114,14 +117,46 @@ export class FilesService implements OnInit {
   }
 
   fetchFiles() {
+    const fake: Folder[] = [
+      {
+        name: 'root',
+        id: 10,
+        files: [{
+          name: 'Fichero 1',
+          id: 98,
+          npages: 3,
+          type: 'pdf',
+          link: 'http://www.pdf995.com/samples/pdf.pdf',
+          shorten: ''
+        }, {
+          name: 'Fichero 2',
+          id: 98,
+          npages: 3,
+          type: 'pdf',
+          link: 'http://www.pdf995.com/samples/pdf.pdf',
+          shorten: ''
+        }],
+        folders: []
+      }, {
+        name: 'root',
+        id: 11,
+        files: [],
+        folders: []
+      }
+    ];
+    this.files = fake;
+    this.files$.next(fake);
+    console.log([this.updateShowing(-1, 'myFiles'), {files: [], folders: []}]);
+    this.showingFiles$.next([this.updateShowing(-1, 'myFiles'), {files: [], folders: []}]);
+
     this.http
       .get(`${environment.server}:${environment.port}/print/files`)
       .subscribe(data => {
         data = this.handleData(data  as Folder[]);
         this.files = data as Folder[];
         this.files$.next(this.files);
-        this.showingFiles$.next([this.updateShowing(-1, 'myFiles'), []]);
-        // this.updateShowing(-1, 'sharedWithMe');
+
+        this.showingFiles$.next([this.updateShowing(-1, 'myFiles'), {files: [], folders: []}]);
       },
       () => {
         this.notificationsService.addNotification({
@@ -165,14 +200,12 @@ export class FilesService implements OnInit {
   }
 
   printFiles(files: FileToPrint[]) {
-    console.log(files[0]);
     this.http
       .post(
         `${environment.server}:${environment.port}/print/send-to-printer/`,
         files[0]
       )
       .subscribe(res => {
-        console.log(res);
         this.notificationsService.addNotification({
           title: 'Enviada la petición',
           status: 'ok',

@@ -18,18 +18,28 @@ export interface UserInfo {
 export interface Folder {
   id: number;
   name: string;
-  files: FolderItem[];
+  files: FileItem[];
   folders: Folder[];
+}
+
+export interface ShowedItems {
+  files: FileItem[];
+  folders: FolderItem[];
 }
 
 
 export interface FolderItem {
   id: number;
   name: string;
-  link?: string;
-  type?: string;
-  shorten?: string;
-  npages?: number;
+}
+
+export interface FileItem {
+  id: number;
+  name: string;
+  type: string;
+  link: string;
+  shorten: string;
+  npages: number;
 }
 
 export interface FileToPrint {

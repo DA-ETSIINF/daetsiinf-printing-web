@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, throttle } from 'rxjs/operators';
 import { FilesService } from './files.service';
-import { FileToPrint, FolderItem, Folder } from '../models';
+import { FileToPrint, FolderItem, Folder, ShowedItems, FileItem } from '../models';
 import { AppComponent } from '../app.component';
 import { interval, Subscription } from 'rxjs';
 
@@ -13,9 +13,9 @@ import { interval, Subscription } from 'rxjs';
 })
 export class FilesComponent implements OnInit, OnDestroy {
   status: string;
-  currentSelected: FolderItem[] = [];
-  itemShowing: FolderItem[] = [];
-  files: Folder[] = [];
+  currentSelected: ShowedItems = {files: [], folders: []};
+  itemShowing: ShowedItems = {files: [], folders: []};
+  allItems: Folder[] = [];
   index: 0 | 1 = 0;
   loading: boolean;
   showMyFilesAside: boolean;
@@ -31,11 +31,12 @@ export class FilesComponent implements OnInit, OnDestroy {
     public appComponent: AppComponent
   ) {
     this.fileService.files$.subscribe(data => {
-      this.files = data;
+      this.allItems = data;
     });
   }
 
   ngOnInit() {
+    this.getItems();
     this.fileService.itemsInQueue$.subscribe(a => (this.itemsInQueue = a));
     this.router.events.subscribe(() => {
       const currentPage = this.router.routerState.snapshot.url;
@@ -46,10 +47,11 @@ export class FilesComponent implements OnInit, OnDestroy {
       }
       this.getItems();
     });
-    this.getItems();
   }
 
   getItems() {
+    console.log("_____");
+    
     this.fileService.showingFiles$.subscribe(showingData => {
       this.itemShowing = showingData[this.index];
     });
@@ -67,7 +69,7 @@ export class FilesComponent implements OnInit, OnDestroy {
     }
   }
 
-  shortenNames(files: FolderItem[]): FolderItem[] {
+  shortenNames(files: FileItem[]): FolderItem[] {
     files.map(e => {
       if (e.name.length > 13) {
         const begin = e.name.substring(0, 8);
@@ -82,7 +84,7 @@ export class FilesComponent implements OnInit, OnDestroy {
     for (let i = 0; i < items.length; i++) {
       items[i].classList.remove('selected');
     }
-    this.currentSelected = [];
+    this.currentSelected = {files: [], folders: []};
   }
   selectOne(event) {
     if (event.target.localName === 'app-item') {
@@ -95,15 +97,21 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   getCurrentItems() {
-    return this.files[this.index];
+    return this.allItems[this.index];
   }
 
-  select(event, itemInfo) {
+  select(event, itemInfo: FileItem | FolderItem) {
     if (!event.ctrlKey) {
       this.deselect();
     }
     this.selectOne(event);
-    this.currentSelected.push(itemInfo);
+    if ('type' in itemInfo) {
+      // Es de tipo FileItem
+      this.currentSelected.files.push(itemInfo);
+    } else {
+      // Es de tipo FolderItem
+      this.currentSelected.folders.push(itemInfo);
+    }
   }
 
   uploadChange() {

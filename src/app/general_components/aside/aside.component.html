@@ -9,13 +9,19 @@
         <div class="files-menu__option">
           <i (click)="toggleMyFilesView('myFiles')" [ngStyle]="showMyFilesAside !== 0 && {'transform': 'rotate(90deg)','margin-top':'4px'}"
             class="material-icons">arrow_right</i>
-          <span routerLink="/my-files">Mis archivos</span>
+          <span routerLink="/my-files">Mis çarchivos</span>
         </div>
         <ul class="items" id="myFiles" [ngStyle]="{'max-height': showMyFilesAside !== 0 ? showMyFilesAside + 'px' : 0}">
-          <li *ngFor="let item of myFilesShowing">
-            <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
+          <li *ngFor="let folder of myFilesShowing.folder">
+            <i class="material-icons">folder</i>
+            <span>{{folder.name}}</span>
+          </li>
+          <li *ngFor="let item of myFilesShowing.files">
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
             <span>{{item.name}}</span>
+          </li>
+          <li *ngIf="myFilesShowing.files.length + myFilesShowing.folders.length=== 0">
+            <span>Carpeta vacía</span>
           </li>
         </ul>
       </li>
@@ -26,12 +32,15 @@
           <span (click)="goTo('/shared-with-me', 'shared-with-me')">Compartidos conmigo</span>
         </div>
         <ul class="items" id="sharedFiles" [ngStyle]="{'max-height': showSharedFilesAside !== 0 ? showSharedFilesAside + 'px' : 0}">
-          <li *ngFor="let item of myFilesShared">
-            <i class="material-icons" *ngIf="item.type === 'folder'">folder</i>
+          <li *ngFor="let folder of myFilesShared.folder">
+            <i class="material-icons">folder</i>
+            <span>{{folder.name}}</span>
+          </li>
+          <li *ngFor="let item of myFilesShared.files">
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
             <span>{{item.name}}</span>
           </li>
-          <li *ngIf="myFilesShared.length === 0">
+          <li *ngIf="myFilesShared.files.length + myFilesShared.folders.length=== 0">
             <span>Carpeta vacía</span>
           </li>
         </ul>

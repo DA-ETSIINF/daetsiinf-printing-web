@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FilesService } from '../../files/files.service';
 import { AppComponent } from '../../app.component';
 import { environment } from '../../../environments/environment';
-import { FolderItem, Folder } from '../../models';
+import { FolderItem, Folder, ShowedItems } from '../../models';
 
 @Component({
   selector: 'app-aside',
@@ -15,8 +15,8 @@ export class AsideComponent implements OnInit {
   showMyFilesAside = 0;
   showSharedFilesAside = 0;
   files: Folder[];
-  myFilesShowing: FolderItem[] = [];
-  myFilesShared: FolderItem[] = [];
+  myFilesShowing: ShowedItems =  {files: [], folders: []};
+  myFilesShared: ShowedItems = {files: [], folders: []};
   myFiles: FolderItem[] = [];
   sharedWithMe: FolderItem[] = [];
 
@@ -37,16 +37,6 @@ export class AsideComponent implements OnInit {
 
   ngOnInit() {}
 
-  shortenNames(files: FolderItem[]): FolderItem[] {
-    files.map(e => {
-      if (e.name.length > 13) {
-        const begin = e.name.substring(0, 8);
-        const end = e.name.substring(e.name.length - 5);
-        e.shorten = `${begin} ... ${end}`;
-      }
-    });
-    return files;
-  }
   goTo(page: string, submenu?: string) {
     if (submenu) {
       this.router.navigate([page]);
