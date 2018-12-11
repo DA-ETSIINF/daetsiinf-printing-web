@@ -13,7 +13,14 @@
         <img src="./assets/img/svg/empty.svg">
         <p>No hay archivos D':</p>
       </div>
-      <app-item *ngFor="let item of itemShowing.files" [item]="item" (press)="select($event, item)" (click)="select($event, item)"></app-item>
+      <h5>carpetas</h5>
+      <div class="grid">
+        <app-item *ngFor="let item of itemShowing.folders" [item]="item" (press)="select($event, item, 'folders')" (click)="select($event, item)"></app-item>
+      </div>
+      <h5>archivos</h5>
+      <div class="grid">
+        <app-item *ngFor="let item of itemShowing.files" [item]="item" (press)="select($event, item, 'files')" (click)="select($event, item)"></app-item>
+      </div>
     </section>
     <app-change-name></app-change-name>
     <app-delete-item></app-delete-item>

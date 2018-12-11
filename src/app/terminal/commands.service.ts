@@ -24,11 +24,17 @@ export class CommandsService {
       minLength: 1,
       maxLength: 1,
       exec: () => {
-        const files = [];
-        this.filesService.files$.subscribe(f => {
-          files.push((f as any).name);
+        const list = [];
+        this.filesService.showingFiles$.subscribe(f => {
+          (f as any).files.map(_f => {
+            list.push(_f.name);
+          });
+          (f as any).folders.map(_f => {
+            list.push(_f.name);
+          });
         });
-        return files;
+        console.log(list);
+        return list;
       }
     },
     {
@@ -49,6 +55,14 @@ export class CommandsService {
           this.prompt = this.argv[1];
           return [''];
         }
+      }
+    },
+    {
+      name: 'whoami',
+      minLength: 1,
+      maxLength: 21,
+      exec: () => {
+        return ['Eres el mejor'];
       }
     },
     {
@@ -131,6 +145,9 @@ export class CommandsService {
         results = c.exec();
         break;
       case 'snake':
+        results = c.exec();
+        break;
+      case 'whoami':
         results = c.exec();
         break;
       case 'break':

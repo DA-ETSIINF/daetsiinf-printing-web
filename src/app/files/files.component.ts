@@ -50,8 +50,6 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   getItems() {
-    console.log("_____");
-    
     this.fileService.showingFiles$.subscribe(showingData => {
       this.itemShowing = showingData[this.index];
     });
@@ -85,6 +83,7 @@ export class FilesComponent implements OnInit, OnDestroy {
       items[i].classList.remove('selected');
     }
     this.currentSelected = {files: [], folders: []};
+    this.fileService.currentSelected$.next({files: [], folders: []});
   }
   selectOne(event) {
     if (event.target.localName === 'app-item') {
@@ -112,6 +111,7 @@ export class FilesComponent implements OnInit, OnDestroy {
       // Es de tipo FolderItem
       this.currentSelected.folders.push(itemInfo);
     }
+    this.fileService.currentSelected$.next(this.currentSelected);
   }
 
   uploadChange() {

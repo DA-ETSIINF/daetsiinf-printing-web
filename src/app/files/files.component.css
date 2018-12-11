@@ -10,9 +10,8 @@ main {
   padding-right: 50px;
 }
 
-main.grid section {
+main .grid {
   max-width: 95vw;
-  margin: 0 auto;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -20,7 +19,6 @@ main.grid section {
 }
 
 main {
-  border: 5px dashed transparent;
   margin: 0 20px;
   transition: .2s all ease;
 }
@@ -29,6 +27,16 @@ main.hovering {
   background: var(--dark-1);
   border-radius: 5px;
   border: 5px dashed var(--dark-3);
+}
+
+h5{
+  font-size: 11px;
+  color: var(--dark-2);
+  text-transform: uppercase;
+}
+
+h5:not(:first-child){
+  margin: 20px 0 5px 0;
 }
 
 .empty p,
@@ -72,6 +80,10 @@ app-queue {
 @media screen and (max-width:992px) {
   main {
     padding-right: 0;
+  }
+
+  .grid{
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   }
 
   app-queue {

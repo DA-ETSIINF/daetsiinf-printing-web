@@ -19,6 +19,7 @@ export class AsideComponent implements OnInit {
   myFilesShared: ShowedItems = {files: [], folders: []};
   myFiles: FolderItem[] = [];
   sharedWithMe: FolderItem[] = [];
+  separatorHeight = 3;
 
   constructor(
     public router: Router,
@@ -47,13 +48,13 @@ export class AsideComponent implements OnInit {
 
   toggleMyFilesView(id: string) {
     const ul = document.getElementById(id);
-    this.showMyFilesAside = this.showMyFilesAside === 0 ? ul.scrollHeight : 0;
+    this.showMyFilesAside = this.showMyFilesAside === 0 ?  this.separatorHeight + ul.scrollHeight : 0;
   }
 
   toggleSharedFilesView(id: string) {
     const ul = document.getElementById(id);
     this.showSharedFilesAside =
-      this.showSharedFilesAside === 0 ? ul.scrollHeight : 0;
+      this.showSharedFilesAside === 0 ? this.separatorHeight + ul.scrollHeight : 0;
   }
   triggerUpload() {
     this.fileService.triggerUpload();

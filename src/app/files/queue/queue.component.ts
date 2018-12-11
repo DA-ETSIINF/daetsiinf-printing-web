@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../files.service';
 import { AppComponent } from '../../app.component';
 import { FileToPrint } from '../../models';
-import { UserService } from '../../user.service';
+import { UserService } from '../../login/user.service';
 import { UserInfo } from '../../models';
 import { Router } from '@angular/router';
 

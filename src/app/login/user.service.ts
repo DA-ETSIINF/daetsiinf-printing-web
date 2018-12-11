@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
@@ -7,12 +7,20 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
-import { RegisterUser, LoginUser } from '../models';
-import { Observable } from 'rxjs';
+import { RegisterUser, LoginUser, UserInfo } from '../models';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
-  constructor(private http: HttpClient, public router: Router) {}
+export class UserService implements OnInit {
+  userInfo$ = new BehaviorSubject<UserInfo>(null);
+
+  constructor(private http: HttpClient, public router: Router) {
+    this.fetchProfileInfo();
+  }
+
+  ngOnInit() {
+    console.log('__');
+  }
 
   register(user: RegisterUser) {
     this.http
@@ -20,17 +28,15 @@ export class UserService {
         `${environment.server}:${environment.port}/auth/users/create/`,
         user
       )
-      .pipe(map(data => (data as any).id))
-      .subscribe(id => {
-        if (id !== undefined) {
+      .subscribe(data => {
+        if ((data as any).id !== undefined) {
           this.login({ username: user.username, password: user.password });
         }
+        console.log(data);
       });
   }
 
   login(user: LoginUser) {
-    console.log(`${environment.server}:${environment.port}/auth/token/create/`);
-    console.log(user);
     this.http
       .post(
         `${environment.server}:${environment.port}/auth/token/create/`,
@@ -46,6 +52,7 @@ export class UserService {
               JSON.stringify({ token: res.auth_token })
             );
             this.setUserInfo();
+            this.fetchProfileInfo();
             this.router.navigate(['/my-files']);
           }
         })
@@ -62,5 +69,16 @@ export class UserService {
   }
   logout() {
     localStorage.removeItem('currentUser');
+  }
+
+  fetchProfileInfo() {
+    if (localStorage.getItem('currentUser') !== null) {
+      this.http
+      .get(`${environment.server}:${environment.port}/user/profile/`)
+      .subscribe(data => {
+        console.log(data);
+        this.userInfo$.next(data[0] as UserInfo);
+      });
+    }
   }
 }

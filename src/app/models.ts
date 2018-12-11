@@ -12,7 +12,8 @@ export interface LoginUser {
 export interface UserInfo {
   username: string;
   email: string;
-  quantity: number;
+  funds: number;
+  id: number;
 }
 
 export interface Folder {
@@ -41,6 +42,7 @@ export interface FileItem {
   shorten: string;
   npages: number;
 }
+
 
 export interface FileToPrint {
   documentId: number;

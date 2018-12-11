@@ -9,13 +9,14 @@
         <div class="files-menu__option">
           <i (click)="toggleMyFilesView('myFiles')" [ngStyle]="showMyFilesAside !== 0 && {'transform': 'rotate(90deg)','margin-top':'4px'}"
             class="material-icons">arrow_right</i>
-          <span routerLink="/my-files">Mis çarchivos</span>
+          <span routerLink="/my-files">Mis archivos</span>
         </div>
         <ul class="items" id="myFiles" [ngStyle]="{'max-height': showMyFilesAside !== 0 ? showMyFilesAside + 'px' : 0}">
-          <li *ngFor="let folder of myFilesShowing.folder">
+          <li *ngFor="let folder of myFilesShowing.folders">
             <i class="material-icons">folder</i>
             <span>{{folder.name}}</span>
           </li>
+          <div [ngStyle]="{'height.px': separatorHeight}"></div>
           <li *ngFor="let item of myFilesShowing.files">
             <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
             <span>{{item.name}}</span>

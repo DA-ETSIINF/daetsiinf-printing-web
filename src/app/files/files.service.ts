@@ -10,7 +10,7 @@ import {
   ReplaySubject
 } from 'rxjs';
 
-import { FileToPrint, Folder, FolderItem, ShowedItems } from '../models';
+import { FileToPrint, Folder, FolderItem, ShowedItems, FileItem } from '../models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { NotificationsService } from '../notifications/notifications.service';
@@ -21,11 +21,13 @@ import { NotificationsService } from '../notifications/notifications.service';
 export class FilesService implements OnInit {
   files: Folder[] = [];
   files$ = new Subject<Folder[]>();
-  showingFiles$ = new BehaviorSubject<ShowedItems[]>([]);
+  showingFiles$ = new BehaviorSubject<ShowedItems[]>([ {files: [], folders: []}, {files: [], folders: []} ]);
+
+  currentSelected$ = new BehaviorSubject<ShowedItems>({files: [], folders: []});
 
   itemsInQueue$ = new BehaviorSubject<FileToPrint[]>([]);
-  updateItemName$ = new Subject<FolderItem>();
-  deleteItem$ = new Subject<FolderItem>();
+  updateItemName$ = new Subject<FolderItem | FileItem>();
+  deleteItem$ = new Subject<FolderItem | FileItem>();
   createFolder$ = new Subject();
 
   itemMenu$ = new BehaviorSubject<boolean>(false);
@@ -33,10 +35,9 @@ export class FilesService implements OnInit {
 
   currentPage: string;
 
-  randomNames: { a: string; b: string }[] = [
-    { a: 'Un buen nombre sería', b: 'Asignatura chunga' },
-    { a: 'Nombre', b: 'Esta vez sacaré un 10' },
-    { a: '¿Y qué tal este nombre?', b: 'temp1' }
+  randomNames: string[][] = [
+    ['Un buen nombre sería', 'Nombre', '¿Y que tal este nombre?', 'Yo que sé...'],
+    ['Asignatura chunga', 'Esta vez sacaré un 10', 'temp1']
   ];
 
   constructor(private http: HttpClient, public router: Router, private notificationsService: NotificationsService) {
@@ -117,45 +118,13 @@ export class FilesService implements OnInit {
   }
 
   fetchFiles() {
-    const fake: Folder[] = [
-      {
-        name: 'root',
-        id: 10,
-        files: [{
-          name: 'Fichero 1',
-          id: 98,
-          npages: 3,
-          type: 'pdf',
-          link: 'http://www.pdf995.com/samples/pdf.pdf',
-          shorten: ''
-        }, {
-          name: 'Fichero 2',
-          id: 98,
-          npages: 3,
-          type: 'pdf',
-          link: 'http://www.pdf995.com/samples/pdf.pdf',
-          shorten: ''
-        }],
-        folders: []
-      }, {
-        name: 'root',
-        id: 11,
-        files: [],
-        folders: []
-      }
-    ];
-    this.files = fake;
-    this.files$.next(fake);
-    console.log([this.updateShowing(-1, 'myFiles'), {files: [], folders: []}]);
-    this.showingFiles$.next([this.updateShowing(-1, 'myFiles'), {files: [], folders: []}]);
-
     this.http
       .get(`${environment.server}:${environment.port}/print/files`)
       .subscribe(data => {
         data = this.handleData(data  as Folder[]);
         this.files = data as Folder[];
         this.files$.next(this.files);
-
+        console.log(this.files);
         this.showingFiles$.next([this.updateShowing(-1, 'myFiles'), {files: [], folders: []}]);
       },
       () => {
@@ -232,14 +201,8 @@ export class FilesService implements OnInit {
   }
 
   getRandomName(): string {
-    const a = [];
-    const b = [];
-    this.randomNames.map(c => {
-      a.push(c.a);
-      b.push(c.b);
-    });
-    return `${a[Math.floor(Math.random() * this.randomNames.length)]}: ${
-      b[Math.floor(Math.random() * this.randomNames.length)]
+    return `${this.randomNames[0][Math.floor(Math.random() * this.randomNames[0].length)]}: ${
+      this.randomNames[1][Math.floor(Math.random() * this.randomNames[1].length)]
     }`;
   }
 }
