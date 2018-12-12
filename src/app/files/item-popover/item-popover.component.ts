@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { FolderItem } from '../../models';
+import { FolderItem, FileItem } from '../../models';
 import { FilesService } from '../files.service';
 
 @Component({
@@ -9,11 +9,13 @@ import { FilesService } from '../files.service';
   styleUrls: ['./item-popover.component.css']
 })
 export class ItemPopoverComponent implements OnInit, OnDestroy {
-  dragableItem: { item: FolderItem; x: number; y: number };
+  dragableItem: { item: FolderItem | FileItem; x: number; y: number };
   dragableItemSubscription: Subscription;
   constructor(private filesService: FilesService) {
     this.dragableItemSubscription = this.filesService.dragableItem$.subscribe(
-      item => (this.dragableItem = item !== null ? item : undefined)
+      item => {
+        this.dragableItem = item !== null ? item : undefined;
+      }
     );
   }
 

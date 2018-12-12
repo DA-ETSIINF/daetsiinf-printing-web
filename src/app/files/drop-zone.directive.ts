@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FilesService } from './files.service';
 import { map } from 'rxjs/operators';
-import { FolderItem, Folder } from '../models';
+import { FolderItem, FileItem } from '../models';
 import { Subscription, Observable } from 'rxjs';
 
 @Directive({
@@ -20,9 +20,9 @@ export class DropZoneDirective implements OnDestroy {
   @Output()
   hovered = new EventEmitter<boolean>();
 
-  statusDragable: { item: FolderItem; x: number; y: number } = null;
+  statusDragable: { item: FolderItem | FileItem; x: number; y: number } = null;
   statusDragableSubscription: Subscription;
-  items$: Observable<Folder>;
+  index: 0 | 1;
 
   constructor(private filesService: FilesService) {
     this.statusDragableSubscription = this.filesService.dragableItem$.subscribe(
@@ -30,6 +30,7 @@ export class DropZoneDirective implements OnDestroy {
         this.statusDragable = file;
       }
     );
+    this.filesService.index$.subscribe(i => (this.index = i));
   }
 
   ngOnDestroy() {}
@@ -66,26 +67,23 @@ export class DropZoneDirective implements OnDestroy {
         return;
       }
       const section = Array.prototype.slice.call(
-        itemElem.closest('section').children
+        itemElem.closest('section .grid').children
       );
+
       const index = section.indexOf(itemElem);
-      /*
-      this.items$ = this.filesService.isCurrentPath('/my-files')
-        ? this.filesService.myFiles$
-        : this.filesService.sharedWithMe$;
-        */
-      this.items$
+
+      this.filesService.showingFiles$
         .pipe(
-          map(files => {
-            console.log(files);
-            return files[index];
+          map(system => {
+            return (system as any)[this.index].files[index];
           })
-          )
-        .subscribe(it => item = it);
+        )
+        .subscribe(it => {
+          item = it;
+        });
     } else {
       item = this.statusDragable.item;
     }
-
 
     this.filesService.dragableItem$.next({
       item,

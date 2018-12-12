@@ -22,13 +22,14 @@ export class FilesComponent implements OnInit, OnDestroy {
   currentSelected: ShowedItems = { files: [], folders: [] };
   itemShowing: ShowedItems = { files: [], folders: [] };
   allItems: Folder[] = [];
-  index: 0 | 1 = 0;
   showMyFilesAside: boolean;
   showSharedFilesAside: boolean;
   itemsInQueue: FileToPrint[];
 
   // State for dropzone CSS toggling
   isHovering: boolean;
+
+  index: 0 | 1 = 0;
 
   constructor(
     public router: Router,
@@ -43,15 +44,7 @@ export class FilesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getItems();
     this.fileService.itemsInQueue$.subscribe(a => (this.itemsInQueue = a));
-    this.router.events.subscribe(() => {
-      const currentPage = this.router.routerState.snapshot.url;
-      if (currentPage === '/my-files') {
-        this.index = 0;
-      } else if (currentPage === '/shared-with-me') {
-        this.index = 1;
-      }
-      this.getItems();
-    });
+    this.fileService.index$.subscribe(i => (this.index = i));
   }
 
   getItems() {

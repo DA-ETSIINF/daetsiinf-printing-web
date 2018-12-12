@@ -47,6 +47,8 @@ export class FilesService implements OnInit {
 
   currentPage: string;
 
+  index$ = new BehaviorSubject<0 | 1>(0);
+
   randomNames: string[][] = [
     [
       'Un buen nombre sería',
@@ -65,19 +67,15 @@ export class FilesService implements OnInit {
     this.fetchFiles();
   }
 
-  ngOnInit() {}
-
-  private shortenNames(
-    array: (FileItem | FolderItem)[]
-  ): (FileItem | FolderItem)[] {
-    array.map(e => {
-      if (e.name.length > 13) {
-        const begin = e.name.substring(0, 8);
-        const end = e.name.substring(e.name.length - 5);
-        e.shorten = `${begin} ... ${end}`;
+  ngOnInit() {
+    this.router.events.subscribe(() => {
+      const currentPage = this.router.routerState.snapshot.url;
+      if (currentPage === '/my-files') {
+        this.index$.next(0);
+      } else if (currentPage === '/shared-with-me') {
+        this.index$.next(1);
       }
     });
-    return array;
   }
 
   private appendItem(folderArr: Folder): ShowedItems {
