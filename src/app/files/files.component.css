@@ -15,7 +15,7 @@ main .grid {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-
+  padding-bottom: 20px;
 }
 
 main {
@@ -34,10 +34,6 @@ h5 {
   color: var(--dark-2);
   text-transform: uppercase;
   margin-bottom: 10px;
-}
-
-h5:not(:first-child) {
-  margin: 20px 0 5px 0;
 }
 
 .empty p,

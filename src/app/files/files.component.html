@@ -11,14 +11,14 @@
     </section>
     <section *ngIf="itemShowing.folders.length !== 0">
       <h5>carpetas</h5>
-      <div class="grid">
+      <div class="grid folders">
         <app-item *ngFor="let item of itemShowing.folders" [item]="item" (press)="select($event, item, 'folders')"
           (click)="select($event, item)"></app-item>
       </div>
     </section>
     <section *ngIf="itemShowing.files.length !== 0">
       <h5>archivos</h5>
-      <div class="grid">
+      <div class="grid files">
         <app-item *ngFor="let item of itemShowing.files" [item]="item" (press)="select($event, item, 'files')" (click)="select($event, item)"></app-item>
       </div>
     </section>

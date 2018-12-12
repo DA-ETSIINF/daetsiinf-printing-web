@@ -43,7 +43,12 @@ export class FilesService implements OnInit {
   createFolder$ = new Subject();
 
   itemMenu$ = new BehaviorSubject<boolean>(false);
-  dragableItem$ = new Subject<{ item: FolderItem; x: number; y: number }>();
+  dragableItem$ = new Subject<{
+    item: FolderItem;
+    x: number;
+    y: number;
+    typeOfItem: 'file' | 'folder';
+  }>();
 
   currentPage: string;
 
