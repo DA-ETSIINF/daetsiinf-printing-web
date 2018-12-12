@@ -30,6 +30,7 @@ import { TutorialComponent } from './tutorial/tutorial.component';
 import { VersionsComponent } from './versions/versions.component';
 import { CreateFolderComponent } from './files/create-folder/create-folder.component';
 import { TerminalComponent } from './terminal/terminal.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { TerminalComponent } from './terminal/terminal.component';
     TutorialComponent,
     VersionsComponent,
     CreateFolderComponent,
-    TerminalComponent
+    TerminalComponent,
+    NotificationsComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [
