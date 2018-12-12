@@ -91,7 +91,7 @@ export class QueueComponent implements OnInit {
   }
 
   currentAmount(): number {
-    return 3.04;
+    return this.userInfo.funds;
   }
 
   cost(): number {

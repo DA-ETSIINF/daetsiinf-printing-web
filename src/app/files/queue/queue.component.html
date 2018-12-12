@@ -39,7 +39,7 @@
             <i class="material-icons" [ngClass]="{'disabled':file.ncopies >= 99}" (click)="file.ncopies = file.ncopies <= 99 ? file.ncopies + 1 : file.ncopies">add</i>
           </div>
           <span class="price">{{getPrice(file)}}</span>
-          <span class="remove" (click)="removeFile(file.id)">Eliminar</span>
+          <span class="remove" (click)="removeFile(file.documentId)">Eliminar</span>
         </div>
         <p class="more-info" *ngIf="getWindowSize() < 500">Hay más información hacia la derecha <i class="material-icons">arrow_right_alt</i></p>
       </div>
@@ -51,17 +51,17 @@
         <button class="next" (click)="printFiles()" [disabled]="currentAmount() - cost() < 0" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Imprimir</button>
       </div>
       <div class="data">
-        <div class="current"  *ngIf="showMyMoney">
+        <div class="current" *ngIf="showMyMoney">
           <span class="text">Saldo actual: </span>
           <span class="amount">{{currentAmount().toLocaleString('es')}}€</span>
         </div>
-        <span class="difference"  *ngIf="showMyMoney">-</span>
+        <span class="difference" *ngIf="showMyMoney">-</span>
         <div class="cost">
           <span class="text">Coste total: </span>
           <span class="amount">{{cost().toLocaleString('es')}}€</span>
         </div>
-        <hr class="difference-separator"  *ngIf="showMyMoney">
-        <div class="cost"  *ngIf="showMyMoney">
+        <hr class="difference-separator" *ngIf="showMyMoney">
+        <div class="cost" *ngIf="showMyMoney">
           <span class="text">Saldo posterior: </span>
           <span class="amount" [ngClass]="{'error': currentAmount() - cost() < 0}">{{(currentAmount()
             - cost()).toLocaleString('es')}}€</span>

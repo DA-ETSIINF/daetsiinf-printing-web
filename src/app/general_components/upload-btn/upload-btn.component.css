@@ -22,9 +22,9 @@
 }
 
 .upload-btn {
-  right: 20px;
-  bottom: 20px;
   z-index: 2;
+  right: 25px;
+  bottom: 55px;
 }
 
 .upload-btn i {
@@ -35,8 +35,8 @@
 
 .option {
   position: fixed;
-  right: 26px;
-  bottom: 26px;
+  right: 31px;
+  bottom: 58px;
   font-size: 20px;
   background: var(--dark-1);
   color: var(--dark-3);
@@ -51,11 +51,11 @@
 }
 
 .show.upload {
-  bottom: 80px;
-  right: 40px;
+  bottom: 114px;
+  right: 47px;
 }
 
 .show.folder {
-  right: 80px;
-  bottom: 40px;
+  right: 84px;
+  bottom: 75px;
 }

@@ -71,7 +71,7 @@ app-item {
 
 app-queue {
   position: fixed;
-  right: 50px;
+  right: 100px;
   top: calc(100vh - 44px);
   width: 800px;
   transition: .2s all ease;
