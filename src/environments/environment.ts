@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   version: 'FECUNDADA',
-  server: 'http://192.168.0.118',
+  server: 'http://localhost',
   port: '8000'
 };
 

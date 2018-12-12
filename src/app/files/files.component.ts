@@ -2,7 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, throttle } from 'rxjs/operators';
 import { FilesService } from './files.service';
-import { FileToPrint, FolderItem, Folder, ShowedItems, FileItem } from '../models';
+import {
+  FileToPrint,
+  FolderItem,
+  Folder,
+  ShowedItems,
+  FileItem
+} from '../models';
 import { AppComponent } from '../app.component';
 import { interval, Subscription } from 'rxjs';
 
@@ -13,11 +19,10 @@ import { interval, Subscription } from 'rxjs';
 })
 export class FilesComponent implements OnInit, OnDestroy {
   status: string;
-  currentSelected: ShowedItems = {files: [], folders: []};
-  itemShowing: ShowedItems = {files: [], folders: []};
+  currentSelected: ShowedItems = { files: [], folders: [] };
+  itemShowing: ShowedItems = { files: [], folders: [] };
   allItems: Folder[] = [];
   index: 0 | 1 = 0;
-  loading: boolean;
   showMyFilesAside: boolean;
   showSharedFilesAside: boolean;
   itemsInQueue: FileToPrint[];
@@ -67,23 +72,13 @@ export class FilesComponent implements OnInit, OnDestroy {
     }
   }
 
-  shortenNames(files: FileItem[]): FolderItem[] {
-    files.map(e => {
-      if (e.name.length > 13) {
-        const begin = e.name.substring(0, 8);
-        const end = e.name.substring(e.name.length - 5);
-        e.shorten = `${begin} ... ${end}`;
-      }
-    });
-    return files;
-  }
   deselect() {
     const items = document.querySelectorAll('.selected');
     for (let i = 0; i < items.length; i++) {
       items[i].classList.remove('selected');
     }
-    this.currentSelected = {files: [], folders: []};
-    this.fileService.currentSelected$.next({files: [], folders: []});
+    this.currentSelected = { files: [], folders: [] };
+    this.fileService.currentSelected$.next({ files: [], folders: [] });
   }
   selectOne(event) {
     if (event.target.localName === 'app-item') {

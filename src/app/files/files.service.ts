@@ -10,7 +10,13 @@ import {
   ReplaySubject
 } from 'rxjs';
 
-import { FileToPrint, Folder, FolderItem, ShowedItems, FileItem } from '../models';
+import {
+  FileToPrint,
+  Folder,
+  FolderItem,
+  ShowedItems,
+  FileItem
+} from '../models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { NotificationsService } from '../notifications/notifications.service';
@@ -21,9 +27,15 @@ import { NotificationsService } from '../notifications/notifications.service';
 export class FilesService implements OnInit {
   files: Folder[] = [];
   files$ = new Subject<Folder[]>();
-  showingFiles$ = new BehaviorSubject<ShowedItems[]>([ {files: [], folders: []}, {files: [], folders: []} ]);
+  showingFiles$ = new BehaviorSubject<ShowedItems[]>([
+    { files: [], folders: [] },
+    { files: [], folders: [] }
+  ]);
 
-  currentSelected$ = new BehaviorSubject<ShowedItems>({files: [], folders: []});
+  currentSelected$ = new BehaviorSubject<ShowedItems>({
+    files: [],
+    folders: []
+  });
 
   itemsInQueue$ = new BehaviorSubject<FileToPrint[]>([]);
   updateItemName$ = new Subject<FolderItem | FileItem>();
@@ -36,15 +48,37 @@ export class FilesService implements OnInit {
   currentPage: string;
 
   randomNames: string[][] = [
-    ['Un buen nombre sería', 'Nombre', '¿Y que tal este nombre?', 'Yo que sé...'],
+    [
+      'Un buen nombre sería',
+      'Nombre',
+      '¿Y que tal este nombre?',
+      'Yo que sé...'
+    ],
     ['Asignatura chunga', 'Esta vez sacaré un 10', 'temp1']
   ];
 
-  constructor(private http: HttpClient, public router: Router, private notificationsService: NotificationsService) {
+  constructor(
+    private http: HttpClient,
+    public router: Router,
+    private notificationsService: NotificationsService
+  ) {
     this.fetchFiles();
   }
 
   ngOnInit() {}
+
+  private shortenNames(
+    array: (FileItem | FolderItem)[]
+  ): (FileItem | FolderItem)[] {
+    array.map(e => {
+      if (e.name.length > 13) {
+        const begin = e.name.substring(0, 8);
+        const end = e.name.substring(e.name.length - 5);
+        e.shorten = `${begin} ... ${end}`;
+      }
+    });
+    return array;
+  }
 
   private appendItem(folderArr: Folder): ShowedItems {
     const results: ShowedItems = {
@@ -57,18 +91,31 @@ export class FilesService implements OnInit {
     folderArr.folders.map(folder => {
       results.folders.push({
         id: folder.id,
-        name: folder.name
+        name: folder.name,
+        shorten: ''
       });
+      if (folder.name.length > 13) {
+        const begin = folder.name.substring(0, 8);
+        const end = folder.name.substring(folder.name.length - 5);
+        results.folders[
+          results.folders.length - 1
+        ].shorten = `${begin} ... ${end}`;
+      }
     });
     folderArr.files.map(file => {
       results.files.push({
         id: file.id,
         name: file.name,
-        shorten: file.shorten,
         type: file.type,
         link: file.link,
-        npages: file.npages
+        npages: file.npages,
+        shorten: ''
       });
+      if (file.name.length > 13) {
+        const begin = file.name.substring(0, 8);
+        const end = file.name.substring(file.name.length - 5);
+        results.files[results.files.length - 1].shorten = `${begin} ... ${end}`;
+      }
     });
     return results;
   }
@@ -96,7 +143,7 @@ export class FilesService implements OnInit {
   }
 
   updateShowing(id: number, type: 'myFiles' | 'sharedWithMe'): ShowedItems {
-    const i = (type === 'myFiles') ? 0 : 1;
+    const i = type === 'myFiles' ? 0 : 1;
     let folderArr: Folder;
     folderArr = this.findFolder(id, i);
     return this.appendItem(folderArr);
@@ -120,19 +167,24 @@ export class FilesService implements OnInit {
   fetchFiles() {
     this.http
       .get(`${environment.server}:${environment.port}/print/files`)
-      .subscribe(data => {
-        data = this.handleData(data  as Folder[]);
-        this.files = data as Folder[];
-        this.files$.next(this.files);
-        console.log(this.files);
-        this.showingFiles$.next([this.updateShowing(-1, 'myFiles'), {files: [], folders: []}]);
-      },
-      () => {
-        this.notificationsService.addNotification({
-          title: 'No se ha podido conectar con la API',
-          status: 'error'
-        });
-      });
+      .subscribe(
+        data => {
+          data = this.handleData(data as Folder[]);
+          this.files = data as Folder[];
+          this.files$.next(this.files);
+          console.log(this.files);
+          this.showingFiles$.next([
+            this.updateShowing(-1, 'myFiles'),
+            { files: [], folders: [] }
+          ]);
+        },
+        () => {
+          this.notificationsService.addNotification({
+            title: 'No se ha podido conectar con la API',
+            status: 'error'
+          });
+        }
+      );
   }
 
   triggerUpload() {
@@ -145,7 +197,7 @@ export class FilesService implements OnInit {
     let fd;
     Array.from(files).map(file => {
       fd = new FormData();
-      fd.set('file', files[0]);
+      fd.set('file', file);
       fd.set('folder', 1);
       files$.push(of(fd));
     });
@@ -155,12 +207,27 @@ export class FilesService implements OnInit {
           `${environment.server}:${environment.port}/print/upload/`,
           fileData
         )
-        .subscribe(res => {
-          this.notificationsService.addNotification({
-            title: 'Archivo subido',
-            status: 'ok'
-          });
-        });
+        .subscribe(
+          res => {
+            console.log(res);
+
+            this.notificationsService.addNotification({
+              title: 'Archivo subido',
+              status: 'ok'
+            });
+            this.fetchFiles();
+          },
+          err => {
+            console.log(fileData);
+
+            if (err.error.response === 'It´s not a valid file') {
+              this.notificationsService.addNotification({
+                title: 'Archivo no válido',
+                status: 'error'
+              });
+            }
+          }
+        );
     });
   }
 
@@ -178,10 +245,12 @@ export class FilesService implements OnInit {
         this.notificationsService.addNotification({
           title: 'Enviada la petición',
           status: 'ok',
-          description: 'Ahora la carga de trabajo está en el backend y la impresora. Cruza los dedos.'});
+          description:
+            'Ahora la carga de trabajo está en el backend y la impresora. Cruza los dedos.'
+        });
       });
     if (files[0].ncopies > 1) {
-      files[0].ncopies --;
+      files[0].ncopies--;
       this.printFiles(files);
     }
     if (files.length > 1) {
@@ -201,8 +270,14 @@ export class FilesService implements OnInit {
   }
 
   getRandomName(): string {
-    return `${this.randomNames[0][Math.floor(Math.random() * this.randomNames[0].length)]}: ${
-      this.randomNames[1][Math.floor(Math.random() * this.randomNames[1].length)]
+    return `${
+      this.randomNames[0][
+        Math.floor(Math.random() * this.randomNames[0].length)
+      ]
+    }: ${
+      this.randomNames[1][
+        Math.floor(Math.random() * this.randomNames[1].length)
+      ]
     }`;
   }
 }

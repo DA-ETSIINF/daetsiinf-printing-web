@@ -29,13 +29,14 @@ main.hovering {
   border: 5px dashed var(--dark-3);
 }
 
-h5{
+h5 {
   font-size: 11px;
   color: var(--dark-2);
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-h5:not(:first-child){
+h5:not(:first-child) {
   margin: 20px 0 5px 0;
 }
 
@@ -82,7 +83,7 @@ app-queue {
     padding-right: 0;
   }
 
-  .grid{
+  .grid {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   }
 

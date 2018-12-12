@@ -23,26 +23,31 @@ const routes: Routes = [
   },
   {
     path: 'my-files/:id',
-    component: FilesComponent
-    /*canActivate: [AuthGuard]*/
+    component: FilesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'shared-with-me',
-    component: FilesComponent
-    /* canActivate: [AuthGuard] */
+    component: FilesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
-    component: ProfileComponent
-    /* canActivate: [AuthGuard] */
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'funds',
-    component: FundsComponent
-    /* canActivate: [AuthGuard] */
+    component: FundsComponent,
+    canActivate: [AuthGuard]
   },
   { path: '', pathMatch: 'full', redirectTo: '/my-files' },
-  { path: 'quick', pathMatch: 'full', component: QuickPrintComponent },
+  {
+    path: 'quick',
+    pathMatch: 'full',
+    component: QuickPrintComponent,
+    canActivate: [AuthGuard]
+  },
   { path: 'tutorial', pathMatch: 'full', component: TutorialComponent },
   { path: 'versions', pathMatch: 'full', component: VersionsComponent },
   { path: '**', component: NotFoundComponent }

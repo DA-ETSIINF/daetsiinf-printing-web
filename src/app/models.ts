@@ -28,10 +28,10 @@ export interface ShowedItems {
   folders: FolderItem[];
 }
 
-
 export interface FolderItem {
   id: number;
   name: string;
+  shorten?: string;
 }
 
 export interface FileItem {
@@ -39,10 +39,9 @@ export interface FileItem {
   name: string;
   type: string;
   link: string;
-  shorten: string;
   npages: number;
+  shorten?: string;
 }
-
 
 export interface FileToPrint {
   documentId: number;

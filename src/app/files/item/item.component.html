@@ -9,7 +9,10 @@
     </ul>
   </nav>
   <i class="material-icons item-icon">{{getIcon(item)}}</i>
-  <h5>
+  <h5 *ngIf="item.shorten !== ''">
+    {{item.shorten}}
+  </h5>
+  <h5 *ngIf="item.shorten === ''">
     {{item.name}}
   </h5>
 </div>

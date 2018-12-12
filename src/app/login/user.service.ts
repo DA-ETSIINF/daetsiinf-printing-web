@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService implements OnInit {
-  userInfo$ = new BehaviorSubject<UserInfo>(null);
+  userInfo$ = new BehaviorSubject<UserInfo>(undefined);
 
   constructor(private http: HttpClient, public router: Router) {
     this.fetchProfileInfo();
@@ -57,7 +57,9 @@ export class UserService implements OnInit {
           }
         })
       )
-      .subscribe();
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 
   private setUserInfo() {
@@ -72,13 +74,19 @@ export class UserService implements OnInit {
   }
 
   fetchProfileInfo() {
+    this.userInfo$.next({
+      username: 'Javier',
+      funds: 6.04,
+      email: 'sfkñljasñ@gmail.com',
+      id: 10
+    });
+
     if (localStorage.getItem('currentUser') !== null) {
       this.http
-      .get(`${environment.server}:${environment.port}/user/profile/`)
-      .subscribe(data => {
-        console.log(data);
-        this.userInfo$.next(data[0] as UserInfo);
-      });
+        .get(`${environment.server}:${environment.port}/user/profile/`)
+        .subscribe(data => {
+          // this.userInfo$.next(data[0] as UserInfo);
+        });
     }
   }
 }
