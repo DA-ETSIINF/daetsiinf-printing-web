@@ -1,0 +1,143 @@
+.overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s all ease;
+  opacity: 1;
+  animation: opacity .2s ease;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.create-folder {
+  max-width: 400px;
+  min-height: 180px;
+  width: 60vw;
+  height: 20vh;
+  background: var(--bck);
+  padding: 25px 30px;
+  z-index: 1001;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  transition: .2s all ease;
+  animation: zoom .2s ease;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(.5)
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.create-folder header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--dark-4);
+}
+
+.create-folder header span {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.create-folder header i {
+  font-size: 25px;
+}
+
+.create-folder input {
+  width: 100%;
+  margin: 0 auto;
+  border: 0;
+  color: var(--dark-4);
+  border-bottom: 2px solid var(--dark-3);
+  background: none;
+  font-size: 17px;
+  padding: 4px;
+  margin-top: 50px;
+  outline: none;
+  transition: .1s all ease;
+}
+
+
+.create-folder input:focus {
+  border: none;
+  border-bottom: 4px solid var(--blue);
+}
+
+.create-folder .buttons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.create-folder .buttons button {
+  font-size: 13px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  border: none;
+  padding: 9px 21px;
+  border-radius: 10px;
+  color: var(--white);
+  text-transform: uppercase;
+  height: 33px;
+  transition: .2s all ease;
+  cursor: pointer;
+  outline: none;
+}
+
+.create-folder .buttons .cancel {
+  background: none;
+  color: var(--dark-3);
+  margin-right: 10px;
+}
+
+@media screen and (max-width:992px) {
+  .create-folder {
+    width: 85vw;
+    padding: 10px 20px;
+  }
+
+  .create-folder header span {
+    font-size: 17px;
+  }
+
+  .create-folder header i {
+    font-size: 17px;
+  }
+
+  .create-folder input {
+    font-size: 15px;
+    border-bottom-width: 2px;
+  }
+
+  .create-folder input:focus {
+    border-bottom-width: 2px;
+  }
+
+  .create-folder .buttons button {
+    padding: 5px 10px;
+  }
+}

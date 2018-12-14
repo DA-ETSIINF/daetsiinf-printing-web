@@ -1,0 +1,324 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .6);
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s all ease;
+}
+
+.show {
+  opacity: .4;
+  visibility: inherit;
+}
+
+.queue {
+  background: var(--dark-4);
+  color: #fff;
+  z-index: 100;
+  height: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+header h4 {
+  font-size: 13px;
+  flex: 1;
+}
+
+header i {
+  transition: .2s all ease;
+  transition-delay: .3s;
+}
+
+.content {
+  min-height: 50vh;
+  background: var(--bck);
+  color: var(--dark-4);
+  padding: 0 15px;
+  height: 100%;
+  position: relative;
+
+  overflow: hidden;
+}
+
+.step-title {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  cursor: pointer;
+  height: 28px;
+}
+
+.step-title h5 {
+  flex: 1;
+  font-weight: 400;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.step-title h5 span.step-number {
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--dark-2);
+  color: var(--white);
+  padding: 2px 7px;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+.step-title .next {
+  margin: 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  border: none;
+  padding: 0 15px;
+  border-radius: 10px;
+  color: var(--white);
+  text-transform: uppercase;
+  height: 28px;
+  transition: .2s all ease;
+  cursor: pointer;
+}
+
+.step-title .next:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.step-title .next.cancel {
+  background: none;
+  color: var(--dark-3);
+  margin-right: 10px;
+}
+
+.second-step.bottom {
+  position: absolute;
+  top: calc(100% - 68px);
+  left: 0;
+  width: calc(100% - 30px);
+  border-top: 1px solid var(--dark-2);
+  padding: 0 15px;
+  background: var(--bck);
+  transition: .3s all ease;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.second-step.bottom.show-step {
+  top: 67px;
+  height: calc(100% - 110px);
+}
+
+.grid {
+  overflow-x: auto;
+  margin-bottom: 40px;
+}
+
+.grid>div {
+  display: grid;
+  grid-template-columns: 1fr 100px 110px 100px 80px 81px;
+  grid-template-rows: 40px;
+  align-items: center;
+}
+
+.header {
+  color: var(--dark-2);
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  max-width: 100%;
+}
+
+.header span {
+  white-space: nowrap;
+}
+
+.header span:not(.name),
+.file span:not(.name) {
+  padding: 0 15px;
+}
+
+.file {
+  font-size: 13.5px;
+}
+
+.file span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.npages,
+.price {
+  text-align: center;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  text-transform: uppercase;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.options div {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  transition: .2s all ease;
+}
+
+.options div.active {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.options div span {
+  overflow: inherit;
+}
+
+.ncopies {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ncopies i {
+  font-size: 16px;
+  color: var(--bck);
+  background: var(--blue);
+  padding: 6px;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ncopies i.disabled {
+  opacity: .3;
+}
+
+input.ncopies {
+  background: none;
+  border: none;
+  width: 30px;
+  text-align: center;
+  margin-left: 5px;
+}
+
+
+.remove {
+  color: var(--bad);
+  font-weight: 700;
+  cursor: pointer;
+  transition: .1s all ease;
+}
+
+.more-info {
+  width: calc(100% - 30px);
+  font-style: italic;
+  color: var(--dark-2);
+  font-size: 12px;
+  position: fixed;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.more-info i {
+  font-size: 19px;
+  margin-left: 5px;
+}
+
+.difference {
+  position: absolute;
+  margin-top: 4px;
+  margin-left: 35px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.second-step .step-title h5 {
+  margin-bottom: 6px;
+}
+
+.data {
+  max-width: 190px;
+  margin: auto;
+}
+
+.data>div {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  align-items: center;
+  font-size: 14px;
+
+}
+
+.data>div .text {
+  width: 150px;
+  white-space: nowrap;
+  text-align: right;
+  color: var(--dark-2);
+}
+
+.data>div .amount {
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.data .error {
+  color: var(--bad);
+}
+
+.alert {
+  padding: 7px 5px;
+  border: 2px solid var(--bad);
+  width: 90%;
+  max-width: 300px;
+  border-radius: 5px;
+  text-align: center;
+  color: var(--bad);
+  font-weight: 700;
+  margin: 20px auto;
+}
+
+.difference-separator {
+  width: 90%;
+  height: .3px;
+  background: var(--dark-2);
+  margin: 4px 0;
+  margin-left: 10%;
+}
+
+@media screen and (max-width:992px) {
+  .grid>div {
+    grid-template-columns: 150px 100px 110px 100px 80px 81px;
+  }
+
+  input.ncopies {
+    margin-left: 0;
+  }
+}

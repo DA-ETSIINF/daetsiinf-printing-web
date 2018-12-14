@@ -1,0 +1,61 @@
+.container:hover {
+  cursor: pointer;
+}
+
+.upload-btn {
+  position: fixed;
+  right: 50px;
+  bottom: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  font-size: 52px;
+  transition: all 0.4s ease-in;
+  background: linear-gradient(-45deg, var(--blue), var(--purple));
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.upload-btn {
+  z-index: 2;
+  right: 25px;
+  bottom: 55px;
+}
+
+.upload-btn i {
+  color: var(--white);
+  font-size: 22px;
+  transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.option {
+  position: fixed;
+  right: 31px;
+  bottom: 58px;
+  font-size: 20px;
+  background: var(--dark-1);
+  color: var(--dark-3);
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 1;
+  transition: .1s all ease-out;
+}
+
+.show.add {
+  transform: rotate(45deg);
+}
+
+.show.upload {
+  bottom: 114px;
+  right: 47px;
+}
+
+.show.folder {
+  right: 84px;
+  bottom: 75px;
+}

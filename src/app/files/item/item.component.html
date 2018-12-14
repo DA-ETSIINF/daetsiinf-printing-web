@@ -1,0 +1,18 @@
+<div class="item" #file (press)="toggleOptions()" (mouseover)="toggleOptionsIcon(file, 'inherit')" (mouseleave)="toggleOptionsIcon(file, 'none')"
+  (contextmenu)="toggleOptions($event)">
+  <i class="material-icons options-icon" (click)="addFileToQueue(item.id, item.name, item.npages)" *ngIf="isFile">printer</i>
+  <nav class="options" *ngIf="showOptions" [ngClass]="{'show-options':showOptions}">
+    <ul>
+      <li *ngIf="isFile" (click)="addFileToQueue(item.id, item.name, item.npages)">Añadir a la cola</li>
+      <li (click)="updateName(item)">Cambiar nombre</li>
+      <li (click)="deleteItem(item)" class="delete">Eliminar</li>
+    </ul>
+  </nav>
+  <i class="material-icons item-icon">{{getIcon(item)}}</i>
+  <h5 *ngIf="item.shorten !== ''">
+    {{item.shorten}}
+  </h5>
+  <h5 *ngIf="item.shorten === ''">
+    {{item.name}}
+  </h5>
+</div>

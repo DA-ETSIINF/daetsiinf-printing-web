@@ -1,0 +1,152 @@
+.overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s all ease;
+  opacity: 1;
+  animation: opacity .2s ease;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.delete-modal {
+  max-width: 400px;
+  width: 60vw;
+  max-height: 80vh;
+  height: 240px;
+  background: var(--bck);
+  padding: 25px 30px;
+  z-index: 1001;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  transition: .2s all ease;
+  animation: zoom .2s ease;
+  cursor: pointer;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(.5)
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.delete-modal header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--dark-4);
+}
+
+.delete-modal header span {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.delete-modal header i {
+  font-size: 25px;
+}
+
+.hold-to-delete-text {
+  font-size: 16px;
+  text-align: center;
+  color: var(--dark-2);
+  margin-top: 10px;
+}
+
+.alert {
+  font-size: 16px;
+  text-align: center;
+  color: var(--bad);
+  font-weight: 700;
+  padding: 10px;
+  border: 1px solid var(--bad);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.delete {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: 20px 0;
+}
+
+.trash {
+  font-size: 40px;
+  border-radius: 50%;
+  color: var(--bck);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  transition: .5s all ease;
+  background: var(--bad);
+}
+
+.progress-bar {
+  width: 100%;
+  background: var(--dark-1);
+  height: 4px;
+  margin: 7px 0;
+  border-radius: 1px;
+}
+
+.progress {
+  height: 4px;
+  background: var(--bad);
+  transition: .2s all ease;
+}
+
+@media screen and (max-width:992px) {
+  .delete-modal {
+    padding: 10px;
+    width: 90vw;
+  }
+
+  .delete-modal header span {
+    font-size: 15px;
+  }
+
+  .delete {
+    flex-direction: column-reverse;
+  }
+
+  .hold-to-delete-text {
+    font-size: 13px;
+  }
+
+  .alert {
+    font-size: 13px;
+  }
+}

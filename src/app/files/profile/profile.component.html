@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container">
+  <app-aside></app-aside>
+  <main>
+    <section class="card">
+      <div class="header">
+        <h2>Mis datos</h2>
+        <button class="increase-balance">aumentar saldo</button>
+      </div>
+      <div class="change-info">
+        <h5>Tus datos personales</h5>
+        <form action="">
+          <div class="input name">
+            <label for="name">Nombre</label>
+            <input type="text" [(ngModel)]="nameEdited" name="name" placeholder="Escriba su nuevo nombre">
+            <i class="material-icons">edit</i>
+          </div>
+          <div class="input email">
+            <label for="email">Email</label>
+            <span>javier.garcia@alumnos.upm.es</span>
+          </div>
+          <div class="submit-changes">
+            <button [ngClass]="(name!==nameEdited)?'enabled':'disabled'">Cambiar datos</button>
+          </div>
+        </form>
+        <h5>Cambiar contraseña</h5>
+        <form action="">
+          <input type="password" placeholder="Nueva contraseña">
+          <input type="password" placeholder="Repita la nueva contraseña">
+          <div class="submit-changes">
+            <button [ngClass]="(name!==nameEdited)?'enabled':'disabled'">Cambiar contraseña</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+</div>
+<app-footer></app-footer>

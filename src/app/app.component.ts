@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  host: {
-    '(window:resize)': 'widthStatus($event.target.innerWidth)'
-  }
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  static deviceWidth: string;
-
-  widthStatus = size => {
-    AppComponent.deviceWidth = size < 992 ? 'small' : 'large';
-  };
+  deviceWidth: 'small' | 'large';
+  size: number;
 
   ngOnInit() {
     this.widthStatus(window.innerWidth);
+  }
+
+  widthStatus(size) {
+    this.size = size;
+    this.deviceWidth = size < 992 ? 'small' : 'large';
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.widthStatus(event.target.innerWidth);
   }
 }

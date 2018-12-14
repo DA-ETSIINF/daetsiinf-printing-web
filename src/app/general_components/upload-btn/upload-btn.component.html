@@ -1,0 +1,7 @@
+<div class="container" (click)="showOptions=!showOptions">
+  <div class="upload-btn button" tabindex="1" id="upload-btn" (click)="uploadClicked()">
+    <i class="material-icons add" [ngClass]="{'show': showOptions}">add</i>
+  </div>
+  <i class="material-icons option upload" [ngClass]="{'show': showOptions}" (click)="triggerUpload()">cloud_upload</i>
+  <i class="material-icons option folder" [ngClass]="{'show': showOptions}" (click)="triggerCreateFolder()">folder</i>
+</div>

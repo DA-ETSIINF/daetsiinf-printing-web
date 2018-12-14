@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  version: 'FECUNDADA',
+  server: 'http://localhost',
+  port: '8000'
 };
 
 /*

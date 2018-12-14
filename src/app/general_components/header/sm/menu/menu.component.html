@@ -1,0 +1,43 @@
+<div class="menu" [ngStyle]="{'marginLeft': getIsOpen() ? '0' : '-80%' }">
+  <div class="menu__top">
+    <div class="menu__top-row">
+      <i class="material-icons user-icon">person</i>
+      <div class="user__info">
+        <h3 class="user__name">{{userInfo.username}}</h3>
+      </div>
+      <i class="material-icons" (click)="toogleMenu()">close</i>
+    </div>
+    <h5 class="user__email">{{userInfo.email}}</h5>
+  </div>
+  <div class="menu__balance">
+    <span class="balance">SALDO: </span>
+    <span class="balance__quantity">{{userInfo.funds}} €</span>
+    <span class="recharge">Recargar</span>
+  </div>
+
+  <nav>
+    <ul>
+      <li>
+        <i class="material-icons">insert_drive_file</i>
+        Documentos
+        <div class="option">Mis archivos</div>
+        <div class="option">Documentos compartidos</div>
+      </li>
+      <li (click)="goTo('profile')">
+        <i class="material-icons">settings</i>
+        Mis datos
+      </li>
+      <li (click)="goTo('funds')">
+        <i class="material-icons">history</i>
+        Historial de fondos
+      </li>
+      <div class="horizontal-divider"></div>
+      <li>
+        <i class="material-icons">exit_to_app</i>
+        Cerrar sesión
+      </li>
+    </ul>
+  </nav>
+  <app-footer></app-footer>
+</div>
+<div id="close-menu" [ngClass]="[getIsOpen() ? 'showing' : 'hidding']" (click)="toogleMenu()"></div>

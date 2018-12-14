@@ -1,0 +1,16 @@
+main {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+  justify-content: center;
+  align-items: center;
+  color: var(--dark-4)
+}
+
+img {
+  max-height: 400px;
+}
+
+main a {
+  color: var(--blue);
+}

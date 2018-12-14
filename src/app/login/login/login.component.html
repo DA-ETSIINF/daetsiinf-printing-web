@@ -1,0 +1,22 @@
+<div class="container">
+  <main>
+    <h1 class="header">Bienvenido al servicio de Reprografía de la ETSIINF</h1>
+    <form action="">
+      <h4 class="form__title">
+        login
+      </h4>
+      <div class="email">
+        <input type="text" name="email" placeholder="Correo" [(ngModel)]="user.username" name="email">
+        <label for="email">@alumnos.upm.es</label>
+      </div>
+      <input type="password" placeholder="Contraseña" [(ngModel)]="user.password" name="password">
+      <button (click)="login()">Iniciar sesión</button>
+    </form>
+    <div class="register">
+      <span>¿No tienes cuenta?</span>
+      <a href="" routerLink="/register">Regístrate</a>
+    </div>
+
+    <div class="lang">English</div>
+  </main>
+</div>

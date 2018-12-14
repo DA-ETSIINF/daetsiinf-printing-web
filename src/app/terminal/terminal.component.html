@@ -1,0 +1,34 @@
+<section class="terminal">
+  <header>
+    <h4>Terminal de printf.es</h4>
+    <div class="options">
+      <i class="material-icons">minimize</i>
+      <i class="material-icons">fullscreen</i>
+      <i class="material-icons close">close</i>
+    </div>
+  </header>
+
+  <body (keydown)="onKeyDown($event)">
+    <span class="info">
+      Bienvenido a la terminal de printf.es, escriba help para ver las opciones
+    </span>
+    <div *ngFor="let command of history">
+      <div class="command">
+        <div class="prompt">{{command.prompt}}</div>
+        <div class="command-text">{{command.command}}</div>
+      </div>
+      <div class="result" *ngFor="let result of command.results">
+        <span>{{result}}</span>
+      </div>
+    </div>
+    <div class="command" *ngIf="!loading">
+      <div class="prompt">{{prompt}}</div>
+      <input type="text" spellcheck="false" (keyup.enter)="sendCommand()" autocomplete="false" autofocus [(ngModel)]="command">
+    </div>
+    <div class="command" *ngIf="loading">
+      <span>Cargando</span>
+    </div>
+    <div class="screen">
+    </div>
+  </body>
+</section>

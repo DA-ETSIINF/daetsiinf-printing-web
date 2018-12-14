@@ -1,0 +1,34 @@
+<app-header></app-header>
+<input type="file" id="uploadInput" style="display: none" (change)="uploadChange()" multiple>
+<div class="container" (click)="hideOptions()">
+  <app-aside></app-aside>
+  <main [ngClass]="{'grid': (itemShowing.files.length + itemShowing.folders.length !== 0)}" appDropZone (hovered)="toggleHover($event)"
+    (dropped)="droppedFiles($event)" [class.hovering]="isHovering" (swipeleft)="goTo('/shared-with-me')" (swiperight)="goTo('/my-files')">
+
+    <section class="empty" *ngIf="itemShowing.files.length + itemShowing.folders.length === 0">
+      <img src="./assets/img/svg/empty.svg">
+      <p>No hay archivos D':</p>
+    </section>
+    <section *ngIf="itemShowing.folders.length !== 0">
+      <h5>carpetas</h5>
+      <div class="grid folders">
+        <app-item *ngFor="let item of itemShowing.folders" [item]="item" (press)="select($event, item, 'folders')"
+          (click)="select($event, item)"></app-item>
+      </div>
+    </section>
+    <section *ngIf="itemShowing.files.length !== 0">
+      <h5>archivos</h5>
+      <div class="grid files">
+        <app-item *ngFor="let item of itemShowing.files" [item]="item" (press)="select($event, item, 'files')" (click)="select($event, item)"></app-item>
+      </div>
+    </section>
+
+
+    <app-change-name></app-change-name>
+    <app-delete-item></app-delete-item>
+    <app-create-folder></app-create-folder>
+    <app-queue *ngIf="itemsInQueue.length > 0"></app-queue>
+    <app-upload-btn></app-upload-btn>
+  </main>
+  <app-item-popover></app-item-popover>
+</div>

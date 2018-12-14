@@ -1,0 +1,18 @@
+<main>
+  <div class="message">
+    ¡Atención! Este servicio de uso privado.
+  </div>
+
+  <div class="upload-zone" appDropZone [class.hovering]="isHovering" (hovered)="toggleHover($event)">
+    <span>Arrastra archivos o</span>
+    <div class="input">
+      <input type="file" name="files" id="files" multiple (change)="onChangeFiles($event)">
+      <label for="files">Seleccionar archivos</label>
+    </div>
+
+  </div>
+  <div class="queue" [ngStyle]="{'display': files.length != 0 ? 'initial': 'none'}">
+    <app-queue></app-queue>
+  </div>
+
+</main>

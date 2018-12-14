@@ -1,0 +1,76 @@
+<section class="queue">
+  <header (click)="toggleQueue()">
+    <h4>Ver cola de impresión -
+      <span>{{filesInQueue.length}} elemento</span>
+      <span *ngIf="filesInQueue.length !== 1">s</span>
+    </h4>
+    <i class="material-icons" [ngStyle]="{'transform': showQueue ? 'rotate(-45deg)': 'none'}">add</i>
+  </header>
+  <div class="content">
+    <div class="first-step">
+      <div class="step-title" (click)="setStep('first')">
+        <h5><span class="step-number">1</span><span>Ajustes</span></h5>
+        <button class="next" [ngStyle]="{'transform': step !== 'first' ? 'scale(0)': 'scale(1)'}" (click)="setStep('second')">siguiente
+          paso</button>
+      </div>
+      <div class="grid">
+        <div class="header">
+          <span class="name">Nombre</span>
+          <span class="npages">Nº páginas</span>
+          <span class="doubled-sided">Doble cara</span>
+          <span class="ncopies">Nº copias</span>
+          <span class="price">Precio</span>
+          <span class="remove"></span>
+        </div>
+        <div class="file" *ngFor="let file of filesInQueue; let i = index">
+          <span class="name">{{file.name}}</span>
+          <span class="npages">{{file.npages}}</span>
+          <div class="doubled-sided options">
+            <div (click)="setDoubledSided(false, i)" [ngClass]="{'active':!file.doubledSided}">
+              <span>No</span>
+            </div>
+            <div (click)="setDoubledSided(true, i)" [ngClass]="{'active':file.doubledSided}">
+              <span>Si</span>
+            </div>
+          </div>
+          <div class="ncopies">
+            <i class="material-icons" [ngClass]="{'disabled':file.ncopies <= 1}" (click)="file.ncopies = file.ncopies >= 1 ? file.ncopies - 1 : file.ncopies">remove</i>
+            <input class="ncopies" type="number" value="{{file.ncopies}}" min="1" max="99" (change)="file.ncopies = $event.target.value > 0 && $event.target.value < 99 ? $event.target.value : 99">
+            <i class="material-icons" [ngClass]="{'disabled':file.ncopies >= 99}" (click)="file.ncopies = file.ncopies <= 99 ? file.ncopies + 1 : file.ncopies">add</i>
+          </div>
+          <span class="price">{{getPrice(file)}}</span>
+          <span class="remove" (click)="removeFile(file.documentId)">Eliminar</span>
+        </div>
+        <p class="more-info" *ngIf="getWindowSize() < 500">Hay más información hacia la derecha <i class="material-icons">arrow_right_alt</i></p>
+      </div>
+    </div>
+    <div class="second-step bottom" [ngClass]="{'show-step': step === 'second'}">
+      <div class="step-title" (click)="step = 'second'">
+        <h5><span class="step-number">2</span><span>Precio</span></h5>
+        <button class="next cancel" (click)="cancel()" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Cancelar</button>
+        <button class="next" (click)="printFiles()" [disabled]="currentAmount() - cost() < 0" [ngStyle]="{'transform': step !== 'second' ? 'scale(0)': 'scale(1)'}">Imprimir</button>
+      </div>
+      <div class="data">
+        <div class="current" *ngIf="showMyMoney">
+          <span class="text">Saldo actual: </span>
+          <span class="amount">{{currentAmount().toLocaleString('es')}}€</span>
+        </div>
+        <span class="difference" *ngIf="showMyMoney">-</span>
+        <div class="cost">
+          <span class="text">Coste total: </span>
+          <span class="amount">{{cost().toLocaleString('es')}}€</span>
+        </div>
+        <hr class="difference-separator" *ngIf="showMyMoney">
+        <div class="cost" *ngIf="showMyMoney">
+          <span class="text">Saldo posterior: </span>
+          <span class="amount" [ngClass]="{'error': currentAmount() - cost() < 0}">{{(currentAmount()
+            - cost()).toLocaleString('es')}}€</span>
+        </div>
+      </div>
+      <div class="alert" *ngIf="currentAmount() - cost() < 0">
+        No tienes suficiente saldo.
+      </div>
+    </div>
+  </div>
+</section>
+<div (click)="toggleQueue()" class="overlay" [ngClass]="{'show':showQueue}"></div>
