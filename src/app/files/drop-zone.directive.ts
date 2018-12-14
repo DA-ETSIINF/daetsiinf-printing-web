@@ -10,6 +10,7 @@ import { FilesService } from './files.service';
 import { map } from 'rxjs/operators';
 import { FolderItem, FileItem } from '../models';
 import { Subscription, Observable } from 'rxjs';
+import { AppComponent } from '../app.component';
 
 @Directive({
   selector: '[appDropZone]'
@@ -30,7 +31,10 @@ export class DropZoneDirective implements OnDestroy {
   index: 0 | 1;
   typeOfItem: 'folder' | 'file';
 
-  constructor(private filesService: FilesService) {
+  constructor(
+    private filesService: FilesService,
+    public appComponent: AppComponent
+  ) {
     this.statusDragableSubscription = this.filesService.dragableItem$.subscribe(
       file => {
         this.statusDragable = file;
@@ -43,6 +47,9 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('drop', ['$event'])
   onDrop(e) {
+    if (this.appComponent.deviceWidth === 'small') {
+      return;
+    }
     e.preventDefault();
     this.dropped.emit(e.dataTransfer.files);
     this.hovered.emit(false);
@@ -50,25 +57,25 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('dragover', ['$event'])
   onDragOver(e) {
+    if (this.appComponent.deviceWidth === 'small') {
+      return;
+    }
     e.preventDefault();
     this.hovered.emit(true);
   }
 
   @HostListener('dragleave', ['$event'])
   onDragLeave(e) {
+    if (this.appComponent.deviceWidth === 'small') {
+      return;
+    }
     e.preventDefault();
     this.hovered.emit(false);
   }
 
-  private getTypeOfItem(itemElem): 'file' | 'folder' {
-    return itemElem.closest('section .grid.folders') !== null
-      ? 'folder'
-      : 'file';
-  }
-
   @HostListener('mousemove', ['$event'])
   dragItem(e) {
-    if (e.buttons !== 1) {
+    if (e.buttons !== 1 || this.appComponent.deviceWidth === 'small') {
       return;
     }
 
@@ -81,19 +88,15 @@ export class DropZoneDirective implements OnDestroy {
             if (itemElem === null) {
               return;
             }
-            this.getTypeOfItem(itemElem);
-            const section =
-              this.typeOfItem === 'folder'
-                ? Array.prototype.slice.call(
-                    itemElem.closest('section .grid.folders').children
-                  )
-                : Array.prototype.slice.call(
-                    itemElem.closest('section .grid.files').children
-                  );
+            if (this.typeOfItem === undefined) {
+              this.typeOfItem =
+                itemElem.closest('.folders') !== null ? 'folder' : 'file';
+            }
+            const section = Array.prototype.slice.call(
+              itemElem.closest(`section .grid.${this.typeOfItem}s`).children
+            );
             const index = section.indexOf(itemElem);
-            console.log(index);
-
-            return (system as any)[this.index].files[index];
+            return (system as any)[this.index][`${this.typeOfItem}s`][index];
           })
         )
         .subscribe(it => {
@@ -101,6 +104,10 @@ export class DropZoneDirective implements OnDestroy {
         });
     } else {
       item = this.statusDragable.item;
+    }
+
+    if (item === undefined || item === null) {
+      return;
     }
     this.filesService.dragableItem$.next({
       item,

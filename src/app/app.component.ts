@@ -6,7 +6,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  deviceWidth: string;
+  deviceWidth: 'small' | 'large';
   size: number;
 
   ngOnInit() {

@@ -18,9 +18,7 @@ export class UserService implements OnInit {
     this.fetchProfileInfo();
   }
 
-  ngOnInit() {
-    console.log('__');
-  }
+  ngOnInit() {}
 
   register(user: RegisterUser) {
     this.http
@@ -82,11 +80,10 @@ export class UserService implements OnInit {
     });
 
     if (localStorage.getItem('currentUser') !== null) {
-      this.http
-        .get(`${environment.server}:${environment.port}/user/profile/`)
-        .subscribe(data => {
+      this.http.get(`${environment.server}:${environment.port}/user/profile/`);
+      /*.subscribe(data => {
           // this.userInfo$.next(data[0] as UserInfo);
-        });
+        });*/
     }
   }
 }

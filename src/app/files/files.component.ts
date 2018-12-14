@@ -57,10 +57,8 @@ export class FilesComponent implements OnInit, OnDestroy {
     this.fileService.files$.unsubscribe();
   }
 
-  goTo(page: string, submenu?: string) {
-    if (submenu) {
-      this.router.navigate([page]);
-    } else {
+  goTo(page: string) {
+    if (this.appComponent.deviceWidth === 'small') {
       this.router.navigate([page]);
     }
   }

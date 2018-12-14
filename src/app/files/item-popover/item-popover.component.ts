@@ -21,9 +21,5 @@ export class ItemPopoverComponent implements OnInit, OnDestroy {
 
   ngOnInit() {}
 
-  ngOnDestroy() {
-    if (this.dragableItemSubscription !== undefined) {
-      this.dragableItemSubscription.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 }
