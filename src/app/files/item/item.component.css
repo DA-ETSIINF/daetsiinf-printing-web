@@ -5,7 +5,7 @@
   padding-top: 10px;
 }
 
-.item .item-icon{
+.item .item-icon {
   width: 100%;
   font-size: 55px;
   color: var(--dark-2);
@@ -45,6 +45,7 @@
   animation-name: options;
   animation-duration: .3s;
   top: 25px;
+  z-index: 1;
 }
 
 .options ul {
