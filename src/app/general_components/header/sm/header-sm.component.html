@@ -7,13 +7,13 @@
     <img class="logo-daetsiinf" src=".\assets\img\logos\daetsiinf.png">
   </div>
   <div class="files-bar">
-    <a routerLink="/my-files">
+    <a routerLink="/my-files" style="width: 100%;">
       mis archivos
     </a>
-    <a routerLink="/shared-with-me">
+    <a routerLink="/shared-with-me" [hidden]="true">
       compartidos conmigo
     </a>
   </div>
 </header>
-<div class="active" *ngIf="showFilesNav()" [ngClass]="{'active-left': currentPage !== '/my-files'}"></div>
+<div class="active" *ngIf="showFilesNav()" [ngClass]="{'active-left': currentPage !== '/my-files'}" style="width: 100%;"></div>
 <app-menu [userInfo]="userInfo"></app-menu>

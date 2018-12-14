@@ -1,55 +1,98 @@
 <aside *ngIf="appComponent.deviceWidth === 'large'">
   <button class="upload" (click)="triggerUpload()">
-    <i class="material-icons">cloud_upload</i>
-    <span>Subir archivo</span>
+    <i class="material-icons">cloud_upload</i> <span>Subir archivo</span>
   </button>
   <nav>
     <ul>
-      <li [ngClass]="{'active': currentPage === '/my-files'}">
+      <li [ngClass]="{ active: currentPage === '/my-files' }">
         <div class="files-menu__option">
-          <i (click)="toggleMyFilesView('myFiles')" [ngStyle]="showMyFilesAside !== 0 && {'transform': 'rotate(90deg)','margin-top':'4px'}"
-            class="material-icons">arrow_right</i>
+          <i
+            (click)="toggleMyFilesView('myFiles')"
+            [ngStyle]="
+              showMyFilesAside !== 0 && {
+                transform: 'rotate(90deg)',
+                'margin-top': '4px'
+              }
+            "
+            class="material-icons"
+            >arrow_right</i
+          >
           <span routerLink="/my-files">Mis archivos</span>
         </div>
-        <ul class="items" id="myFiles" [ngStyle]="{'max-height': showMyFilesAside !== 0 ? showMyFilesAside + 'px' : 0}">
+        <ul
+          class="items"
+          id="myFiles"
+          [ngStyle]="{
+            'max-height': showMyFilesAside !== 0 ? showMyFilesAside + 'px' : 0
+          }"
+        >
           <li *ngFor="let folder of myFilesShowing.folders">
-            <i class="material-icons">folder</i>
-            <span>{{folder.name}}</span>
+            <i class="material-icons">folder</i> <span>{{ folder.name }}</span>
           </li>
-          <div [ngStyle]="{'height.px': separatorHeight}"></div>
+          <div [ngStyle]="{ 'height.px': separatorHeight }"></div>
           <li *ngFor="let item of myFilesShowing.files">
-            <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
-            <span>{{item.name}}</span>
+            <i class="material-icons" *ngIf="item.type === 'pdf'"
+              >picture_as_pdf</i
+            >
+            <span>{{ item.name }}</span>
           </li>
-          <li *ngIf="myFilesShowing.files.length + myFilesShowing.folders.length=== 0">
+          <li
+            *ngIf="
+              myFilesShowing.files.length + myFilesShowing.folders.length === 0
+            "
+          >
             <span>Carpeta vacía</span>
           </li>
         </ul>
       </li>
-      <li [ngClass]="{'active': currentPage === '/shared-with-me'}">
+      <li
+        [ngClass]="{ active: currentPage === '/shared-with-me' }"
+        [hidden]="true"
+      >
         <div class="files-menu__option">
-          <i (click)="toggleSharedFilesView('myFiles')" [ngStyle]="showSharedFilesAside && {'transform': 'rotate(90deg)','margin-top':'4px'}"
-            class="material-icons">arrow_right</i>
-          <span (click)="goTo('/shared-with-me', 'shared-with-me')">Compartidos conmigo</span>
+          <i
+            (click)="toggleSharedFilesView('myFiles')"
+            [ngStyle]="
+              showSharedFilesAside && {
+                transform: 'rotate(90deg)',
+                'margin-top': '4px'
+              }
+            "
+            class="material-icons"
+            >arrow_right</i
+          >
+          <span (click)="goTo('/shared-with-me', 'shared-with-me')"
+            >Compartidos conmigo</span
+          >
         </div>
-        <ul class="items" id="sharedFiles" [ngStyle]="{'max-height': showSharedFilesAside !== 0 ? showSharedFilesAside + 'px' : 0}">
+        <ul
+          class="items"
+          id="sharedFiles"
+          [ngStyle]="{
+            'max-height':
+              showSharedFilesAside !== 0 ? showSharedFilesAside + 'px' : 0
+          }"
+        >
           <li *ngFor="let folder of myFilesShared.folder">
-            <i class="material-icons">folder</i>
-            <span>{{folder.name}}</span>
+            <i class="material-icons">folder</i> <span>{{ folder.name }}</span>
           </li>
           <li *ngFor="let item of myFilesShared.files">
-            <i class="material-icons" *ngIf="item.type === 'pdf'">picture_as_pdf</i>
-            <span>{{item.name}}</span>
+            <i class="material-icons" *ngIf="item.type === 'pdf'"
+              >picture_as_pdf</i
+            >
+            <span>{{ item.name }}</span>
           </li>
-          <li *ngIf="myFilesShared.files.length + myFilesShared.folders.length=== 0">
+          <li
+            *ngIf="
+              myFilesShared.files.length + myFilesShared.folders.length === 0
+            "
+          >
             <span>Carpeta vacía</span>
           </li>
         </ul>
       </li>
       <div class="divider" [hidden]="true"></div>
-      <li class="lang" [hidden]="true">
-        <span>English</span>
-      </li>
+      <li class="lang" [hidden]="true"><span>English</span></li>
     </ul>
   </nav>
   <app-footer></app-footer>
