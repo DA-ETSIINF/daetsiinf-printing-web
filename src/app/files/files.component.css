@@ -4,7 +4,7 @@
 }
 
 main {
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 114px);
   position: relative;
   flex: 1px;
   padding-right: 50px;
