@@ -42,8 +42,8 @@ export class QueueComponent implements OnInit {
   toggleQueue() {
     this.showQueue = !this.showQueue;
     const queueElem = document.querySelector('app-queue') as any;
-    const top = this.showQueue ? queueElem.offsetHeight : 44;
-    queueElem.style.top = `calc(100vh - ${top}px)`;
+    const bottom = this.showQueue ? 0 : 50;
+    queueElem.style.bottom = `-${bottom}%`;
   }
 
   setStep(step: string) {
