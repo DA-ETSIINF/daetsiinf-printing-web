@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 export class AppComponent implements OnInit {
   deviceWidth: 'small' | 'large';
   size: number;
+
+  constructor(private appService: AppService) {}
 
   ngOnInit() {
     this.widthStatus(window.innerWidth);
@@ -21,5 +24,9 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.widthStatus(event.target.innerWidth);
+  }
+
+  showTerminal(): boolean {
+    return !this.appService.showTerminal;
   }
 }

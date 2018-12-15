@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommandsService, CommandHistory } from './commands.service';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-terminal',
@@ -11,12 +12,13 @@ export class TerminalComponent implements OnInit {
   loading = false;
   prompt: string;
   history: CommandHistory[] = [];
-  constructor(private commandsService: CommandsService) {}
+  constructor(
+    private commandsService: CommandsService,
+    private appService: AppService
+  ) {}
 
   ngOnInit() {
     this.commandsService.history$.subscribe(h => {
-      console.log(h);
-
       this.history.push(h);
     });
     this.prompt = this.commandsService.prompt;
@@ -37,10 +39,13 @@ export class TerminalComponent implements OnInit {
       this.commandsService.gameIsRunning &&
       ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)
     ) {
-      console.log('lamo');
       if (this.commandsService.currentSignal) {
         this.commandsService.currentSignal('KEY', e.key);
       }
     }
+  }
+
+  closeTerminal() {
+    this.appService.showTerminal = false;
   }
 }

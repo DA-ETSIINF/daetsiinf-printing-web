@@ -27,5 +27,7 @@ export class AppService {
     }
   ];
 
-  constructor() { }
+  showTerminal = false;
+
+  constructor() {}
 }
