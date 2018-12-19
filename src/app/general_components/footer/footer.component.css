@@ -1,10 +1,9 @@
 footer {
   padding: 0 10px;
   margin-top: 20px;
+  color: var(--neutrals-1);
 }
 
-.link,
-.copyright {}
 
 .row {
   display: flex;

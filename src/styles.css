@@ -15,11 +15,69 @@
   --blue: #65a5c9;
   --bad: #DE1E1E;
   --good: #1eaa29;
+
+
+
+  --primary-1: #003E6B;
+  --primary-2: #0A558C;
+  --primary-3: #0F609B;
+  --primary-4: #186FAF;
+  --primary-5: #2680C2;
+  --primary-6: #4098D7;
+  --primary-7: #62B0E8;
+  --primary-8: #84C5F4;
+  --primary-9: #B6E0FE;
+  --primary-10: #DCEEFB;
+
+  --complementary-1: #8D2B0B;
+  --complementary-2: #B44D12;
+  --complementary-3: #CB6E17;
+  --complementary-4: #DE911D;
+  --complementary-5: #F0B249;
+  --complementary-6: #F7C948;
+  --complementary-7: #FADB5F;
+  --complementary-8: #FCE588;
+  --complementary-9: #FFF3C4;
+  --complementary-10: #FFFBEA;
+
+
+  --neutrals-1: #102A43;
+  --neutrals-2: #243B53;
+  --neutrals-3: #334E68;
+  --neutrals-4: #486581;
+  --neutrals-5: #627D98;
+  --neutrals-6: #829AB1;
+  --neutrals-7: #9FB3C8;
+  --neutrals-8: #BCCCDC;
+  --neutrals-9: #D9E2EC;
+  --neutrals-10: #F0F4F8;
+
+  --supporting__ok-1: #044E54;
+  --supporting__ok-2: #0A6C74;
+  --supporting__ok-3: #0E7C86;
+  --supporting__ok-4: #14919B;
+  --supporting__ok-5: #2CB1BC;
+  --supporting__ok-6: #38BEC9;
+  --supporting__ok-7: #54D1DB;
+  --supporting__ok-8: #87EAF2;
+  --supporting__ok-9: #BEF8FD;
+  --supporting__ok-10: #E0FCFF;
+
+  --supporting__error-1: #610404;
+  --supporting__error-2: #780A0A;
+  --supporting__error-3: #911111;
+  --supporting__error-4: #A61B1B;
+  --supporting__error-5: #BA2525;
+  --supporting__error-6: #D64545;
+  --supporting__error-7: #E66A6A;
+  --supporting__error-8: #F29B9B;
+  --supporting__error-9: #FACDCD;
+  --supporting__error-10: #FFEEEE;
 }
 
 body,
 html {
-  background: var(--bck);
+  background: var(--neutrals-10);
   font-family: 'Lato', sans-serif;
   z-index: 1;
   overflow-x: hidden;

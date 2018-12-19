@@ -16,7 +16,7 @@
   border-radius: 50%;
   font-size: 52px;
   transition: all 0.4s ease-in;
-  background: linear-gradient(-45deg, var(--blue), var(--purple));
+  background: var(--primary-3);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   outline: none;
 }
@@ -38,12 +38,16 @@
   right: 31px;
   bottom: 58px;
   font-size: 20px;
-  background: var(--dark-1);
-  color: var(--dark-3);
   padding: 10px;
   border-radius: 50%;
   z-index: 1;
   transition: .1s all ease-out;
+  background: var(--neutrals-8);
+  color: var(--neutrals-1);
+}
+
+.option:hover {
+  background: var(--neutrals-7);
 }
 
 .show.add {
