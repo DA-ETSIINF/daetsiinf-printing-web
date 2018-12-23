@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AppService } from '../../../app.service';
 import { fromEvent, timer, Observable } from 'rxjs';
 import { buffer, map, filter, debounce } from 'rxjs/operators';
+import { UserService } from '../../../login/user.service';
 @Component({
   selector: 'app-header-lg',
   templateUrl: './header-lg.component.html',
@@ -17,7 +18,11 @@ export class HeaderLgComponent implements OnInit {
   @Input()
   userInfo: UserInfo;
 
-  constructor(private router: Router, private appService: AppService) {}
+  constructor(
+    private router: Router,
+    private appService: AppService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     const clickStream$ = fromEvent(document.getElementById('version'), 'click');
@@ -32,5 +37,9 @@ export class HeaderLgComponent implements OnInit {
 
   goTo(route: string) {
     this.router.navigate([route]);
+  }
+
+  logout() {
+    this.userService.logout();
   }
 }
