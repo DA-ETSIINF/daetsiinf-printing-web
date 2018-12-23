@@ -68,7 +68,7 @@ app-item {
 app-queue {
   position: fixed;
   right: 100px;
-  top: calc(100vh - 44px);
+  bottom: -50%;
   width: 800px;
   transition: .2s all ease;
   z-index: 1000;
@@ -77,6 +77,11 @@ app-queue {
 @media screen and (max-width:992px) {
   main {
     padding-right: 0;
+  }
+
+  section {
+    padding-top: 70px;
+    padding-bottom: 50px;
   }
 
   .grid {
