@@ -42,7 +42,7 @@ header i {
 
 .content {
   min-height: 50vh;
-  background: var(--bck);
+  background: var(--neutrals-10);
   color: var(--neutrals-1);
   padding: 0 15px;
   height: 100%;
@@ -110,7 +110,7 @@ header i {
   width: calc(100% - 30px);
   border-top: 1px solid var(--neutrals-2);
   padding: 0 15px;
-  background: var(--bck);
+  background: var(--neutrals-10);
   transition: .3s all ease;
   display: flex;
   flex-direction: column;
