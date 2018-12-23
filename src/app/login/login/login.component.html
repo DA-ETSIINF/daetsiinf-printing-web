@@ -1,22 +1,19 @@
 <div class="container">
-  <main>
-    <h1 class="header">Bienvenido al servicio de Reprografía de la DA-ETSIINF</h1>
-    <form action="">
-      <h4 class="form__title">
-        login
-      </h4>
-      <div class="email">
-        <input type="text" name="email" placeholder="Correo" [(ngModel)]="user.username" name="email">
-        <label for="email">@alumnos.upm.es</label>
-      </div>
-      <input type="password" placeholder="Contraseña" [(ngModel)]="user.password" name="password">
-      <button (click)="login()">Iniciar sesión</button>
-    </form>
-    <div class="register">
-      <span>¿No tienes cuenta?</span>
-      <a href="" routerLink="/register">Regístrate</a>
+  <section class="login">
+    <header>
+      <h1>SERVICIO DE REPROGRAFÍA</h1>
+      <h3>DA - ETSIINF</h3>
+    </header>
+    <div class="inputs">
+      <app-text-input [labelText]="'Nombre de usuario'" [id]="'usernameInput'" (inputValue)="user.username = $event"
+        [errors]="errors.username"></app-text-input>
+      <app-text-input [labelText]="'Contraseña'" [id]="'passwordInput'" [type]="'password'" [errors]="errors.password"
+        (inputValue)="user.password = $event"></app-text-input>
     </div>
-
-    <div class="lang">English</div>
-  </main>
+    <button type="submit" (click)="login()">Login</button>
+    <span class="go-to-register">
+      ¿No tienes cuenta?
+      <a href="./register">Regístrate</a>
+    </span>
+  </section>
 </div>
