@@ -3,9 +3,7 @@
 }
 
 .upload-btn {
-  position: fixed;
-  right: 50px;
-  bottom: 120px;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,13 +17,12 @@
   background: var(--primary-3);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   outline: none;
-}
-
-.upload-btn {
   z-index: 2;
   right: 25px;
-  bottom: 55px;
+  bottom: 25px;
 }
+
+
 
 .upload-btn i {
   color: var(--white);
@@ -34,9 +31,9 @@
 }
 
 .option {
-  position: fixed;
-  right: 31px;
-  bottom: 58px;
+  position: absolute;
+  right: 33px;
+  bottom: 33px;
   font-size: 20px;
   padding: 10px;
   border-radius: 50%;
@@ -55,11 +52,39 @@
 }
 
 .show.upload {
-  bottom: 114px;
+  bottom: 83px;
   right: 47px;
 }
 
 .show.folder {
+  bottom: 42px;
   right: 84px;
-  bottom: 75px;
+}
+
+@media screen and (max-width: 992px) {
+
+  .upload-btn,
+  .option {
+    position: fixed;
+  }
+
+  .option {
+    right: 31px;
+    bottom: 58px;
+  }
+
+  .show.upload {
+    bottom: 114px;
+    right: 47px;
+  }
+
+  .show.folder {
+    right: 84px;
+    bottom: 75px;
+  }
+
+  .upload-btn {
+    right: 25px;
+    bottom: 55px;
+  }
 }

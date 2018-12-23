@@ -15,14 +15,19 @@ aside .upload {
   box-shadow: none;
   padding: 14px 10px;
   border-radius: 4px;
-  background: var(--primary-3);
-  color: var(--white);
-  border: 0;
+  background: inherit;
+  color: var(--primary-4);
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: .1em;
   cursor: pointer;
+  border: 2px solid var(--primary-4);
+}
+
+aside .upload:hover {
+  background: var(--primary-10);
+
 }
 
 aside nav {

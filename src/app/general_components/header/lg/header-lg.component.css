@@ -1,6 +1,7 @@
 header {
   align-items: center;
-  background: var(--white);
+  background: var(--primary-3);
+  color: var(--neutrals-10);
   box-shadow: 0px 0px 10px 0px var(--neutrals-5);
 }
 
@@ -12,7 +13,10 @@ header {
 }
 
 .logo-daetsiinf {
-  height: 32px;
+  height: 28px;
+  padding: 2px 6px;
+  background: var(--neutrals-10);
+  border-radius: 50%;
 }
 
 .title {
