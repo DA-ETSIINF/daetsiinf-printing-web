@@ -71,7 +71,7 @@ header i {
   font-size: 12px;
   font-weight: 700;
   background: var(--neutrals-5);
-  color: var(--white);
+  color: var(--neutrals-10);
   padding: 2px 7px;
   border-radius: 6px;
   margin-right: 10px;
@@ -85,7 +85,7 @@ header i {
   border: none;
   padding: 0 15px;
   border-radius: 10px;
-  color: var(--white);
+  color: var(--neutrals-10);
   text-transform: uppercase;
   height: 28px;
   transition: .2s all ease;

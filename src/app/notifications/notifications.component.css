@@ -8,12 +8,12 @@ section {
 }
 
 .notification {
-  background-color: var(--bck);
-  color: var(--dark-4);
+  background-color: var(--neutrals-2);
+  color: var(--neutrals-10);
   border-top: 5px solid;
   padding: 10px 15px;
   border-radius: 3px;
-  box-shadow: var(--dark-4) 0px 3px 13px -5px;
+  box-shadow: var(--neutrals-10) 0px 3px 13px -5px;
   transition: .3s all ease;
   max-width: 300px;
 }

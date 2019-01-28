@@ -30,7 +30,7 @@ header {
   right: 0px;
   font-size: 9px;
   letter-spacing: 0px;
-  background: white;
+  background: var(--complementary-5);
   color: #222;
   padding: 1px;
   border-radius: 3px;
@@ -47,7 +47,7 @@ header {
 
 .vertical-divider {
   height: 15px;
-  background: var(--dark-2);
+  background: var(--neutrals-7);
   width: 1px;
   margin: 0px 11px;
 }
@@ -55,6 +55,10 @@ header {
 .dropdown__toggle {
   display: flex;
   align-items: center;
+}
+
+.dropdown__toggle i {
+  color: var(--complementary-6);
 }
 
 .dropdown__menu {

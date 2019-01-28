@@ -9,7 +9,7 @@
 /**CLOSE MENU**/
 #close-menu {
   width: 100%;
-  background: var(--dark-4);
+  background: var(--neutrals-1);
   cursor: pointer;
 }
 
@@ -27,7 +27,7 @@
 .menu {
   z-index: 1001;
   width: 80%;
-  background: var(--white);
+  background: var(--neutrals-10);
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -35,7 +35,7 @@
 
 .menu__top {
   background: linear-gradient(45deg, var(--primary-4), var(--primary-2));
-  color: var(--white);
+  color: var(--neutrals-10);
 }
 
 .menu__top-row {

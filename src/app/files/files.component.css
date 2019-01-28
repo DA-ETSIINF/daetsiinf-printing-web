@@ -19,7 +19,7 @@ main .grid {
 }
 
 .items {
-  background: var(--white);
+  background: var(--neutrals-10);
   padding: 25px 40px;
   box-shadow: 0px 3px 19px -9px black;
   border-radius: 15px;
@@ -35,7 +35,7 @@ main .grid {
 
 h5 {
   font-size: 11px;
-  color: var(--dark-2);
+  color: var(--neutrals-4);
   text-transform: uppercase;
   margin-bottom: 10px;
 }

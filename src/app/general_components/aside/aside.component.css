@@ -60,7 +60,7 @@ aside nav ul li .files-menu__option {
 aside nav ul li.active .files-menu__option {
   width: 220px;
   border-left: 9px solid var(--primary-5);
-  background: var(--neutrals-9);
+  background: var(--neutrals-8);
   margin-left: 0;
 }
 
@@ -105,7 +105,7 @@ aside nav ul li .files-menu__option i {
 }
 
 .items i {
-  color: var(--dark-2);
+  color: var(--neutrals-4);
   font-size: 15px;
   margin-right: 5px;
 }

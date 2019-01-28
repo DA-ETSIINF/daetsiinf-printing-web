@@ -24,7 +24,7 @@ header {
   right: 0px;
   font-size: 9px;
   letter-spacing: 0px;
-  background: white;
+  background: var(--complementary-5);
   color: #222;
   padding: 1px;
   border-radius: 3px;
@@ -54,7 +54,7 @@ header {
   cursor: pointer;
   padding: 4px 0;
   background: var(--complementary-4);
-  color: var(--white);
+  color: var(--neutrals-10);
 }
 
 .active {
