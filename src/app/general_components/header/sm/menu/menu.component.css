@@ -92,10 +92,9 @@
 
 .recharge {
   cursor: pointer;
-  cursor: pointer;
   background: var(--complementary-4);
   padding: 0px 4px;
-  color: var(--white);
+  color: var(--complementary-9);
   height: 100%;
   display: flex;
   align-items: center;

@@ -87,7 +87,7 @@ export class DeleteItemComponent implements OnInit, OnDestroy {
     this.intervalSubscription.unsubscribe();
     if (difference >= 1000) {
       const trash = document.querySelector('.delete i') as any;
-      trash.style.color = this.getCSSVariable('--bad');
+      trash.style.color = this.getCSSVariable('--supporting__error-4');
       trash.style.transform = 'scale(0)';
       this.filesService.deleteItem(this.itemToDelete);
       setTimeout(() => {

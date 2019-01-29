@@ -18,18 +18,16 @@ section {
   max-width: 300px;
 }
 
-
-
 .error {
-  border-color: var(--bad);
+  border-color: var(--complementary-4);
 }
 
 .ok {
-  border-color: var(--good);
+  border-color: var(--supporting__ok-4);
 }
 
 .info {
-  border-color: var(--info);
+  border-color: var(--complementary-4);
 }
 
 .loading {
@@ -44,12 +42,12 @@ header {
 
 header i {
   font-size: 16px;
-  color: var(--dark-4);
+  color: var(--neutrals-10);
   margin-left: 15px;
 }
 
 .description {
   font-size: 13px;
   margin-top: 32px;
-  color: var(--dark-2);
+  color: var(--neutrals-9);
 }

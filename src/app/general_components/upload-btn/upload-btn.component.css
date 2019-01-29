@@ -25,7 +25,7 @@
 
 
 .upload-btn i {
-  color: var(--white);
+  color: var(--primary-10);
   font-size: 22px;
   transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
 }
@@ -39,12 +39,12 @@
   border-radius: 50%;
   z-index: 1;
   transition: .1s all ease-out;
-  background: var(--neutrals-8);
-  color: var(--neutrals-1);
+  background: var(--complementary-4);
+  color: var(--complementary-10);
 }
 
 .option:hover {
-  background: var(--neutrals-7);
+  background: var(--complementary-5);
 }
 
 .show.add {

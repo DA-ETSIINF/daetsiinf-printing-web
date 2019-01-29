@@ -25,8 +25,8 @@ export class FundsComponent implements OnInit {
   getPointColors(data: number[]) {
     const colors: String[] = [];
     const [badColor, goodColor] = [
-      this.getCSSVariable('--bad'),
-      this.getCSSVariable('--good')
+      this.getCSSVariable('--supporting__error-4'),
+      this.getCSSVariable('--supporting__ok-4')
     ];
     let lastValue = 0;
     data.map(newValue => {

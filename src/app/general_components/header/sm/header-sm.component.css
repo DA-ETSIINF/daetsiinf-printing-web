@@ -6,9 +6,14 @@ header {
 }
 
 .header {
-  padding: 15px 25px 0px 25px;
+  padding: 10px 25px 10px 25px;
   display: flex;
   justify-content: space-between;
+}
+
+.header i{
+  display: flex;
+  align-items: center;
 }
 
 .title {
@@ -20,9 +25,9 @@ header {
 
 .title span {
   position: absolute;
-  bottom: 0px;
+  bottom: -4px;
   right: 0px;
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 0px;
   background: var(--complementary-5);
   color: #222;
@@ -39,7 +44,6 @@ header {
 
 .files-bar {
   width: 100%;
-  margin-top: 6px;
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 600;
@@ -52,7 +56,7 @@ header {
   width: 50%;
   text-align: center;
   cursor: pointer;
-  padding: 4px 0;
+  padding: 2px 0;
   background: var(--complementary-4);
   color: var(--neutrals-10);
 }
@@ -61,7 +65,7 @@ header {
   width: 50vw;
   position: absolute;
   margin-top: -4px;
-  border-bottom: 0px solid var(--primary);
+  border-bottom: 0px solid var(--primary-4);
   transition: 0.3s all cubic-bezier(0.19, 1, 0.22, 1);
 }
 

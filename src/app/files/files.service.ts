@@ -25,6 +25,7 @@ import { NotificationsService } from '../notifications/notifications.service';
   providedIn: 'root'
 })
 export class FilesService implements OnInit {
+  
   files: Folder[] = [];
   files$ = new Subject<Folder[]>();
   showingFiles$ = new BehaviorSubject<ShowedItems[]>([
