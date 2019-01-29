@@ -1,6 +1,6 @@
 section.terminal {
   position: absolute;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--primary-5);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -10,8 +10,8 @@ section.terminal {
 }
 
 header {
-  color: var(--dark-4);
-  background: var(--white);
+  color: var(--neutrals-1);
+  background: var(--neutrals-10);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,12 +34,12 @@ header i {
 }
 
 header i:hover {
-  background: var(--dark-1);
+  background: var(--neutrals-9);
 }
 
 header i.close:hover {
-  background: var(--bad);
-  color: var(--white);
+  background: var(--supporting__error-5);
+  color: var(--neutrals-10);
 
 }
 

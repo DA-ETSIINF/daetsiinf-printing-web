@@ -4,7 +4,6 @@
   width: 100vw;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, .4);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -12,6 +11,7 @@
   transition: .2s all ease;
   opacity: 1;
   animation: opacity .2s ease;
+  background: rgba(0, 0, 0, .4);
 }
 
 @keyframes opacity {
@@ -28,7 +28,7 @@
   max-width: 400px;
   width: 60vw;
   height: 20vh;
-  background: var(--bck);
+  background: var(--neutrals-10);
   padding: 25px 30px;
   z-index: 1001;
   border-radius: 4px;
@@ -53,7 +53,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--dark-4);
+  color: var(--neutrals-2);
 }
 
 .change-name header span {
@@ -69,19 +69,18 @@
   width: 100%;
   margin: 0 auto;
   border: 0;
-  color: var(--dark-4);
-  border-bottom: 2px solid var(--dark-3);
+  color: var(--neutrals-2);
+  border-bottom: 1px solid var(--neutrals-2);
   background: none;
   font-size: 17px;
   padding: 4px;
   margin-top: 50px;
   outline: none;
-  transition: .1s all ease;
 }
 
 .change-name input:focus {
   border: none;
-  border-bottom: 4px solid var(--blue);
+  border-bottom: 1px solid var(--primary-3);
 }
 
 .change-name .buttons {
@@ -94,11 +93,11 @@
 .change-name .buttons button {
   font-size: 13px;
   font-weight: 700;
-  background: linear-gradient(90deg, var(--blue), var(--purple));
+  background: var(--primary-3);
   border: none;
   padding: 9px 21px;
   border-radius: 10px;
-  color: var(--white);
+  color: var(--neutrals-10);
   text-transform: uppercase;
   height: 33px;
   transition: .2s all ease;
@@ -108,7 +107,7 @@
 
 .change-name .buttons .cancel {
   background: none;
-  color: var(--dark-3);
+  color: var(--neutrals-1);
   margin-right: 10px;
 }
 
@@ -133,7 +132,7 @@
   }
 
   .change-name input:focus {
-    border-bottom-width: 2px;
+    border-bottom-width: 1px;
   }
 
   .change-name .buttons button {

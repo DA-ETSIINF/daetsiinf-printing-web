@@ -1,10 +1,9 @@
 footer {
   padding: 0 10px;
   margin-top: 20px;
+  color: var(--neutrals-1);
 }
 
-.link,
-.copyright {}
 
 .row {
   display: flex;
@@ -57,7 +56,7 @@ svg {
   width: 23px;
   height: 23px;
   padding: 5px;
-  fill: var(--dark-2);
+  fill: var(--neutrals-2);
 }
 
 .github svg {

@@ -7,7 +7,8 @@ main {
   min-height: calc(100vh - 114px);
   position: relative;
   flex: 1px;
-  padding-right: 50px;
+  margin: 0 40px;
+  transition: .2s all ease;
 }
 
 main .grid {
@@ -15,25 +16,32 @@ main .grid {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  padding-bottom: 20px;
 }
 
-main {
-  margin: 0 20px;
-  transition: .2s all ease;
+.items {
+  background: var(--neutrals-10);
+  padding: 25px 40px;
+  box-shadow: 0px 3px 19px -9px black;
+  border-radius: 15px;
+  border: 5px dashed transparent;
+  position: relative;
 }
 
-main.hovering {
-  background: var(--dark-1);
+.items.hovering {
+  background: var(--complementary-10);
   border-radius: 5px;
-  border: 5px dashed var(--dark-3);
+  border: 5px dashed var(--complementary-5);
 }
 
 h5 {
   font-size: 11px;
-  color: var(--dark-2);
+  color: var(--neutrals-4);
   text-transform: uppercase;
   margin-bottom: 10px;
+}
+
+.items section:not(:first-child) {
+  margin-top: 25px;
 }
 
 .empty p,
@@ -61,8 +69,8 @@ app-item {
 
 .selected {
   border-radius: 15px;
-  border: 5px solid var(--purple);
-  background: rgb(233, 233, 233);
+  border: 5px solid var(--complementary-5);
+  background: var(--complementary-9);
 }
 
 app-queue {

@@ -75,7 +75,7 @@
 
 body,
 html {
-  background: var(--bck);
+  background: var(--neutrals-9);
   font-family: 'Lato', sans-serif;
   z-index: 1;
   overflow-x: hidden;
@@ -88,7 +88,7 @@ html {
 
 .horizontal-divider {
   width: 100%;
-  background: var(--dark-2);
+  background: var(--neutrals-3);
   height: 1px;
   opacity: 0.4;
   margin: 7px 0;
