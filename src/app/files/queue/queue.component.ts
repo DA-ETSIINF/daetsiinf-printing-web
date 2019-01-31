@@ -28,6 +28,7 @@ export class QueueComponent implements OnInit {
   ) {
     this.filesService.itemsInQueue$.subscribe(e => {
       this.filesInQueue = e;
+      console.log(this.filesInQueue);
     });
     const url = this.router.routerState.snapshot.url;
     if (url !== '/quick') {

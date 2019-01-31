@@ -26,12 +26,15 @@
           <span class="name">{{file.name}}</span>
           <span class="npages">{{file.npages}}</span>
           <div class="doubled-sided options">
+            <app-checkbox [checked]="file.doubleSided" (checkedEmitter)="setDoubledSided($event, i)"></app-checkbox>
+            <!--
             <div (click)="setDoubledSided(false, i)" [ngClass]="{'active':!file.doubledSided}">
               <span>No</span>
             </div>
             <div (click)="setDoubledSided(true, i)" [ngClass]="{'active':file.doubledSided}">
               <span>Si</span>
             </div>
+            -->
           </div>
           <div class="ncopies">
             <i class="material-icons" [ngClass]="{'disabled':file.ncopies <= 1}" (click)="file.ncopies = file.ncopies >= 1 ? file.ncopies - 1 : file.ncopies">remove</i>
