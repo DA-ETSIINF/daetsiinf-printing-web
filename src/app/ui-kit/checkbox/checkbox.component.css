@@ -1,0 +1,33 @@
+input[type='checkbox'] {
+    position: relative;
+    appearance: none; 
+    outline: none;
+    width: 40px;
+    height: 20px;
+    background-color: var(--neutrals-10);
+    border: 1px solid var(--neutrals-9);
+    border-radius: 50px; box-shadow: inset -20px 0 0 0 var(--neutrals-8);
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+input[type='checkbox']:after {
+    content: "";
+    position: absolute;
+    top: 1px; left: 1px;
+    width: 17px;
+    height: 17px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+input[type='checkbox']:checked {
+    border-color: var(--complementary-4);
+    box-shadow: inset 20px 0 0 0 var(--complementary-4);
+}
+
+input[type='checkbox']:checked:after {
+    left: 0px;
+    box-shadow: -2px 4px 3px rgba(0,0,0,0.05);
+}
