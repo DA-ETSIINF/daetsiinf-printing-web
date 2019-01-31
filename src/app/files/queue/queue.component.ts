@@ -76,17 +76,14 @@ export class QueueComponent implements OnInit {
     setTimeout(() => this.setStep('first'), 100);
   }
 
-  removeFile(id: number) {
-    let elems;
-    this.filesService.itemsInQueue$.subscribe(a => (elems = a)).unsubscribe();
-    const index = elems.find(e => e.id === id);
-
-    if (elems.length === 1) {
+  removeFile(index: number) {
+    const currentItems = this.filesService.itemsInQueue$.getValue();
+    if (currentItems.length === 1) {
       this.cancel();
     }
-
     setTimeout(() => {
-      elems.splice(elems.indexOf(index), 1);
+      currentItems.splice(index, 1);
+      this.filesService.itemsInQueue$.next(currentItems);
     }, 150);
   }
 

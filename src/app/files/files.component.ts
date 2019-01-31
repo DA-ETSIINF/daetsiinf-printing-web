@@ -86,7 +86,6 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   select(event, itemInfo: FileItem | FolderItem) {
-    console.log('____');
     if (!event.ctrlKey) {
       this.deselect();
     }

@@ -20,7 +20,7 @@
       <section *ngIf="itemShowing.files.length !== 0">
         <h5>archivos</h5>
         <div class="grid files">
-          <app-item *ngFor="let item of itemShowing.files" [item]="item" (press)="select($event, item, 'files')"
+          <app-item *ngFor="let item of itemShowing.files; index as i" [item]="item" [index]="i" (press)="select($event, item, 'files')"
             (click)="select($event, item)"></app-item>
         </div>
       </section>

@@ -16,6 +16,9 @@ export class ItemComponent implements OnInit {
   showOptions$: Subscription;
   showOptions: boolean;
 
+  @Input()
+  index: number;
+
   isFile = false;
   constructor(private filesService: FilesService) {}
 
@@ -44,15 +47,7 @@ export class ItemComponent implements OnInit {
   }
 
   addFileToQueue() {
-    ItemComponent.currentSelected.files.map(file => {
-      if ('type' in file) {
-        this.filesService.addFileToQueue(
-          file.id,
-          file.name,
-          (file as FileItem).npages
-        );
-      }
-    });
+    this.filesService.addFileToQueue(this.index);
     this.toggleOptions();
   }
 
