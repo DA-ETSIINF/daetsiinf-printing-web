@@ -274,7 +274,8 @@ export class FilesService implements OnInit {
           name: file.name,
           npages: file.npages,
           doubleSided: true,
-          ncopies: 1
+          ncopies: 1,
+          color: false
         };
         this.itemsInQueue$.next([
           ...this.itemsInQueue$.getValue(),

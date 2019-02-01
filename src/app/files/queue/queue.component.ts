@@ -63,6 +63,10 @@ export class QueueComponent implements OnInit {
     this.filesInQueue[i].doubleSided = bool;
   }
 
+  setColor(bool: boolean, i: number) {
+    this.filesInQueue[i].color = bool;
+  }
+
   getPrice(file: FileToPrint) {
     let price = file.npages * 0.04 * file.ncopies;
     if (!file.doubleSided) {

@@ -129,7 +129,7 @@ header i {
 
 .grid>div {
   display: grid;
-  grid-template-columns: 1fr 100px 110px 100px 80px 81px;
+  grid-template-columns: 1fr 100px 110px 90px 100px 80px 81px;
   grid-template-rows: 40px;
   align-items: center;
 }
@@ -144,6 +144,10 @@ header i {
 
 .header span {
   white-space: nowrap;
+}
+
+.header span.center {
+  text-align: center;
 }
 
 .header span:not(.name),
@@ -316,7 +320,7 @@ input.ncopies {
 
 @media screen and (max-width:992px) {
   .grid>div {
-    grid-template-columns: 150px 100px 110px 100px 80px 81px;
+    grid-template-columns: 150px 100px 110px 90px 100px 80px 81px;
   }
 
   input.ncopies {

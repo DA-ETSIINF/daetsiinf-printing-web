@@ -18,6 +18,7 @@
           <span class="name">Nombre</span>
           <span class="npages">Nº páginas</span>
           <span class="doubled-sided">Doble cara</span>
+          <span class="color center">Color</span>
           <span class="ncopies">Nº copias</span>
           <span class="price">Precio</span>
           <span class="remove"></span>
@@ -27,14 +28,9 @@
           <span class="npages">{{file.npages}}</span>
           <div class="doubled-sided options">
             <app-checkbox [checked]="file.doubleSided" (checkedEmitter)="setDoubledSided($event, i)"></app-checkbox>
-            <!--
-            <div (click)="setDoubledSided(false, i)" [ngClass]="{'active':!file.doubledSided}">
-              <span>No</span>
-            </div>
-            <div (click)="setDoubledSided(true, i)" [ngClass]="{'active':file.doubledSided}">
-              <span>Si</span>
-            </div>
-            -->
+          </div>
+          <div class="color options">
+            <app-checkbox [checked]="file.color" (checkedEmitter)="setColor($event, i)"></app-checkbox>
           </div>
           <div class="ncopies">
             <i class="material-icons" [ngClass]="{'disabled':file.ncopies <= 1}" (click)="file.ncopies = file.ncopies >= 1 ? file.ncopies - 1 : file.ncopies">remove</i>

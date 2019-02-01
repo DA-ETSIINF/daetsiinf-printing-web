@@ -25,6 +25,7 @@ main .grid {
   border-radius: 15px;
   border: 5px dashed transparent;
   position: relative;
+  height: calc(100% - 112px);
 }
 
 .items.hovering {
