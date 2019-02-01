@@ -1,30 +1,24 @@
 <div class="container">
-  <main>
-    <h1 class="header">Bienvenido al servicio de Reprografía de la ETSIINF</h1>
-    <form action="">
-      <h4 class="form__title">
-        registro
-      </h4>
-      <input type="text" placeholder="Nombre de usuario" name="username" [(ngModel)]="user.username">
-      <div class="email">
-        <input type="text" name="email" placeholder="Correo" [(ngModel)]="user.email">
-        <label for="email">@alumnos.upm.es</label>
-      </div>
-      <input type="password" [(ngModel)]="user.password" name="password" placeholder="Contraseña">
-      <input type="password" placeholder="Repita la contraseña">
-      <div class="conditions">
-        <label>
-          <input type="checkbox">
-          <span class="conditions__pseudo-checkbox"></span>Aceptar términos y Condiciones
-        </label>
-      </div>
-      <button (click)="register()">Registro</button>
-    </form>
-    <div class="register">
-      <span>¿Ya tienes cuenta?</span>
-      <a href="" routerLink="/login">Iniciar sesión</a>
+  <section class="login">
+    <header>
+      <h1>SERVICIO DE REPROGRAFÍA</h1>
+      <h3>DA - ETSIINF</h3>
+    </header>
+    <div class="inputs">
+      <app-text-input [labelText]="'Nombre de usuario'" [id]="'usernameInput'" (inputValue)="user.username = $event"
+        [errors]="errors.username"></app-text-input>
+      <app-text-input [labelText]="'Email'" [id]="'emaileInput'" (inputValue)="user.email = $event"
+        [errors]="errors.email"></app-text-input>
+      <app-text-input [labelText]="'Contraseña'" [id]="'passwordInput'" [type]="'password'" [errors]="errors.password"
+        (inputValue)="user.password = $event"></app-text-input>
+      <app-text-input [labelText]="'Repita la contraseña'" [id]="'passwordInput2'" [type]="'password'" [errors]="errors.password2"
+        (inputValue)="password2 = $event"></app-text-input>
     </div>
-
-    <div class="lang">English</div>
-  </main>
+    <button type="submit" (click)="register()">Registrarse</button>
+    <span class="go-to-login">
+      ¿Ya tienes cuenta?
+      <a routerLink="/login">Login</a>
+    </span>
+  </section>
 </div>
+

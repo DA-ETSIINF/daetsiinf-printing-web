@@ -2,14 +2,15 @@ main {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  background: var(--neutrals-10);
 }
 
 .message {
   width: 100%;
-  padding: 20px;
+  padding: 1em;
   text-align: center;
-  background: var(--dark-3);
-  color: var(--bck);
+  color: var(--complementary-8);
+  background: var(--supporting__error-3);
   font-weight: 700;
 }
 
@@ -17,7 +18,7 @@ main {
   flex: 1;
   margin: 40px;
   border-radius: 5px;
-  border: 5px dashed var(--dark-1);
+  border: 5px dashed var(--primary-4);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +41,7 @@ input {
 
 input+label {
   display: inline-block;
-  border: 1px solid var(--dark-1);
+  border: 1px solid var(--neutrals-2);
   padding: 5px 10px;
   border-radius: 5px;
   margin-top: 10px;
@@ -48,11 +49,11 @@ input+label {
 
 input+label:hover {
   cursor: pointer;
-  background: var(--dark-1)
+  background: var(--neutrals-8);
 }
 
 .hovering {
-  background: var(--dark-1);
-  border: 5px dashed var(--dark-3);
+  background: var(--complementary-9);
+  border: 5px dashed var(--complementary-4);
   transition: .2s all ease;
 }

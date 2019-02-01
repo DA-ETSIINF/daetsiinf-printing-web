@@ -15,14 +15,19 @@ aside .upload {
   box-shadow: none;
   padding: 14px 10px;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--blue), var(--purple));
-  color: var(--white);
-  border: 0;
+  background: inherit;
+  color: var(--primary-4);
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: .1em;
   cursor: pointer;
+  border: 2px solid var(--primary-4);
+}
+
+aside .upload:hover {
+  background: var(--primary-10);
+
 }
 
 aside nav {
@@ -54,8 +59,8 @@ aside nav ul li .files-menu__option {
 
 aside nav ul li.active .files-menu__option {
   width: 220px;
-  border-left: 9px solid var(--blue);
-  background: #e4e4e4;
+  border-left: 9px solid var(--primary-5);
+  background: var(--neutrals-8);
   margin-left: 0;
 }
 
@@ -69,7 +74,7 @@ aside nav ul li .files-menu__option i {
 }
 
 .divider {
-  background: #c0c0c0;
+  background: pink;
   height: 1px;
   width: 200px;
   margin: 10px 0;
@@ -100,7 +105,7 @@ aside nav ul li .files-menu__option i {
 }
 
 .items i {
-  color: var(--dark-2);
+  color: var(--neutrals-4);
   font-size: 15px;
   margin-right: 5px;
 }

@@ -17,7 +17,7 @@
 }
 
 .queue {
-  background: var(--dark-4);
+  background: var(--neutrals-3);
   color: #fff;
   z-index: 100;
   height: 100%;
@@ -42,8 +42,8 @@ header i {
 
 .content {
   min-height: 50vh;
-  background: var(--bck);
-  color: var(--dark-4);
+  background: var(--neutrals-10);
+  color: var(--neutrals-1);
   padding: 0 15px;
   height: 100%;
   position: relative;
@@ -70,8 +70,8 @@ header i {
 .step-title h5 span.step-number {
   font-size: 12px;
   font-weight: 700;
-  background: var(--dark-2);
-  color: var(--white);
+  background: var(--neutrals-5);
+  color: var(--neutrals-10);
   padding: 2px 7px;
   border-radius: 6px;
   margin-right: 10px;
@@ -81,11 +81,11 @@ header i {
   margin: 0 auto;
   font-size: 12px;
   font-weight: 700;
-  background: linear-gradient(90deg, var(--blue), var(--purple));
+  background: var(--primary-4);
   border: none;
   padding: 0 15px;
   border-radius: 10px;
-  color: var(--white);
+  color: var(--neutrals-10);
   text-transform: uppercase;
   height: 28px;
   transition: .2s all ease;
@@ -99,7 +99,7 @@ header i {
 
 .step-title .next.cancel {
   background: none;
-  color: var(--dark-3);
+  color: var(--neutrals-3);
   margin-right: 10px;
 }
 
@@ -108,9 +108,9 @@ header i {
   top: calc(100% - 68px);
   left: 0;
   width: calc(100% - 30px);
-  border-top: 1px solid var(--dark-2);
+  border-top: 1px solid var(--neutrals-2);
   padding: 0 15px;
-  background: var(--bck);
+  background: var(--neutrals-10);
   transition: .3s all ease;
   display: flex;
   flex-direction: column;
@@ -129,13 +129,13 @@ header i {
 
 .grid>div {
   display: grid;
-  grid-template-columns: 1fr 100px 110px 100px 80px 81px;
+  grid-template-columns: 1fr 100px 110px 90px 100px 80px 81px;
   grid-template-rows: 40px;
   align-items: center;
 }
 
 .header {
-  color: var(--dark-2);
+  color: var(--neutrals-4);
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 700;
@@ -144,6 +144,10 @@ header i {
 
 .header span {
   white-space: nowrap;
+}
+
+.header span.center {
+  text-align: center;
 }
 
 .header span:not(.name),
@@ -187,8 +191,8 @@ header i {
 }
 
 .options div.active {
-  background: var(--blue);
-  color: var(--white);
+  background: var(--complementary-6);
+  color: var(--complementary-1);
 }
 
 .options div span {
@@ -203,8 +207,8 @@ header i {
 
 .ncopies i {
   font-size: 16px;
-  color: var(--bck);
-  background: var(--blue);
+  background: var(--complementary-6);
+  color: var(--complementary-1);
   padding: 6px;
   border-radius: 50%;
   width: 12px;
@@ -212,6 +216,7 @@ header i {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 7px;
 }
 
 .ncopies i.disabled {
@@ -228,7 +233,7 @@ input.ncopies {
 
 
 .remove {
-  color: var(--bad);
+  color: var(--supporting__error-5);
   font-weight: 700;
   cursor: pointer;
   transition: .1s all ease;
@@ -237,7 +242,7 @@ input.ncopies {
 .more-info {
   width: calc(100% - 30px);
   font-style: italic;
-  color: var(--dark-2);
+  color: var(--neutrals-5);
   font-size: 12px;
   position: fixed;
   margin-top: 10px;
@@ -281,7 +286,7 @@ input.ncopies {
   width: 150px;
   white-space: nowrap;
   text-align: right;
-  color: var(--dark-2);
+  color: var(--neutrals-1);
 }
 
 .data>div .amount {
@@ -290,32 +295,32 @@ input.ncopies {
 }
 
 .data .error {
-  color: var(--bad);
+  color: var(--supporting__error-5);
 }
 
 .alert {
   padding: 7px 5px;
-  border: 2px solid var(--bad);
   width: 90%;
   max-width: 300px;
   border-radius: 5px;
   text-align: center;
-  color: var(--bad);
+  color: var(--supporting__error-3);
   font-weight: 700;
   margin: 20px auto;
+  background: var(--supporting__error-9);
 }
 
 .difference-separator {
   width: 90%;
   height: .3px;
-  background: var(--dark-2);
+  background: var(--neutrals-2);
   margin: 4px 0;
   margin-left: 10%;
 }
 
 @media screen and (max-width:992px) {
   .grid>div {
-    grid-template-columns: 150px 100px 110px 100px 80px 81px;
+    grid-template-columns: 150px 100px 110px 90px 100px 80px 81px;
   }
 
   input.ncopies {

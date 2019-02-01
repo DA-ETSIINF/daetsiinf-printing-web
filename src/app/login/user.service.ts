@@ -67,8 +67,11 @@ export class UserService implements OnInit {
         console.log(info);
       });
   }
+
   logout() {
     localStorage.removeItem('currentUser');
+    console.log('Login out...');
+    this.router.navigate(['/login']);
   }
 
   fetchProfileInfo() {

@@ -2,7 +2,7 @@
   <div class="header">
     <img class="logo-daetsiinf" src=".\assets\img\logos\daetsiinf.png">
     <h1 class="title">printf.es
-      <span>{{version}}</span>
+      <span id="version">{{version}}</span>
     </h1>
     <div class="header__right">
       <div class="balance">{{userInfo.funds}} €</div>
@@ -30,7 +30,7 @@
               <span>Historial de fondos</span>
             </li>
             <div class="horizontal-divider"></div>
-            <li>
+            <li (click)=logout()>
               <i class="material-icons">exit_to_app</i>
               <span>Cerrar sesión</span>
             </li>

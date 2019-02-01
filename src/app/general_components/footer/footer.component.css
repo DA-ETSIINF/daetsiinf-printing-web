@@ -1,11 +1,9 @@
 footer {
   padding: 0 10px;
   margin-top: 20px;
+  color: var(--neutrals-1);
 }
 
-.link,
-.copyright {
-}
 
 .row {
   display: flex;
@@ -23,10 +21,12 @@ footer {
   font-size: 13px;
   padding: 7px 0;
 }
-.link a{
+
+.link a {
   text-decoration: none;
   color: inherit;
 }
+
 .copyright {
   display: flex;
   flex-direction: column;
@@ -37,4 +37,29 @@ footer {
   font-size: 14px;
   margin-right: 3px;
   text-align: center;
+}
+
+.icons {
+  display: flex;
+}
+
+.icons>a {
+  text-decoration: none;
+  color: initial;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+
+svg {
+  width: 23px;
+  height: 23px;
+  padding: 5px;
+  fill: var(--neutrals-2);
+}
+
+.github svg {
+  width: 17px;
+  margin-left: 20px;
 }

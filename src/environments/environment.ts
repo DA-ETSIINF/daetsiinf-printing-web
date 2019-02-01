@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  version: 'FECUNDADA',
+  version: 'CIGOTO',
   server: 'http://localhost',
   port: '8000'
 };

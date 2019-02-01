@@ -1,0 +1,11 @@
+<div class="input-container" [ngClass]="{'active': isFocus, 'error': errors.length > 0}">
+  <label for="input-1">{{labelText}}</label>
+  <input type="{{type}}" id="{{id}}" name="input-1" (focus)="isFocus = true" (focusout)="isFocus = false" (keypress)="OnInputChange()"
+    spellcheck="false">
+  <div class="errors" *ngIf="errors.length > 0">
+    <i class="material-icons">error_outline</i>
+    <ul>
+      <li *ngFor="let error of errors">{{error}}</li>
+    </ul>
+  </div>
+</div>

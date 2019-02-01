@@ -10,13 +10,16 @@ import { UserInfo } from '../../models';
 export class HeaderComponent implements OnInit {
   userInfo: UserInfo;
 
-  constructor(private appComponent: AppComponent, private userService: UserService) {}
+  constructor(
+    private appComponent: AppComponent,
+    private userService: UserService
+  ) {}
 
   getDeviceWidth(): string {
     return this.appComponent.deviceWidth;
   }
 
   ngOnInit() {
-    this.userService.userInfo$.subscribe(info => this.userInfo = info);
+    this.userService.userInfo$.subscribe(info => (this.userInfo = info));
   }
 }

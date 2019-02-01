@@ -31,6 +31,8 @@ import { VersionsComponent } from './versions/versions.component';
 import { CreateFolderComponent } from './files/create-folder/create-folder.component';
 import { TerminalComponent } from './terminal/terminal.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { TextInputComponent } from './ui-kit/text-input/text-input.component';
+import { CheckboxComponent } from './ui-kit/checkbox/checkbox.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +60,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     VersionsComponent,
     CreateFolderComponent,
     TerminalComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    TextInputComponent,
+    CheckboxComponent
   ],
   imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
   providers: [

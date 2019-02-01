@@ -1,0 +1,92 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  margin: 15px auto;
+  --padding: 4px;
+  --placeholder__padding: 10px;
+  --input__font-size: 15px;
+  --placeholder__font-size: 12px;
+  --errors_font-size: 12px;
+  --border-radius: 4px;
+}
+
+.input-container label {
+  position: absolute;
+  top: -8px;
+  padding: 0 var(--padding);
+  color: var(--neutrals-6);
+  margin-left: var(--placeholder__padding);
+  font-size: var(--placeholder__font-size);
+  background: #fff;
+  user-select: none;
+}
+
+.input-container.active label {
+  color: var(--primary-7);
+}
+
+.input-container.error label {
+  color: var(--supporting__error-6);
+}
+
+.input-container input {
+  margin: 2px auto;
+  border: 1px solid var(--neutrals-6);
+  border-radius: var(--border-radius);
+  padding: var(--placeholder__padding);
+  color: var(--neutrals-2);
+  outline: 0;
+  font-size: var(--input__font-size);
+  height: 28px;
+  width: calc(100% - 2 * var(--placeholder__padding));
+}
+
+.input-container input:focus {
+  margin: 1px auto;
+  border: 2px solid var(--primary-7);
+}
+
+.input-container.error input,
+.input-container.error input:focus {
+  margin: 1px auto;
+  border: 2px solid var(--supporting__error-6);
+}
+
+.input-container.error input {
+  border-color: var(--supporting__error-6);
+}
+
+
+/*Errors*/
+.input-container.error .errors {
+  font-size: var(--errors_font-size);
+  display: flex;
+  align-items: center;
+  background: var(--supporting__error-9);
+  padding: 4px 10px;
+  border: 2px solid var(--supporting__error-6);
+  border-radius: var(--border-radius);
+  width: calc(100% - 2 * var(--placeholder__padding));
+  margin-top: 1px;
+  margin-bottom: 15px;
+}
+
+.input-container.error .errors ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-left: 25px;
+  width: 100%;
+}
+
+.input-container.error .errors li {
+  margin: 3px 5px;
+}
+
+.input-container.error .errors i {
+  color: var(--supporting__error-4);
+  font-size: 18px;
+  margin-top: 3px;
+}

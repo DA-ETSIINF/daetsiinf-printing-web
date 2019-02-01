@@ -25,6 +25,7 @@ import { NotificationsService } from '../notifications/notifications.service';
   providedIn: 'root'
 })
 export class FilesService implements OnInit {
+  
   files: Folder[] = [];
   files$ = new Subject<Folder[]>();
   showingFiles$ = new BehaviorSubject<ShowedItems[]>([
@@ -52,6 +53,8 @@ export class FilesService implements OnInit {
 
   currentPage: string;
 
+  // 0 means my-files
+  // 1 means shared-with-me
   index$ = new BehaviorSubject<0 | 1>(0);
 
   randomNames: string[][] = [
@@ -175,6 +178,7 @@ export class FilesService implements OnInit {
           data = this.handleData(data as Folder[]);
           this.files = data as Folder[];
           this.files$.next(this.files);
+          console.log("%cEstructura de ficheros:", "background:#dedede; color:#333;");
           console.log(this.files);
           this.showingFiles$.next([
             this.updateShowing(-1, 'myFiles'),
@@ -261,11 +265,24 @@ export class FilesService implements OnInit {
     }
   }
 
-  addFileToQueue(documentId: number, name: string, npages: number) {
-    let b: FileToPrint[];
-    this.itemsInQueue$.subscribe(a => (b = a)).unsubscribe();
-    b.push({ documentId, name, npages, doubleSided: true, ncopies: 1 });
-    this.itemsInQueue$.next(b);
+  addFileToQueue(index: number) {
+    this.showingFiles$.subscribe(data => {
+      this.index$.subscribe(i => {
+        const file = data[i].files[index];
+        const fileToPrint: FileToPrint = {
+          documentId: file.id,
+          name: file.name,
+          npages: file.npages,
+          doubleSided: true,
+          ncopies: 1,
+          color: false
+        };
+        this.itemsInQueue$.next([
+          ...this.itemsInQueue$.getValue(),
+          ...[fileToPrint]
+        ]);
+      });
+    });
   }
 
   createFolder(name: string) {

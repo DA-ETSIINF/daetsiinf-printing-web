@@ -49,6 +49,7 @@ export interface FileToPrint {
   npages: number;
   doubleSided: boolean;
   ncopies: number;
+  color: boolean;
 }
 
 export interface Notification {

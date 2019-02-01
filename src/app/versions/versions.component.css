@@ -13,7 +13,7 @@ main{
 .version {
     padding: 40px 20px;
     padding-top: 0;
-    border-bottom: 2px solid var(--dark-1);
+    border-bottom: 2px solid var(--neutrals-3);
 }
 
 h2{
@@ -21,7 +21,7 @@ h2{
 }
 
 .date {
-    color: var(--dark-2);
+    color: var(--neutrals-5);
     font-size: 14px;
 }
 

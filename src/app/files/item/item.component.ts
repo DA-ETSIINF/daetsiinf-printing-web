@@ -9,13 +9,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
+  static currentSelected: ShowedItems;
   @Input()
   item: FolderItem | FileItem;
 
   showOptions$: Subscription;
   showOptions: boolean;
 
-  currentSelected: ShowedItems;
+  @Input()
+  index: number;
 
   isFile = false;
   constructor(private filesService: FilesService) {}
@@ -25,7 +27,7 @@ export class ItemComponent implements OnInit {
       b => (this.showOptions = b)
     );
     this.filesService.currentSelected$.subscribe(files => {
-      this.currentSelected = files;
+      ItemComponent.currentSelected = files;
     });
     this.isFile = 'type' in this.item;
   }
@@ -45,11 +47,7 @@ export class ItemComponent implements OnInit {
   }
 
   addFileToQueue() {
-    this.currentSelected.files.map(file => {
-      if ('type' in file) {
-        this.filesService.addFileToQueue(file.id, file.name, (file as FileItem).npages);
-      }
-    });
+    this.filesService.addFileToQueue(this.index);
     this.toggleOptions();
   }
 
