@@ -10,7 +10,6 @@ import {
   FileItem
 } from '../models';
 import { AppComponent } from '../app.component';
-import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-files',
@@ -116,5 +115,13 @@ export class FilesComponent implements OnInit, OnDestroy {
 
   droppedFiles(event) {
     this.fileService.uploadChange(event);
+  }
+
+  triggerUpload() {
+    this.fileService.triggerUpload();
+  }
+
+  triggerCreateFolder() {
+    this.fileService.createFolder$.next();
   }
 }

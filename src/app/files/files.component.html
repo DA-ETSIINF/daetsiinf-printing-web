@@ -8,7 +8,17 @@
     <div class="items" appDropZone (hovered)="toggleHover($event)" (dropped)="droppedFiles($event)" [class.hovering]="isHovering">
       <section class="empty" *ngIf="itemShowing.files.length + itemShowing.folders.length === 0">
         <img src="./assets/img/svg/empty.svg">
-        <p>No hay archivos D':</p>
+        <p>Carpeta vacía, comencemos...</p>
+        <div class="buttons">
+          <button (click)="triggerCreateFolder()">
+            <i class="material-icons">folder</i>
+            <span>Crear carpeta</span>
+          </button>
+          <button (click)="triggerUpload()">
+            <i class="material-icons">cloud_upload</i>
+            <span>Subir archivo</span>
+          </button>
+        </div>
       </section>
       <section *ngIf="itemShowing.folders.length !== 0">
         <h5>carpetas</h5>
