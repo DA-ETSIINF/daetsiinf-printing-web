@@ -10,29 +10,32 @@
     <h5 class="user__email">{{userInfo.email}}</h5>
   </div>
   <div class="menu__balance">
-    <span class="balance">SALDO: </span>
+    <span class="balance">
+      <span translate="balance"></span>
+      <span>: </span>
+    </span>
     <span class="balance__quantity">{{userInfo.funds}} €</span>
-    <span class="recharge">Recargar</span>
+    <span class="recharge" translate="recharge"></span>
   </div>
 
   <nav>
     <ul>
       <li>
         <i class="material-icons">insert_drive_file</i>
-        <span>Documentos</span>
+        <span translate="my_files"></span>
       </li>
       <li (click)="goTo('profile')">
         <i class="material-icons">settings</i>
-        <span>Mis datos</span>
+        <span translate="my_data"></span>
       </li>
       <li (click)="goTo('funds')">
         <i class="material-icons">history</i>
-        <span>Historial de fondos</span>
+        <span translate="funds_history"></span>
       </li>
       <div class="horizontal-divider"></div>
       <li (click)="logout()">
         <i class="material-icons">exit_to_app</i>
-        <span>Cerrar sesión</span>
+        <span translate="logout"></span>
       </li>
     </ul>
   </nav>

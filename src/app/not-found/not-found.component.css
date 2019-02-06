@@ -10,9 +10,3 @@ main {
 img {
   max-height: 400px;
 }
-
-main a {
-  color: var(--complementary-3);
-  font-weight: bold;
-  text-decoration: none;
-}

@@ -8,27 +8,31 @@
     <div class="items" appDropZone (hovered)="toggleHover($event)" (dropped)="droppedFiles($event)" [class.hovering]="isHovering">
       <section class="empty" *ngIf="itemShowing.files.length + itemShowing.folders.length === 0">
         <img src="./assets/img/svg/empty.svg">
-        <p>Carpeta vacía, comencemos...</p>
+        <p>
+          <span translate="empty_folder"></span>
+          <span>. </span>
+          <span translate="lets_start"></span>
+        </p>
         <div class="buttons">
           <button (click)="triggerCreateFolder()">
             <i class="material-icons">folder</i>
-            <span>Crear carpeta</span>
+            <span translate="create_folder"></span>
           </button>
           <button (click)="triggerUpload()">
             <i class="material-icons">cloud_upload</i>
-            <span>Subir archivo</span>
+            <span translate="upload_file"></span>
           </button>
         </div>
       </section>
       <section *ngIf="itemShowing.folders.length !== 0">
-        <h5>carpetas</h5>
+        <h5 translate="folders"></h5>
         <div class="grid folders">
           <app-item *ngFor="let item of itemShowing.folders" [item]="item" (press)="select($event, item, 'folders')"
             (click)="select($event, item)"></app-item>
         </div>
       </section>
       <section *ngIf="itemShowing.files.length !== 0">
-        <h5>archivos</h5>
+        <h5 translate="files"></h5>
         <div class="grid files">
           <app-item *ngFor="let item of itemShowing.files; index as i" [item]="item" [index]="i" (press)="select($event, item, 'files')"
             (click)="select($event, item)"></app-item>

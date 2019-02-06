@@ -1,23 +1,23 @@
 <div class="container">
   <section class="login">
     <header>
-      <h1>SERVICIO DE REPROGRAFÍA</h1>
+      <h1 translate="printing_service"></h1>
       <h3>DA - ETSIINF</h3>
     </header>
     <div class="inputs">
-      <app-text-input [labelText]="'Nombre de usuario'" [id]="'usernameInput'" (inputValue)="user.username = $event"
+      <app-text-input [labelText]="'username'" [id]="'usernameInput'" (inputValue)="user.username = $event"
         [errors]="errors.username"></app-text-input>
-      <app-text-input [labelText]="'Email'" [id]="'emaileInput'" (inputValue)="user.email = $event"
+      <app-text-input [labelText]="'email'" [id]="'emaileInput'" (inputValue)="user.email = $event"
         [errors]="errors.email"></app-text-input>
-      <app-text-input [labelText]="'Contraseña'" [id]="'passwordInput'" [type]="'password'" [errors]="errors.password"
+      <app-text-input [labelText]="'password'" [id]="'passwordInput'" [type]="'password'" [errors]="errors.password"
         (inputValue)="user.password = $event"></app-text-input>
-      <app-text-input [labelText]="'Repita la contraseña'" [id]="'passwordInput2'" [type]="'password'" [errors]="errors.password2"
+      <app-text-input [labelText]="'repeat_password'" [id]="'passwordInput2'" [type]="'password'" [errors]="errors.password2"
         (inputValue)="password2 = $event"></app-text-input>
     </div>
-    <button type="submit" (click)="register()">Registrarse</button>
+    <button type="submit" (click)="register()" translate="register"></button>
     <span class="go-to-login">
-      ¿Ya tienes cuenta?
-      <a routerLink="/login">Login</a>
+      <span translate="already_have_account"></span>
+      <a routerLink="/login" translate="login"></a>
     </span>
   </section>
 </div>

@@ -1,13 +1,12 @@
 <main>
-  <div class="message">
-    ¡Atención! Este servicio de uso privado.
-  </div>
+  <div class="message" translate="attention_private_use_only"></div>
 
   <div class="upload-zone" appDropZone [class.hovering]="isHovering" (hovered)="toggleHover($event)">
-    <span>Arrastra archivos o</span>
+    <span translate="drag_files"></span>
+    <span translate="or"></span>
     <div class="input">
       <input type="file" name="files" id="files" multiple (change)="onChangeFiles($event)">
-      <label for="files">Seleccionar archivos</label>
+      <label for="files" translate="select_files"></label>
     </div>
 
   </div>

@@ -1,0 +1,15 @@
+<div class="select">
+  <div class="choose" (click)="toogleOptions()">
+    <h5 *ngIf="selected === ''">
+      <span translate="choose"></span>
+      <span>...</span>
+    </h5>
+    <h5 *ngIf="selected !== ''">
+      <span>{{selected}}</span>
+    </h5>
+    <i class="material-icons" [ngStyle]="{'transform': isOpen ? 'rotate(180deg)' : 'inherit'}">keyboard_arrow_down</i>
+  </div>
+  <ul *ngIf="isOpen">
+    <li *ngFor="let option of options" (click)="emitOption(option)">{{option}}</li>
+  </ul>
+</div>

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +30,21 @@ export class AppService {
   ];
 
   showTerminal = false;
+  currentLang = 'es';
 
-  constructor() {}
+  constructor(private translateService: TranslateService) {}
+
+  setLang() {
+    this.translateService.setDefaultLang(this.currentLang);
+  }
+
+  switchLanguage() {
+    if (this.currentLang === 'es') {
+      this.currentLang = 'en';
+      this.translateService.use('en');
+    } else if (this.currentLang === 'en') {
+      this.currentLang = 'es';
+      this.translateService.use('es');
+    }
+  }
 }

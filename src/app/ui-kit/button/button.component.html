@@ -1,0 +1,6 @@
+<button (click)="click.emit()"
+    [ngClass]="{
+        'large': class === 'large',
+        'medium': class === 'medium',
+        'small': class === 'small'}"
+    translate>{{text}}</button>

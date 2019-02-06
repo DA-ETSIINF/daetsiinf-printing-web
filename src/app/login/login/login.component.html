@@ -1,19 +1,19 @@
 <div class="container">
   <section class="login">
     <header>
-      <h1>SERVICIO DE REPROGRAFÍA</h1>
+      <h1 translate="printing_service"></h1>
       <h3>DA - ETSIINF</h3>
     </header>
     <div class="inputs">
-      <app-text-input [labelText]="'Nombre de usuario'" [id]="'usernameInput'" (inputValue)="user.username = $event"
+      <app-text-input [labelText]="'username'" [id]="'usernameInput'" (inputValue)="user.username = $event"
         [errors]="errors.username"></app-text-input>
-      <app-text-input [labelText]="'Contraseña'" [id]="'passwordInput'" [type]="'password'" [errors]="errors.password"
+      <app-text-input [labelText]="'password'" [id]="'passwordInput'" [type]="'password'" [errors]="errors.password"
         (inputValue)="user.password = $event"></app-text-input>
     </div>
-    <button type="submit" (click)="login()">Login</button>
+    <button type="submit" (click)="login()" translate="login"></button>
     <span class="go-to-register">
-      ¿No tienes cuenta?
-      <a routerLink="/register">Regístrate</a>
+      <span translate="dont_have_account"></span>
+      <a routerLink="/register" translate="register"></a>
     </span>
   </section>
 </div>

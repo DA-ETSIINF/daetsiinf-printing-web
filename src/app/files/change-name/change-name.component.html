@@ -1,13 +1,13 @@
 <div class="overlay" *ngIf="showModal" [ngStyle]="{'opacity': 1}" (click)="closeModal($event)">
   <div class="change-name">
     <header>
-      <span>Cambiar nombre</span>
+      <span translate="change_name"></span>
       <i class="material-icons" (click)="closeModal()">close</i>
     </header>
     <input type="text" id="nameItem" name="nameItem" value="{{itemToUpdate.name}}" autofocus>
     <div class="buttons">
-      <button class="cancel" (click)="closeModal()">Cancelar</button>
-      <button class="submit">Cambiar</button>
+      <button class="cancel" (click)="closeModal()" translate="cancel"></button>
+      <button class="submit" translate="change"></button>
     </div>
   </div>
 </div>

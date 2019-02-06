@@ -1,14 +1,14 @@
 <div class="overlay" *ngIf="showModal" [ngStyle]="{'opacity': 1}" (click)="closeModal($event)">
   <div class="create-folder">
     <header>
-      <span>Crear carpeta</span>
+      <span translate="create_folder"></span>
       <i class="material-icons" (click)="closeModal()">close</i>
     </header>
     <input type="text" id="nameFolder" placeholder="{{randomName}}" name="nameFolder" [(ngModel)]="folderName"
       autofocus>
     <div class="buttons">
-      <button class="cancel" (click)="closeModal()">Cancelar</button>
-      <button class="submit" (click)="createFolder()">Crear</button>
+      <button class="cancel" (click)="closeModal()" translate="cancel"></button>
+      <button class="submit" (click)="createFolder()" translate="create"></button>
     </div>
   </div>
 </div>

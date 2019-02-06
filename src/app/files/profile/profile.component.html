@@ -1,39 +1,55 @@
 <app-header></app-header>
-<div class="container">
-  <app-aside></app-aside>
-  <main>
-    <section class="card">
-      <div class="header">
-        <h2>Mis datos</h2>
-        <button class="increase-balance">aumentar saldo</button>
+<main>
+  <h1 translate="settings"></h1>
+  <div class="horizontal-divider"></div>
+  <section>
+    <aside>
+        <h3 translate="my_data"></h3>
+        <p translate="my_data_description"></p>
+    </aside>
+    <div>
+      <div class="item">
+        <h5 translate="email"></h5>
+        <span>{{userInfo.email}}</span>
       </div>
-      <div class="change-info">
-        <h5>Tus datos personales</h5>
-        <form action="">
-          <div class="input name">
-            <label for="name">Nombre</label>
-            <input type="text" [(ngModel)]="nameEdited" name="name" placeholder="Escriba su nuevo nombre">
-            <i class="material-icons">edit</i>
-          </div>
-          <div class="input email">
-            <label for="email">Email</label>
-            <span>javier.garcia@alumnos.upm.es</span>
-          </div>
-          <div class="submit-changes">
-            <button [ngClass]="(name!==nameEdited)?'enabled':'disabled'">Cambiar datos</button>
-          </div>
-        </form>
-        <h5>Cambiar contraseña</h5>
-        <form action="">
-          <input type="password" placeholder="Nueva contraseña">
-          <input type="password" placeholder="Repita la nueva contraseña">
-          <div class="submit-changes">
-            <button [ngClass]="(name!==nameEdited)?'enabled':'disabled'">Cambiar contraseña</button>
-          </div>
-        </form>
+      <div class="item">
+        <h5 translate="username"></h5>
+        <span>{{userInfo.username}}</span>
       </div>
-    </section>
-  </main>
-
-</div>
+      <div class="item">
+        <h5 translate="password"></h5>
+        <app-button [text]="'change_your_password'" (click)="changePassword()"></app-button>
+      </div>
+      <div class="item">
+        <h5 translate="language"></h5>
+        <app-select [options]="['Castellano']" (selectChange)="languageOnChange($event)"></app-select>
+      </div>
+      <div class="buttons">
+        <button class="cancel" translate="cancel"></button>
+        <button class="update" translate="update"></button>
+      </div>
+    </div>
+  </section>
+  <div class="horizontal-divider"></div>
+  <section>
+    <aside>
+        <h3 translate="balance"></h3>
+        <p translate="balance_description"></p>
+    </aside>
+    <div>
+      <div class="item">
+        <h5 translate="current_balance"></h5>
+        <span>{{userInfo.funds}} €</span>
+      </div>
+      <div class="item">
+        <h5 translate="funds_history"></h5>
+        <app-button [text]="'see_funds_history'" (click)="goTo()"></app-button>
+      </div>
+      <div class="item">
+        <h5 translate="increase_balance"></h5>
+        <app-button [text]="'see_increase_balance'" (click)="goTo()"></app-button>
+      </div>
+    </div>
+  </section>
+</main>
 <app-footer></app-footer>

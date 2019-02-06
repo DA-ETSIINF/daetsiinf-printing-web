@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { JwtInterceptor } from './login/_helpers/jwt.interceptor';
 import { DropZoneDirective } from './files/drop-zone.directive';
 import { ModuleRouting } from './app.routing';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './general_components/header/header.component';
@@ -33,6 +32,16 @@ import { TerminalComponent } from './terminal/terminal.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TextInputComponent } from './ui-kit/text-input/text-input.component';
 import { CheckboxComponent } from './ui-kit/checkbox/checkbox.component';
+
+
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+// translation
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ButtonComponent } from './ui-kit/button/button.component';
+import { SelectComponent } from './ui-kit/select/select.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,9 +71,23 @@ import { CheckboxComponent } from './ui-kit/checkbox/checkbox.component';
     TerminalComponent,
     NotificationsComponent,
     TextInputComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    ButtonComponent,
+    SelectComponent
   ],
-  imports: [BrowserModule, ModuleRouting, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    ModuleRouting,
+    FormsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+  })
+  ],
   providers: [
     MenuComponent,
     AppComponent,
@@ -77,3 +100,7 @@ import { CheckboxComponent } from './ui-kit/checkbox/checkbox.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}

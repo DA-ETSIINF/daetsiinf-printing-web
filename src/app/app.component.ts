@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.widthStatus(window.innerWidth);
+    this.appService.setLang();
   }
 
   widthStatus(size) {

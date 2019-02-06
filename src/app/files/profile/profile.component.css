@@ -1,133 +1,104 @@
-.container {
-  display: flex;
-  margin-top: 25px;
-}
-
 main {
-  min-height: calc(100vh - 212px);
+  min-height: calc(100vh - 300px);
   position: relative;
-  flex: 1px;
   margin-bottom: 25px;
+  padding: 30px 35px;
 }
 
-.header {
-  text-transform: uppercase;
-  font-size: 13px;
+h1 {
+  color: var(--neutrals-1);
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+section {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-top: 15px;
 }
 
-.header button {
-  padding: 5px 15px;
-  font-size: 15px;
-  border-radius: 20px;
-  border: none;
-  box-shadow: none;
-  background: var(--purple);
-  text-transform: uppercase;
-  color: var(--white);
+section aside {
+  max-width: 25vw;
 }
 
-@media screen and (max-width:992px) {
-  .header {
-    font-size: 10px;
-  }
-
-  .header button {
-    font-size: 12px;
-    letter-spacing: .7px;
-  }
-}
-
-.change-info {
-  margin-top: 25px;
-}
-
-.personal-data,
-.change-password {
-  padding: 15px 0;
-}
-
-.personal-data h5,
-.change-password h5 {
-  font-size: 15px
-}
-
-
-@media screen and (max-width:992px) {
-  .change-info {
-    display: inherit;
-  }
-
-  .vertical-divider {
-    display: none;
-  }
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin: 0 auto;
-}
-
-form .input {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-form .input label {
-  color: var(--dark-3);
-  flex: 1;
-}
-
-form input {
-  border: none;
-  padding: 5px;
-  flex: 1;
-  width: 100%;
-  background: none;
-  border-bottom: 2px solid var(--dark-2);
-  box-shadow: none;
-  color: var(--dark-3);
-  padding: 5px 10px;
-  max-width: 200px;
-}
-
-input {
-  margin-top: 10px;
-  width: calc(100% - 20px);
-}
-
-form .input i {
-  color: var(--dark-3);
+section aside h3 {
   font-size: 18px;
+  color: var(--neutrals-3);
+}
+
+section aside p {
+  color: var(--neutrals-5);
+  font-size: 14px;
+  line-height: 1;
+  margin-top: 7px;
+}
+
+section > div {
+  flex: 1;
+  padding: 0 30px;
+  margin-top: 3px;
+}
+
+.item {
+  margin-bottom: 20px;
+}
+
+.item > span {
   margin-left: 5px;
 }
 
-.submit-changes {
-  margin-top: 10px;
-  width: 100%;
+h5 {
+  font-size: 15px;
+  color: var(--neutrals-2);
+  margin-bottom: 4px;
+}
+
+.buttons {
+  margin-top: 30px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: flex-end;
 }
 
-.submit-changes button {
-  font-size: 15px;
-  padding: 5px 10px;
-  border: none;
-  color: var(--white);
+.buttons button {
+  background: none;
+  border: 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 12px;
   border-radius: 4px;
 }
 
-.submit-changes button.disabled {
-  cursor: not-allowed;
+.buttons button.cancel {
+  margin-right: 20px;
+  color:var(--neutrals-3);
 }
 
-.submit-changes button.enabled {
-  cursor: pointer;
+.buttons button.cancel:hover{
+  background: var(--neutrals-8);
+}
+
+.buttons button.update {
+  background: var(--primary-4);
+  color: var(--primary-10);
+  box-shadow: 0 1px 3px var(--neutrals-6);
+}
+
+.buttons button.update:hover{
+  background: var(--primary-3);
+  box-shadow: none;
+}
+
+@media screen and (max-width: 552px) {
+  section{
+      flex-direction: column;
+  }
+  section aside {
+    max-width: inherit;
+  }
+  section > div {
+    padding: 0;
+    margin-top: 15px;
+  }
 }

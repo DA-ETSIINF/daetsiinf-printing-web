@@ -1,0 +1,27 @@
+button {
+    color: var(--neutrals-2);
+    font-weight: bold;
+    background: var(--neutrals-9);
+    border: 2px solid var(--neutrals-7);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--neutrals-8);
+}
+
+button.large {
+    padding: 12px 16px;
+    font-size: 16px;
+}
+
+button.medium {
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+button.small {
+    padding: 6px 8px;
+    font-size: 12px;
+}

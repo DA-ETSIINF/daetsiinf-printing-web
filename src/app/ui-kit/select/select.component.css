@@ -1,0 +1,48 @@
+.select {
+    position: relative;
+}
+.choose {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--neutrals-10);
+    border: 2px solid var(--neutrals-7);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+h5 {
+    font-size: 14px;
+    color: var(--neutrals-1);
+}
+
+i {
+    color: var(--neutrals-3);
+    transition: .1s all ease;
+}
+
+ul {
+    background: var(--primary-2);
+    color: var(--primary-10);
+    border-radius: 4px;
+    position: absolute;
+    margin-top: 1px;
+    width: 100%;
+}
+
+li {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+li:hover {
+    background: var(--primary-3);
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 992px) {
+    li{
+        padding: 12px 10px;
+    }
+}

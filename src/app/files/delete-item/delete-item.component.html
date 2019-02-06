@@ -1,18 +1,20 @@
 <div class="overlay" *ngIf="showModal" [ngStyle]="{'opacity': 1}" (click)="closeModal($event)">
   <div class="delete-modal">
     <header>
-      <span>Eliminar {{itemToDelete.name}}</span>
+      <span>
+        <span translate="delete"></span><span> {{itemToDelete.name}}</span>
+      </span>
       <i class="material-icons" (click)="closeModal()">close</i>
     </header>
     <div class="content">
-      <span class="hold-to-delete-text">Mantén pulsado para eliminar</span>
+      <span class="hold-to-delete-text" translate="touch_to_eliminate"></span>
       <div class="delete" (mousedown)="mouseDown()" (click)="fakeProgress()" (mouseup)="mouseUp()">
         <i class="trash material-icons">delete</i>
         <div class="progress-bar">
           <div class="progress" [ngStyle]="{'width': progress + '%'}"></div>
         </div>
       </div>
-      <span class="alert">Si lo elimina, no se podrá recuperar</span>
+      <span class="alert" translate="delete_alert"></span>
     </div>
   </div>
 </div>

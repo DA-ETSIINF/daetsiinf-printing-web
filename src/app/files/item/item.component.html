@@ -3,9 +3,9 @@
   <i class="material-icons options-icon" (click)="addFileToQueue()" *ngIf="isFile">printer</i>
   <nav class="options" *ngIf="showOptions" [ngClass]="{'show-options':showOptions}">
     <ul>
-      <li *ngIf="isFile" (click)="addFileToQueue()">Añadir a la cola</li>
-      <li (click)="updateName(item)">Cambiar nombre</li>
-      <li (click)="deleteItem(item)" class="delete">Eliminar</li>
+      <li *ngIf="isFile" (click)="addFileToQueue()" translate="add_to_queue"></li>
+      <li (click)="updateName(item)" translate="change_name"></li>
+      <li (click)="deleteItem(item)" class="delete" translate="delete"></li>
     </ul>
   </nav>
   <i class="material-icons item-icon">{{getIcon(item)}}</i>
