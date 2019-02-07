@@ -103,6 +103,14 @@ app-item {
   height: 100%;
   border: 5px solid rgba(255, 255, 255, 0);
   cursor: pointer;
+  transition: .2s all ease;
+  border: 4px solid transparent;
+}
+
+.file-hover {
+  background: var(--complementary-9);
+  border: 4px solid var(--complementary-5);
+  border-radius: 4px;
 }
 
 .selected {

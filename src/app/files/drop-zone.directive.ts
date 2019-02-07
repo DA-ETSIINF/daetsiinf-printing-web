@@ -1,7 +1,6 @@
 import {
   Directive,
   HostListener,
-  HostBinding,
   Output,
   EventEmitter,
   OnDestroy
@@ -21,7 +20,7 @@ export class DropZoneDirective implements OnDestroy {
   @Output()
   hovered = new EventEmitter<boolean>();
 
-  statusDragable: {
+  dragable: {
     item: FolderItem | FileItem;
     x: number;
     y: number;
@@ -31,13 +30,15 @@ export class DropZoneDirective implements OnDestroy {
   index: 0 | 1;
   typeOfItem: 'folder' | 'file';
 
+  fileHoverFolder = false;
+
   constructor(
     private filesService: FilesService,
     public appComponent: AppComponent
   ) {
     this.statusDragableSubscription = this.filesService.dragableItem$.subscribe(
       file => {
-        this.statusDragable = file;
+        this.dragable = file;
       }
     );
     this.filesService.index$.subscribe(i => (this.index = i));
@@ -79,8 +80,10 @@ export class DropZoneDirective implements OnDestroy {
       return;
     }
 
+    this.fileHoverFolder = false;
+
     let item: FolderItem | FileItem;
-    if (this.statusDragable === null) {
+    if (this.dragable === null) {
       this.filesService.showingFiles$
         .pipe(
           map(system => {
@@ -103,11 +106,25 @@ export class DropZoneDirective implements OnDestroy {
           item = it;
         });
     } else {
-      item = this.statusDragable.item;
+      item = this.dragable.item;
     }
 
     if (item === undefined || item === null) {
       return;
+    }
+
+    const fileHoverClassElement = document.querySelector('app-item.file-hover');
+    if (fileHoverClassElement !== null) {
+      fileHoverClassElement.classList.remove('file-hover');
+    }
+
+    const itemInScreen = e.path[0].closest('.item');
+    if (itemInScreen !== null) {
+      const isFolder = itemInScreen.children[0].innerHTML === 'folder';
+      if (isFolder) {
+        itemInScreen.parentElement.classList.add('file-hover');
+        this.fileHoverFolder = true;
+      }
     }
     this.filesService.dragableItem$.next({
       item,
@@ -119,6 +136,27 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('mouseup', ['$event'])
   mouseUp(e) {
+    // Remove all folders with the class file-hover
+    const fileHoverClassElement = document.querySelector('app-item.file-hover');
+    if (fileHoverClassElement !== null) {
+      fileHoverClassElement.classList.remove('file-hover');
+    }
+
+    // In case of a drop in a folder, detect which folder is the destination
+    // and make the call to the API (fileService)
+    if (this.fileHoverFolder) {
+      const folders = document.querySelector('.folders');
+      Array.from(folders.children).map((el, i) => {
+        if (el === fileHoverClassElement) {
+          this.filesService.showingFiles$.subscribe(files => {
+            const folder = files[this.index].folders[i];
+            this.filesService.moveFileToFolder(this.dragable.item, folder);
+          });
+        }
+      });
+    }
+
+    // Remove draglable item from screen
     this.typeOfItem = undefined;
     this.filesService.dragableItem$.next(null);
   }

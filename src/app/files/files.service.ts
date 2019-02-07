@@ -25,7 +25,6 @@ import { NotificationsService } from '../notifications/notifications.service';
   providedIn: 'root'
 })
 export class FilesService implements OnInit {
-  
   files: Folder[] = [];
   files$ = new Subject<Folder[]>();
   showingFiles$ = new BehaviorSubject<ShowedItems[]>([
@@ -232,6 +231,13 @@ export class FilesService implements OnInit {
                 title: 'Archivo no válido',
                 status: 'error'
               });
+            } else {
+              this.notificationsService.addNotification({
+                title: 'Error al subir el archivo',
+                description: 'Ha habido un error en el servidor a la hora de tratar de \
+                              subir el archivo. Vuelve a intentarlo en unos momentos',
+                status: 'error'
+              });
             }
           }
         );
@@ -299,5 +305,9 @@ export class FilesService implements OnInit {
         Math.floor(Math.random() * this.randomNames[1].length)
       ]
     }`;
+  }
+
+  moveFileToFolder (item: FolderItem, folder: FolderItem) {
+    console.log("API call");
   }
 }
