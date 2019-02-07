@@ -41,6 +41,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ButtonComponent } from './ui-kit/button/button.component';
 import { SelectComponent } from './ui-kit/select/select.component';
+import { PrinterDropZoneComponent } from './files/printer-drop-zone/printer-drop-zone.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { SelectComponent } from './ui-kit/select/select.component';
     TextInputComponent,
     CheckboxComponent,
     ButtonComponent,
-    SelectComponent
+    SelectComponent,
+    PrinterDropZoneComponent
   ],
   imports: [
     BrowserModule,
