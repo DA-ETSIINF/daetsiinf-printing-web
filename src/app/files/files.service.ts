@@ -271,24 +271,28 @@ export class FilesService implements OnInit {
     }
   }
 
-  addFileToQueue(index: number) {
+  addFileToQueueByIndex(index: number) {
     this.showingFiles$.subscribe(data => {
       this.index$.subscribe(i => {
-        const file = data[i].files[index];
-        const fileToPrint: FileToPrint = {
-          documentId: file.id,
-          name: file.name,
-          npages: file.npages,
-          doubleSided: true,
-          ncopies: 1,
-          color: false
-        };
-        this.itemsInQueue$.next([
-          ...this.itemsInQueue$.getValue(),
-          ...[fileToPrint]
-        ]);
+        const file: FileItem = data[i].files[index];
+        this.addFileToQueue(file);
       });
     });
+  }
+
+  addFileToQueue(file: FileItem) {
+    const fileToPrint: FileToPrint = {
+      documentId: file.id,
+      name: file.name,
+      npages: file.npages,
+      doubleSided: true,
+      ncopies: 1,
+      color: false
+    };
+    this.itemsInQueue$.next([
+      ...this.itemsInQueue$.getValue(),
+      ...[fileToPrint]
+    ]);
   }
 
   createFolder(name: string) {

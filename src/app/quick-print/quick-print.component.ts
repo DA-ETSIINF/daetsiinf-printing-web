@@ -28,7 +28,7 @@ export class QuickPrintComponent implements OnInit {
         console.log('Formato de fichero no válido');
       } else {
         this.getNPages(f)
-          .then(n => this.filesService.addFileToQueue(0))
+          .then(n => this.filesService.addFileToQueueByIndex(0))
           .catch(() => console.log('Something went wrong...'));
       }
     });

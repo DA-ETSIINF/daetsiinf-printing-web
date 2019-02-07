@@ -156,6 +156,14 @@ export class DropZoneDirective implements OnDestroy {
       });
     }
 
+    // Add file to queue if file is dropped in blue part
+    const appPrinterDropZone = document.querySelector('app-printer-drop-zone');
+    Array.from(e.path).map(el => {
+      if (el === appPrinterDropZone) {
+        this.filesService.addFileToQueue(this.dragable.item as FileItem);
+      }
+    });
+
     // Remove draglable item from screen
     this.typeOfItem = undefined;
     this.filesService.dragableItem$.next(null);

@@ -47,7 +47,7 @@ export class ItemComponent implements OnInit {
   }
 
   addFileToQueue() {
-    this.filesService.addFileToQueue(this.index);
+    this.filesService.addFileToQueueByIndex(this.index);
     this.toggleOptions();
   }
 

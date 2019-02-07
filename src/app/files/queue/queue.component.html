@@ -40,7 +40,7 @@
             <i class="material-icons" [ngClass]="{'disabled':file.ncopies >= 99}" (click)="file.ncopies = file.ncopies <= 99 ? file.ncopies + 1 : file.ncopies">add</i>
           </div>
           <span class="price">{{getPrice(file)}}</span>
-          <span class="remove" (click)="removeFile(i)" translate="delte"></span>
+          <span class="remove" (click)="removeFile(i)" translate="delete"></span>
         </div>
         <p class="more-info" *ngIf="getWindowSize() < 500" translate="more_info_on_the_right"><i class="material-icons">arrow_right_alt</i></p>
       </div>
