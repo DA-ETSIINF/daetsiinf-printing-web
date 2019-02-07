@@ -38,14 +38,15 @@
             (click)="select($event, item)"></app-item>
         </div>
       </section>
-      <app-upload-btn></app-upload-btn>
+      <app-upload-btn *ngIf="!isDragging"></app-upload-btn>
+      <app-printer-drop-zone [ngStyle]="{'visibility': isDragging ? 'inherit' : 'hidden'}" [ngClass]="{'printer-drop-zone-height': isDragging}"></app-printer-drop-zone>
     </div>
 
 
     <app-change-name></app-change-name>
     <app-delete-item></app-delete-item>
     <app-create-folder></app-create-folder>
-    <app-queue *ngIf="itemsInQueue.length > 0" ></app-queue>
+    <app-queue *ngIf="itemsInQueue.length > 0"></app-queue>
   </main>
   <app-item-popover></app-item-popover>
 </div>

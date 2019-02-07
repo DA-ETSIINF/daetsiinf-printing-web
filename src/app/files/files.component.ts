@@ -28,6 +28,9 @@ export class FilesComponent implements OnInit, OnDestroy {
   // State for dropzone CSS toggling
   isHovering: boolean;
 
+
+  isDragging = false;
+
   index: 0 | 1 = 0;
 
   constructor(
@@ -44,6 +47,7 @@ export class FilesComponent implements OnInit, OnDestroy {
     this.getItems();
     this.fileService.itemsInQueue$.subscribe(a => (this.itemsInQueue = a));
     this.fileService.index$.subscribe(i => (this.index = i));
+    this.fileService.dragableItem$.subscribe(dragable => this.isDragging = dragable !== null);
   }
 
   getItems() {
