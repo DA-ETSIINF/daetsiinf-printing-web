@@ -1,6 +1,4 @@
-<div class="item" #file (press)="toggleOptions()" (mouseover)="toggleOptionsIcon(file, 'inherit')" (mouseleave)="toggleOptionsIcon(file, 'none')"
-  (contextmenu)="toggleOptions($event)">
-  <i class="material-icons options-icon" (click)="addFileToQueue()" *ngIf="isFile">printer</i>
+<div class="item" #file (press)="toggleOptions()" (contextmenu)="toggleOptions($event)">
   <nav class="options" *ngIf="showOptions" [ngClass]="{'show-options':showOptions}">
     <ul>
       <li *ngIf="isFile" (click)="addFileToQueue()" translate="add_to_queue"></li>

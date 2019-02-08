@@ -11,17 +11,6 @@
   color: var(--neutrals-4);
 }
 
-.options-icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  display: none;
-  font-size: 20px;
-  width: 20px;
-  text-align: center;
-  color: var(--primary-1);
-}
-
 .options {
   position: absolute;
   right: 0;
@@ -71,8 +60,6 @@
 .options ul li.delete:hover {
   background: var(--supporting__error-9);
 }
-
-
 
 h5 {
   font-weight: 400;

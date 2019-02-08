@@ -76,17 +76,17 @@ export class UserService implements OnInit {
 
   fetchProfileInfo() {
     this.userInfo$.next({
-      username: 'Javier',
-      funds: 6.04,
-      email: 'sfkñljasñ@gmail.com',
-      id: 10
+      username: '',
+      funds: 0,
+      email: '',
+      id: 0
     });
 
     if (localStorage.getItem('currentUser') !== null) {
-      this.http.get(`${environment.server}:${environment.port}/user/profile/`);
-      /*.subscribe(data => {
-          // this.userInfo$.next(data[0] as UserInfo);
-        });*/
+      this.http.get(`${environment.server}:${environment.port}/user/profile/`)
+        .subscribe(data => {
+          this.userInfo$.next(data[0] as UserInfo);
+        });
     }
   }
 }

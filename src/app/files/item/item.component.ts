@@ -32,12 +32,6 @@ export class ItemComponent implements OnInit {
     this.isFile = 'type' in this.item;
   }
 
-  toggleOptionsIcon(item, status) {
-    if (!this.showOptions && this.isFile) {
-      item.querySelector('.options-icon').style.display = status;
-    }
-  }
-
   toggleOptions(e?) {
     this.filesService.itemMenu$.next(false);
     this.showOptions = !this.showOptions;
