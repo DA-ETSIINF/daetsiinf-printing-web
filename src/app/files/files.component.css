@@ -101,10 +101,14 @@ img {
 
 app-item {
   height: 100%;
-  border: 5px solid rgba(255, 255, 255, 0);
   cursor: pointer;
   transition: .2s all ease;
   border: 4px solid transparent;
+  border-radius: 4px;
+}
+
+app-item:hover {
+  background: var(--neutrals-9);
 }
 
 .file-hover {
