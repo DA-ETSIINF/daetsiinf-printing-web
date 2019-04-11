@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   version: 'CIGOTO',
-  server: 'http://localhost',
-  port: '8000'
+  server: 'http://api.printf.es',
+  port: '80'
 };
 
 /*
