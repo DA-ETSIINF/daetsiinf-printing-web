@@ -27,7 +27,7 @@ import { NotificationsService } from '../notifications/notifications.service';
 export class FilesService implements OnInit {
   files: Folder[] = [];
   files$ = new Subject<Folder[]>();
-  showingFiles$ = new BehaviorSubject<ShowedItems[]>([
+  showingItems$ = new BehaviorSubject<ShowedItems[]>([
     { files: [], folders: [] },
     { files: [], folders: [] }
   ]);
@@ -43,14 +43,12 @@ export class FilesService implements OnInit {
   createFolder$ = new Subject();
 
   itemMenu$ = new BehaviorSubject<boolean>(false);
-  dragableItem$ = new Subject<{
+  draggableItem$ = new Subject<{
     item: FolderItem;
     x: number;
     y: number;
     typeOfItem: 'file' | 'folder';
   }>();
-
-  currentPage: string;
 
   // 0 means my-files
   // 1 means shared-with-me
@@ -179,7 +177,7 @@ export class FilesService implements OnInit {
           this.files$.next(this.files);
           console.log("%cEstructura de ficheros:", "background:#dedede; color:#333;");
           console.log(this.files);
-          this.showingFiles$.next([
+          this.showingItems$.next([
             this.updateShowing(-1, 'myFiles'),
             { files: [], folders: [] }
           ]);
@@ -272,7 +270,7 @@ export class FilesService implements OnInit {
   }
 
   addFileToQueueByIndex(index: number) {
-    this.showingFiles$.subscribe(data => {
+    this.showingItems$.subscribe(data => {
       this.index$.subscribe(i => {
         const file: FileItem = data[i].files[index];
         this.addFileToQueue(file);

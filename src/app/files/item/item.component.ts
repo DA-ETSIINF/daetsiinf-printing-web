@@ -13,9 +13,6 @@ export class ItemComponent implements OnInit {
   @Input()
   item: FolderItem | FileItem;
 
-  showOptions$: Subscription;
-  showOptions: boolean;
-
   @Input()
   index: number;
 
@@ -23,34 +20,10 @@ export class ItemComponent implements OnInit {
   constructor(private filesService: FilesService) {}
 
   ngOnInit() {
-    this.showOptions$ = this.filesService.itemMenu$.subscribe(
-      b => (this.showOptions = b)
-    );
     this.filesService.currentSelected$.subscribe(files => {
       ItemComponent.currentSelected = files;
     });
     this.isFile = 'type' in this.item;
-  }
-
-  toggleOptions(e?) {
-    this.filesService.itemMenu$.next(false);
-    this.showOptions = !this.showOptions;
-    if (e) {
-      return false;
-    }
-  }
-
-  addFileToQueue() {
-    this.filesService.addFileToQueueByIndex(this.index);
-    this.toggleOptions();
-  }
-
-  updateName(item: FolderItem | FileItem) {
-    this.filesService.updateItemName$.next(item);
-  }
-
-  deleteItem(item: FolderItem | FileItem) {
-    this.filesService.deleteItem$.next(item);
   }
 
   getIcon(item: FolderItem | FileItem) {

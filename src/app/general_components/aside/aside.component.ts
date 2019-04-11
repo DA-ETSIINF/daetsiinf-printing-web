@@ -30,7 +30,7 @@ export class AsideComponent implements OnInit {
     this.fileService.files$.subscribe(data => {
       this.files = data;
     });
-    this.fileService.showingFiles$.subscribe(data => {
+    this.fileService.showingItems$.subscribe(data => {
       this.myFilesShowing = data[0];
       this.myFilesShared = data[1];
     });

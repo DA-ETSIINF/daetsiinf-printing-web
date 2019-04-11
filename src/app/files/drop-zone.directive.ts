@@ -36,7 +36,7 @@ export class DropZoneDirective implements OnDestroy {
     private filesService: FilesService,
     public appComponent: AppComponent
   ) {
-    this.statusDragableSubscription = this.filesService.dragableItem$.subscribe(
+    this.statusDragableSubscription = this.filesService.draggableItem$.subscribe(
       file => {
         this.dragable = file;
       }
@@ -84,7 +84,7 @@ export class DropZoneDirective implements OnDestroy {
 
     let item: FolderItem | FileItem;
     if (this.dragable === null) {
-      this.filesService.showingFiles$
+      this.filesService.showingItems$
         .pipe(
           map(system => {
             const itemElem = e.target.closest('app-item');
@@ -126,7 +126,7 @@ export class DropZoneDirective implements OnDestroy {
         this.fileHoverFolder = true;
       }
     }
-    this.filesService.dragableItem$.next({
+    this.filesService.draggableItem$.next({
       item,
       x: e.pageX,
       y: e.pageY + 5,
@@ -148,7 +148,7 @@ export class DropZoneDirective implements OnDestroy {
       const folders = document.querySelector('.folders');
       Array.from(folders.children).map((el, i) => {
         if (el === fileHoverClassElement) {
-          this.filesService.showingFiles$.subscribe(files => {
+          this.filesService.showingItems$.subscribe(files => {
             const folder = files[this.index].folders[i];
             this.filesService.moveFileToFolder(this.dragable.item, folder);
           });
@@ -166,6 +166,6 @@ export class DropZoneDirective implements OnDestroy {
 
     // Remove draglable item from screen
     this.typeOfItem = undefined;
-    this.filesService.dragableItem$.next(null);
+    this.filesService.draggableItem$.next(null);
   }
 }

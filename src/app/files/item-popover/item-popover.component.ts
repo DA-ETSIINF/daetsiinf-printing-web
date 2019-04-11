@@ -12,7 +12,7 @@ export class ItemPopoverComponent implements OnInit, OnDestroy {
   dragableItem: { item: FolderItem | FileItem; x: number; y: number };
   dragableItemSubscription: Subscription;
   constructor(private filesService: FilesService) {
-    this.dragableItemSubscription = this.filesService.dragableItem$.subscribe(
+    this.dragableItemSubscription = this.filesService.draggableItem$.subscribe(
       item => {
         this.dragableItem = item !== null ? item : undefined;
       }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
+import {BehaviorSubject} from 'rxjs';
+import { StreamRightClick } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,8 @@ export class AppService {
 
   showTerminal = false;
   currentLang = 'es';
+
+  popupMenu$ = new BehaviorSubject<StreamRightClick>(null);
 
   constructor(private translateService: TranslateService) {}
 

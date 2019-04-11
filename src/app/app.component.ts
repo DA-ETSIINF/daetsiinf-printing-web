@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.widthStatus(window.innerWidth);
     this.appService.setLang();
+    document.addEventListener('click', () => this.hidePopupMenu());
   }
 
   widthStatus(size) {
@@ -29,5 +30,9 @@ export class AppComponent implements OnInit {
 
   showTerminal(): boolean {
     return !this.appService.showTerminal;
+  }
+
+  hidePopupMenu() {
+    this.appService.popupMenu$.next(null)
   }
 }

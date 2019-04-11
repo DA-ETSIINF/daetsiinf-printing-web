@@ -1,15 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, throttle } from 'rxjs/operators';
 import { FilesService } from './files.service';
 import {
   FileToPrint,
   FolderItem,
   Folder,
   ShowedItems,
-  FileItem
+  FileItem,
+  popupMenuType
 } from '../models';
+import { StreamRightClick } from '../models';
 import { AppComponent } from '../app.component';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-files',
@@ -17,12 +19,9 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./files.component.css']
 })
 export class FilesComponent implements OnInit, OnDestroy {
-  status: string;
   currentSelected: ShowedItems = { files: [], folders: [] };
   itemShowing: ShowedItems = { files: [], folders: [] };
   allItems: Folder[] = [];
-  showMyFilesAside: boolean;
-  showSharedFilesAside: boolean;
   itemsInQueue: FileToPrint[];
 
   // State for dropzone CSS toggling
@@ -35,29 +34,30 @@ export class FilesComponent implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,
-    private fileService: FilesService,
-    public appComponent: AppComponent
+    private filesService: FilesService,
+    public appComponent: AppComponent,
+    private appService: AppService
   ) {
-    this.fileService.files$.subscribe(data => {
+    this.filesService.files$.subscribe(data => {
       this.allItems = data;
     });
   }
 
   ngOnInit() {
     this.getItems();
-    this.fileService.itemsInQueue$.subscribe(a => (this.itemsInQueue = a));
-    this.fileService.index$.subscribe(i => (this.index = i));
-    this.fileService.dragableItem$.subscribe(dragable => this.isDragging = dragable !== null);
+    this.filesService.itemsInQueue$.subscribe(a => (this.itemsInQueue = a));
+    this.filesService.index$.subscribe(i => (this.index = i));
+    this.filesService.draggableItem$.subscribe(dragable => this.isDragging = dragable !== null);
   }
 
   getItems() {
-    this.fileService.showingFiles$.subscribe(showingData => {
+    this.filesService.showingItems$.subscribe(showingData => {
       this.itemShowing = showingData[this.index];
     });
   }
 
   ngOnDestroy() {
-    this.fileService.files$.unsubscribe();
+    this.filesService.files$.unsubscribe();
   }
 
   goTo(page: string) {
@@ -72,7 +72,7 @@ export class FilesComponent implements OnInit, OnDestroy {
       items[i].classList.remove('selected');
     }
     this.currentSelected = { files: [], folders: [] };
-    this.fileService.currentSelected$.next({ files: [], folders: [] });
+    this.filesService.currentSelected$.next({ files: [], folders: [] });
   }
   selectOne(event) {
     if (event.target.localName === 'app-item') {
@@ -100,17 +100,17 @@ export class FilesComponent implements OnInit, OnDestroy {
       // Es de tipo FolderItem
       this.currentSelected.folders.push(itemInfo);
     }
-    this.fileService.currentSelected$.next(this.currentSelected);
+    this.filesService.currentSelected$.next(this.currentSelected);
   }
 
   uploadChange() {
     const fileInput = <HTMLInputElement>document.getElementById('uploadInput');
     const files: FileList = fileInput.files;
-    this.fileService.uploadChange(files);
+    this.filesService.uploadChange(files);
   }
 
   hideOptions() {
-    this.fileService.itemMenu$.next(false);
+    this.filesService.itemMenu$.next(false);
   }
 
   toggleHover(event: boolean) {
@@ -118,14 +118,28 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   droppedFiles(event) {
-    this.fileService.uploadChange(event);
+    this.filesService.uploadChange(event);
   }
 
   triggerUpload() {
-    this.fileService.triggerUpload();
+    this.filesService.triggerUpload();
   }
 
   triggerCreateFolder() {
-    this.fileService.createFolder$.next();
+    this.filesService.createFolder$.next();
+  }
+
+  private detectTarget(e: MouseEvent): popupMenuType {
+    const classes = e.composedPath().map(t => (t as HTMLElement).className);
+    if (classes.includes('grid files')) { return 'file'; }
+    if (classes.includes('grid folders')) { return 'folder'; }
+    return 'itemExplorer';
+  }
+
+  togglePopupMenu(e: MouseEvent) {
+    this.appService.popupMenu$.next({
+      event: e,
+      type: this.detectTarget(e)
+    });
   }
 }

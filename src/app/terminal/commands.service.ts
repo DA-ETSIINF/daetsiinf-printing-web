@@ -25,7 +25,7 @@ export class CommandsService {
       maxLength: 1,
       exec: () => {
         const list = [];
-        this.filesService.showingFiles$.subscribe(f => {
+        this.filesService.showingItems$.subscribe(f => {
           (f as any).files.map(_f => {
             list.push(_f.name);
           });

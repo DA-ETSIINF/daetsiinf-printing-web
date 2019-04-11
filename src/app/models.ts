@@ -57,3 +57,15 @@ export interface Notification {
   status: 'error' | 'loading' | 'ok' | 'info';
   description?: string;
 }
+
+export type popupMenuType = 'file' | 'folder' | 'itemExplorer';
+export interface StreamRightClick {
+  event: MouseEvent;
+  type: popupMenuType;
+}
+
+export interface ItemMenu {
+  text: string;
+  icon: string;
+  functionToRun: Function;
+}
