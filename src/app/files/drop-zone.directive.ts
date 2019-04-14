@@ -8,8 +8,8 @@ import {
 import { FilesService } from './files.service';
 import { map } from 'rxjs/operators';
 import { FolderItem, FileItem } from '../models';
-import { Subscription, Observable } from 'rxjs';
-import { AppComponent } from '../app.component';
+import { Subscription } from 'rxjs';
+import { AppService } from '../app.service';
 
 @Directive({
   selector: '[appDropZone]'
@@ -34,7 +34,7 @@ export class DropZoneDirective implements OnDestroy {
 
   constructor(
     private filesService: FilesService,
-    public appComponent: AppComponent
+    public appService: AppService
   ) {
     this.statusDragableSubscription = this.filesService.draggableItem$.subscribe(
       file => {
@@ -48,7 +48,7 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('drop', ['$event'])
   onDrop(e) {
-    if (this.appComponent.deviceWidth === 'small') {
+    if (this.appService.deviceWidth === 'small') {
       return;
     }
     e.preventDefault();
@@ -58,7 +58,7 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('dragover', ['$event'])
   onDragOver(e) {
-    if (this.appComponent.deviceWidth === 'small') {
+    if (this.appService.deviceWidth === 'small') {
       return;
     }
     e.preventDefault();
@@ -67,7 +67,7 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('dragleave', ['$event'])
   onDragLeave(e) {
-    if (this.appComponent.deviceWidth === 'small') {
+    if (this.appService.deviceWidth === 'small') {
       return;
     }
     e.preventDefault();
@@ -76,7 +76,7 @@ export class DropZoneDirective implements OnDestroy {
 
   @HostListener('mousemove', ['$event'])
   dragItem(e) {
-    if (e.buttons !== 1 || this.appComponent.deviceWidth === 'small') {
+    if (e.buttons !== 1 || this.appService.deviceWidth === 'small') {
       return;
     }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../../app.component';
+import { AppService } from '../../app.service';
 import { UserService } from '../../login/user.service';
 import { UserInfo } from '../../models';
 
@@ -11,12 +11,12 @@ export class HeaderComponent implements OnInit {
   userInfo: UserInfo;
 
   constructor(
-    private appComponent: AppComponent,
+    private appService: AppService,
     private userService: UserService
   ) {}
 
   getDeviceWidth(): string {
-    return this.appComponent.deviceWidth;
+    return this.appService.deviceWidth;
   }
 
   ngOnInit() {

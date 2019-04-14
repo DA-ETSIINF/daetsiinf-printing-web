@@ -1,0 +1,89 @@
+.overlay{
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, .4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: .2s;
+}
+
+nav {
+  position: absolute;
+  box-shadow: 0 2px 18px -5px var(--neutrals-1);
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+ul {
+  background: var(--neutrals-9);
+  min-width: 180px;
+  border-radius: 4px;
+}
+
+li{
+  padding: 15px 10px;
+  cursor: pointer;
+  color: var(--neutrals-1);
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+li:hover {
+  background: var(--neutrals-8);
+}
+
+
+li i {
+  color: var(--neutrals-4);
+  font-size: 18px;
+  width: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+li:hover i {
+  color: var(--neutrals-2);
+}
+
+@media screen and (min-width: 992px) {
+  .show {
+    animation-name: show;
+    animation-duration: .3s;
+  }
+
+  @keyframes show {
+    from {
+      margin-top: -20px;
+    }
+    to {
+      margin-top: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  nav {
+    width: 100vw;
+    bottom: 0 !important;
+    overflow: hidden;
+  }
+
+  ul {
+    border-radius: 4px;
+  }
+  .show {
+    animation-name: show;
+    animation-duration: .3s;
+  }
+
+  @keyframes show {
+    from {
+      bottom: -20px;
+    }
+    to {
+      bottom: 0;
+    }
+  }
+}

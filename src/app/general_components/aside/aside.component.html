@@ -1,6 +1,6 @@
-<aside *ngIf="appComponent.deviceWidth === 'large'">
+<aside *ngIf="isLargeScreen()">
   <button class="upload" (click)="triggerUpload()">
-    <i class="material-icons">cloud_upload</i> <span translate="upload_file"></span>
+    <i class="material-icons">cloud_upload</i> <span translate>upload_file</span>
   </button>
   <nav>
     <ul>
@@ -17,7 +17,7 @@
             class="material-icons"
             >arrow_right</i
           >
-          <span routerLink="/my-files" translate="my_files"></span>
+          <span routerLink="/my-files" translate>my_files</span>
         </div>
         <ul
           class="items"
@@ -62,8 +62,7 @@
             >arrow_right</i
           >
           <span (click)="goTo('/shared-with-me', 'shared-with-me')"
-            translate="shared_with_me"></span
-          >
+            translate=>shared_with_me</span>
         </div>
         <ul
           class="items"

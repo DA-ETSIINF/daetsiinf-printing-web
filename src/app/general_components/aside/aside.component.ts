@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FilesService } from '../../files/files.service';
-import { AppComponent } from '../../app.component';
-import { environment } from '../../../environments/environment';
+import { AppService } from '../../app.service';
 import { FolderItem, Folder, ShowedItems } from '../../models';
 
 @Component({
@@ -24,7 +23,7 @@ export class AsideComponent implements OnInit {
   constructor(
     public router: Router,
     private fileService: FilesService,
-    public appComponent: AppComponent
+    public appService: AppService
   ) {
     this.currentPage = this.router.routerState.snapshot.url;
     this.fileService.files$.subscribe(data => {
@@ -37,6 +36,10 @@ export class AsideComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  isLargeScreen(): boolean {
+    return this.appService.deviceWidth === 'large';
+  }
 
   goTo(page: string, submenu?: string) {
     if (submenu) {

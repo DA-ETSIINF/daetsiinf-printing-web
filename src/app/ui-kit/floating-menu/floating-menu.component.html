@@ -1,0 +1,9 @@
+<div class="overlay" *ngIf="isSmallScreen() && menuList.length > 0"></div>
+<nav *ngIf="menuList.length > 0 " [ngStyle]="{'left.px': isSmallScreen() ? 0 :  position.x, 'top.px': isSmallScreen() ? 'inherit' : position.y}" class="show">
+  <ul>
+    <li *ngFor="let item of menuList" (click)="item.functionToRun()">
+      <i class="material-icons">{{item.icon}}</i>
+      <span translate>{{item.text}}</span>
+    </li>
+  </ul>
+</nav>

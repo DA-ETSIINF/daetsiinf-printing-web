@@ -5,7 +5,7 @@
   <main [ngClass]="{'grid': (itemShowing.files.length + itemShowing.folders.length !== 0)}" (swipeleft)="goTo('/shared-with-me')"
     (swiperight)="goTo('/my-files')">
 
-    <div class="items" appDropZone (hovered)="toggleHover($event)" (dropped)="droppedFiles($event)" [class.hovering]="isHovering" (press)="togglePopupMenu()" (contextmenu)="togglePopupMenu($event)">
+    <div class="items" appDropZone (hovered)="toggleHover($event)" (dropped)="droppedFiles($event)" [class.hovering]="isHovering" (contextmenu)="togglePopupMenu($event, 'click')">
       <section class="empty" *ngIf="itemShowing.files.length + itemShowing.folders.length === 0">
         <img src="./assets/img/svg/empty.svg">
         <p>
@@ -27,14 +27,14 @@
       <section *ngIf="itemShowing.folders.length !== 0">
         <h5 translate="folders"></h5>
         <div class="grid folders">
-          <app-item *ngFor="let item of itemShowing.folders" [item]="item" (press)="select($event, item)"
+          <app-item *ngFor="let item of itemShowing.folders" [item]="item"
             (click)="select($event, item)"></app-item>
         </div>
       </section>
       <section *ngIf="itemShowing.files.length !== 0">
         <h5 translate="files"></h5>
         <div class="grid files">
-          <app-item *ngFor="let item of itemShowing.files; index as i" [item]="item" [index]="i" (press)="select($event, item)"
+          <app-item *ngFor="let item of itemShowing.files; index as i" [item]="item" [index]="i"
             (click)="select($event, item)"></app-item>
         </div>
       </section>

@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { FilesService } from './files.service';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Router} from '@angular/router';
+import {FilesService} from './files.service';
 import {
   FileToPrint,
   FolderItem,
@@ -9,9 +9,7 @@ import {
   FileItem,
   popupMenuType
 } from '../models';
-import { StreamRightClick } from '../models';
-import { AppComponent } from '../app.component';
-import { AppService } from '../app.service';
+import {AppService} from '../app.service';
 
 @Component({
   selector: 'app-files',
@@ -19,8 +17,8 @@ import { AppService } from '../app.service';
   styleUrls: ['./files.component.css']
 })
 export class FilesComponent implements OnInit, OnDestroy {
-  currentSelected: ShowedItems = { files: [], folders: [] };
-  itemShowing: ShowedItems = { files: [], folders: [] };
+  currentSelected: ShowedItems = {files: [], folders: []};
+  itemShowing: ShowedItems = {files: [], folders: []};
   allItems: Folder[] = [];
   itemsInQueue: FileToPrint[];
 
@@ -35,7 +33,6 @@ export class FilesComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     private filesService: FilesService,
-    public appComponent: AppComponent,
     private appService: AppService
   ) {
     this.filesService.files$.subscribe(data => {
@@ -61,7 +58,7 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   goTo(page: string) {
-    if (this.appComponent.deviceWidth === 'small') {
+    if (this.appService.deviceWidth === 'small') {
       this.router.navigate([page]);
     }
   }
@@ -71,34 +68,30 @@ export class FilesComponent implements OnInit, OnDestroy {
     for (let i = 0; i < items.length; i++) {
       items[i].classList.remove('selected');
     }
-    this.currentSelected = { files: [], folders: [] };
-    this.filesService.currentSelected$.next({ files: [], folders: [] });
-  }
-  selectOne(event) {
-    if (event.target.localName === 'app-item') {
-      event.target.classList.add('selected');
-    } else if (event.target.className.includes('item')) {
-      event.target.parentElement.classList.add('selected');
-    } else {
-      event.target.parentElement.parentElement.classList.add('selected');
-    }
+    this.currentSelected = {files: [], folders: []};
+    this.filesService.currentSelected$.next({files: [], folders: []});
   }
 
-  getCurrentItems() {
-    return this.allItems[this.index];
-  }
-
-  select(event, itemInfo: FileItem | FolderItem) {
+  select(event: MouseEvent, itemInfo: FileItem | FolderItem) {
     if (!event.ctrlKey) {
       this.deselect();
     }
-    this.selectOne(event);
-    if ('type' in itemInfo) {
-      // Es de tipo FileItem
-      this.currentSelected.files.push(itemInfo);
+    const type = 'type' in itemInfo ? 'files' : 'folders';
+
+    // @ts-ignore
+    const i = this.itemShowing[type].indexOf(itemInfo);
+    // @ts-ignore
+    if (this.currentSelected[type].includes(itemInfo)) {
+      // @ts-ignore
+      const index = this.currentSelected[type].indexOf(itemInfo);
+      document.querySelectorAll(`.grid.${type} app-item.selected`)[index].classList.remove('selected');
+      this.currentSelected[type].splice(index, 1);
     } else {
-      // Es de tipo FolderItem
-      this.currentSelected.folders.push(itemInfo);
+      document.querySelectorAll(`.grid.${type} app-item`)[i].classList.add('selected');
+      // @ts-ignore
+      this.currentSelected[type].push(itemInfo);
+      // @ts-ignore
+      this.currentSelected[type].sort((a, b) => a.id - b.id);
     }
     this.filesService.currentSelected$.next(this.currentSelected);
   }
@@ -129,17 +122,29 @@ export class FilesComponent implements OnInit, OnDestroy {
     this.filesService.createFolder$.next();
   }
 
-  private detectTarget(e: MouseEvent): popupMenuType {
-    const classes = e.composedPath().map(t => (t as HTMLElement).className);
-    if (classes.includes('grid files')) { return 'file'; }
-    if (classes.includes('grid folders')) { return 'folder'; }
+  private detectTarget(e: MouseEvent | any, type: 'press' | 'click'): popupMenuType {
+    let classes;
+    if (type === 'press') {
+      classes = e.srcEvent.path.map(t => (t as HTMLElement).className);
+    }
+    if (type === 'click') {
+      classes = e.composedPath().map(t => (t as HTMLElement).className);
+    }
+    if (classes.includes('item')) {
+      if (classes.includes('grid files')) {
+        return 'file';
+      }
+      if (classes.includes('grid folders')) {
+        return 'folder';
+      }
+    }
     return 'itemExplorer';
   }
 
-  togglePopupMenu(e: MouseEvent) {
+  togglePopupMenu(e: MouseEvent, type: 'press' | 'click') {
     this.appService.popupMenu$.next({
       event: e,
-      type: this.detectTarget(e)
+      type: this.detectTarget(e, type)
     });
   }
 }

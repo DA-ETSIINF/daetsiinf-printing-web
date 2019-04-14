@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
-import {BehaviorSubject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { StreamRightClick } from './models';
 
 @Injectable({
@@ -34,9 +34,19 @@ export class AppService {
   showTerminal = false;
   currentLang = 'es';
 
+  deviceWidth: 'small' | 'large';
+  size: number;
+
+
   popupMenu$ = new BehaviorSubject<StreamRightClick>(null);
 
   constructor(private translateService: TranslateService) {}
+
+  init() {
+    this.widthStatus(window.innerWidth);
+    this.setLang();
+    document.addEventListener('click', () => this.hidePopupMenu());
+  }
 
   setLang() {
     this.translateService.setDefaultLang(this.currentLang);
@@ -50,5 +60,14 @@ export class AppService {
       this.currentLang = 'es';
       this.translateService.use('es');
     }
+  }
+
+  widthStatus(size) {
+    this.size = size;
+    this.deviceWidth = size < 992 ? 'small' : 'large';
+  }
+
+  hidePopupMenu() {
+    this.popupMenu$.next(null);
   }
 }

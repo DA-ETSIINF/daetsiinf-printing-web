@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../files.service';
-import { AppComponent } from '../../app.component';
+import { AppService } from '../../app.service';
 import { FileToPrint } from '../../models';
 import { UserService } from '../../login/user.service';
 import { UserInfo } from '../../models';
@@ -21,7 +21,7 @@ export class QueueComponent implements OnInit {
   // This var represents if we need to show the funds.
   showMyMoney = true;
   constructor(
-    private appComponent: AppComponent,
+    private appService: AppService,
     private filesService: FilesService,
     private userService: UserService,
     private router: Router
@@ -56,7 +56,7 @@ export class QueueComponent implements OnInit {
   }
 
   getWindowSize() {
-    return this.appComponent.size;
+    return this.appService.size;
   }
 
   setDoubledSided(bool: boolean, i: number) {

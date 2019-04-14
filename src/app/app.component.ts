@@ -7,32 +7,18 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  deviceWidth: 'small' | 'large';
-  size: number;
-
   constructor(private appService: AppService) {}
 
-  ngOnInit() {
-    this.widthStatus(window.innerWidth);
-    this.appService.setLang();
-    document.addEventListener('click', () => this.hidePopupMenu());
-  }
-
-  widthStatus(size) {
-    this.size = size;
-    this.deviceWidth = size < 992 ? 'small' : 'large';
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.widthStatus(event.target.innerWidth);
+  ngOnInit(): void {
+    this.appService.init();
   }
 
   showTerminal(): boolean {
     return !this.appService.showTerminal;
   }
 
-  hidePopupMenu() {
-    this.appService.popupMenu$.next(null)
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.appService.widthStatus(event.target.innerWidth);
   }
 }
