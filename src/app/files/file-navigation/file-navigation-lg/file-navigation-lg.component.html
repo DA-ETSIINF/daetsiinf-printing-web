@@ -1,0 +1,26 @@
+<header>
+  <div class="breadcrumb">
+    <div *ngIf="getUserOS() === 'Linux'">
+      <span class="name">/home/</span>
+    </div>
+    <div *ngIf="getUserOS() === 'Windows'">
+      <span class="name">C://</span>
+      </div>
+    <div class="folder" *ngFor="let folder of path; let i = index;" (click)="showPathOptions(i)" >
+      <i class="material-icons">folder</i>
+      <span class="name" translate>{{folder.name}}</span>
+      <div [ngClass]="{'open': sidebarStatues[i] === 'open'}" class="sidebar">
+        <ul *ngIf="sidebarStatues[i] === 'open'" >
+          <li *ngFor="let item of folder.folders">
+            <i class="material-icons">folder</i>
+            <span>{{item.name}}</span>
+          </li>
+          <li *ngFor="let item of folder.files">
+            <i class="material-icons">picture_as_pdf</i>
+            <span>{{item.name}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

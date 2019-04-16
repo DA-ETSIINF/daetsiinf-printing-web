@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
-import { StreamRightClick } from './models';
+import {StreamRightClick, userOS} from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +69,27 @@ export class AppService {
 
   hidePopupMenu() {
     this.popupMenu$.next(null);
+  }
+
+  getUserOS(): userOS {
+    const userAgent = window.navigator.userAgent,
+      platform = window.navigator.platform,
+      macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+      windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+      iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+    let os = null;
+
+    if (macosPlatforms.indexOf(platform) !== -1) {
+      return 'Mac OS';
+    } else if (iosPlatforms.indexOf(platform) !== -1) {
+      return 'iOS';
+    } else if (windowsPlatforms.indexOf(platform) !== -1) {
+      return 'Windows';
+    } else if (/Android/.test(userAgent)) {
+      return 'Android';
+    } else if (!os && /Linux/.test(platform)) {
+      return 'Linux';
+    }
+    return undefined;
   }
 }

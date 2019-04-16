@@ -1,0 +1,84 @@
+aside nav {
+  flex: 1;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  font-size: 17px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+nav ul li .files-menu__option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-weight: 700;
+  height: 34px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+nav ul li.active .files-menu__option {
+  width: 220px;
+  border-left: 9px solid var(--primary-5);
+  background: var(--neutrals-8);
+  margin-left: 0;
+}
+
+nav ul li .files-menu__option span {
+  width: 180px;
+}
+
+nav ul li .files-menu__option i {
+  padding-right: 5px;
+  transition: 0.1s all ease;
+}
+
+.divider {
+  background: pink;
+  height: 1px;
+  width: 200px;
+  margin: 10px 0;
+}
+
+.items {
+  font-size: 13px;
+  margin-left: 30px;
+  margin-right: 5px;
+  list-style: none;
+  max-height: 0;
+  overflow-y: hidden;
+  transition: 0.2s all ease;
+}
+
+.show-aside-subjects {
+  max-height: 200px;
+}
+
+.items li {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.items li span {
+  font-size: 13px;
+}
+
+.items i {
+  color: var(--neutrals-4);
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.lang {
+  margin-left: 46px;
+  font-size: 14px;
+}

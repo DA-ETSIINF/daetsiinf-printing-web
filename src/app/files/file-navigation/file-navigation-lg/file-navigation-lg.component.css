@@ -1,0 +1,141 @@
+.breadcrumb {
+  display: flex;
+  margin-left: 15px;
+}
+.breadcrumb > div {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  padding: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.breadcrumb > div  i {
+  font-size: 17px;
+  color: var(--neutrals-5);
+}
+
+.breadcrumb > div  .name {
+  margin-left: 2px;
+  color: var(--primary-1);
+  font-weight: bold;
+  padding: 2px;
+  padding-right: 0;
+  border-radius: 4px;
+}
+
+.breadcrumb > div .sidebar{
+  background: var(--neutrals-4);
+  width: 2px;
+  height: 50%;
+  position: absolute;
+  transform: rotate(20deg);
+  top: 7px;
+  right: -8px;
+  transition: .3s;
+  border-radius: 3px;
+
+}
+
+.breadcrumb > div .sidebar.open {
+  --nelements: 1;
+  background: var(--neutrals-9);
+  transform: rotate(0);
+  animation-name: sidebar;
+  animation-duration: .6s;
+  animation-timing-function: ease-in-out;
+  height: calc(10px + 26px * var(--nelements));
+  width: 200px;
+  right: -213px;
+  z-index: 900;
+  top: 0;
+  border-left: 5px solid var(--complementary-4);
+  box-shadow: 0px 4px 27px -11px var(--neutrals-1);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+@keyframes sidebar {
+  0% {
+    top:7px;
+    height: 50%;
+    width: 2px;
+    right: -8px;
+    border-left: 0;
+    overflow-y: hidden;
+  }
+  20% {
+    height: 50%;
+    width: 2px;
+  }
+  60% {
+    background: var(--neutrals-4);
+    height: calc(26px * var(--nelements));
+    width: 5px;
+    border-left: 0;
+  }
+  61%{
+    background: var(--neutrals-9);
+    border-left: 5px solid var(--complementary-4);
+    box-shadow: 0px 0px 0px 0px var(--neutrals-1);
+
+  }
+  100% {
+    width: 200px;
+    top: 0;
+    right: -213px;
+    box-shadow: 0px 4px 27px -11px var(--neutrals-1);
+    overflow-y: hidden;
+  }
+}
+
+@keyframes showlist {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+    margin-left: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0;
+  }
+}
+
+.sidebar ul {
+  animation-name: showlist;
+  animation-duration: .8s;
+  list-style: none;
+  margin-top: 5px;
+}
+.sidebar ul li {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  border-radius: 50px 0 0 50px;
+}
+
+.sidebar ul li:hover {
+  background: var(--neutrals-8);
+
+}
+.sidebar ul li i{
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.sidebar ul li span {
+  font-size: 13px;
+}
+
+.folder {
+  padding-right: 3px;
+}
+
+.folder:hover {
+  background: var(--neutrals-8);
+}

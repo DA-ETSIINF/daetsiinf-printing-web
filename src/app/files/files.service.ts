@@ -49,6 +49,8 @@ export class FilesService implements OnInit {
     typeOfItem: 'file' | 'folder';
   }>();
 
+  currentFolderId$ = new BehaviorSubject<number>(0);
+
   // 0 means my-files
   // 1 means shared-with-me
   index$ = new BehaviorSubject<0 | 1>(0);
@@ -74,11 +76,7 @@ export class FilesService implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(() => {
       const currentPage = this.router.routerState.snapshot.url;
-      if (currentPage === '/my-files') {
-        this.index$.next(0);
-      } else if (currentPage === '/shared-with-me') {
-        this.index$.next(1);
-      }
+      this.index$.next(currentPage.includes('/my-files') ? 0 : 1);
     });
   }
 
@@ -132,18 +130,49 @@ export class FilesService implements OnInit {
   }
 
   private findFolderRecursion(id: number, folder: Folder[]): Folder {
+    let foundedFolder;
     folder.forEach(f => {
       if (f.id === id) {
-        return f;
+        foundedFolder = f;
+      }
+    });
+    if (foundedFolder !== undefined) {
+      return foundedFolder;
+    }
+
+    folder.forEach(f => {
+      foundedFolder = this.findFolderRecursion(id, f.folders);
+    });
+
+    if (foundedFolder !== undefined) {
+      return foundedFolder;
+    }
+    return undefined;
+  }
+
+  getPath(id: number): Folder[] {
+    return this.getPathRecursion(id, this.files, []);
+  }
+
+  private getPathRecursion(id: number, folder: Folder[], path: Folder[]): Folder[] {
+    let foundedFolder: Folder;
+    folder.forEach(f => {
+      if (f.id === id) {
+        foundedFolder = f;
       }
     });
 
+    if (foundedFolder !== undefined) {
+      path.push(foundedFolder)
+      return path;
+    }
+
     folder.forEach(f => {
-      if (f.id === id) {
-        return this.findFolderRecursion(id, f.folders);
-      }
+      path.push(f);
+      this.getPathRecursion(id, f.folders, path);
     });
-    return undefined;
+
+    return path;
   }
 
   updateShowing(id: number, type: 'myFiles' | 'sharedWithMe'): ShowedItems {
@@ -182,6 +211,8 @@ export class FilesService implements OnInit {
             this.updateShowing(-1, 'myFiles'),
             { id: 0, name: '', files: [], folders: [] }
           ]);
+          // TODO: This only works on root folder, must be repair
+          this.currentFolderId$.next(this.files[this.index$.getValue()].id);
         },
         () => {
           this.notificationsService.addNotification({

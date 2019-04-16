@@ -71,3 +71,5 @@ export interface ItemMenu {
   icon: string;
   functionToRun: Function;
 }
+
+export type userOS = 'Windows' | 'Linux' | 'iOS' | 'Mac OS' | 'Android';

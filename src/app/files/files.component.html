@@ -4,8 +4,9 @@
   <app-aside></app-aside>
   <main [ngClass]="{'grid': (itemShowing.files.length + itemShowing.folders.length !== 0)}" (swipeleft)="goTo('/shared-with-me')"
     (swiperight)="goTo('/my-files')">
-
+    <app-file-navigation></app-file-navigation>
     <div class="items" appDropZone (hovered)="toggleHover($event)" (dropped)="droppedFiles($event)" [class.hovering]="isHovering" (contextmenu)="togglePopupMenu($event, 'click')">
+
       <section class="empty" *ngIf="itemShowing.files.length + itemShowing.folders.length === 0">
         <img src="./assets/img/svg/empty.svg">
         <p>

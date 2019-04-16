@@ -44,6 +44,9 @@ import { SelectComponent } from './ui-kit/select/select.component';
 import { PrinterDropZoneComponent } from './files/printer-drop-zone/printer-drop-zone.component';
 import { FloatingMenuComponent } from './ui-kit/floating-menu/floating-menu.component';
 import { TreeComponent } from './files/tree/tree.component';
+import { FileNavigationComponent } from './files/file-navigation/file-navigation.component';
+import { FileNavigationLgComponent } from './files/file-navigation/file-navigation-lg/file-navigation-lg.component';
+import { FileNavigationSmComponent } from './files/file-navigation/file-navigation-sm/file-navigation-sm.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import { TreeComponent } from './files/tree/tree.component';
     SelectComponent,
     PrinterDropZoneComponent,
     FloatingMenuComponent,
-    TreeComponent
+    TreeComponent,
+    FileNavigationComponent,
+    FileNavigationLgComponent,
+    FileNavigationSmComponent
   ],
   imports: [
     BrowserModule,
