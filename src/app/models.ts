@@ -24,6 +24,8 @@ export interface Folder {
 }
 
 export interface ShowedItems {
+  id: number;
+  name: string;
   files: FileItem[];
   folders: FolderItem[];
 }

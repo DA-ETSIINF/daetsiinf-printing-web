@@ -17,8 +17,8 @@ import {AppService} from '../app.service';
   styleUrls: ['./files.component.css']
 })
 export class FilesComponent implements OnInit, OnDestroy {
-  currentSelected: ShowedItems = {files: [], folders: []};
-  itemShowing: ShowedItems = {files: [], folders: []};
+  currentSelected: ShowedItems = { id: 0, name: '', files: [], folders: []};
+  itemShowing: ShowedItems = { id: 0, name: '', files: [], folders: []};
   allItems: Folder[] = [];
   itemsInQueue: FileToPrint[];
 
@@ -68,8 +68,8 @@ export class FilesComponent implements OnInit, OnDestroy {
     for (let i = 0; i < items.length; i++) {
       items[i].classList.remove('selected');
     }
-    this.currentSelected = {files: [], folders: []};
-    this.filesService.currentSelected$.next({files: [], folders: []});
+    this.currentSelected = { id: 0, name: '', files: [], folders: []};
+    this.filesService.currentSelected$.next({ id: 0, name: '', files: [], folders: []});
   }
 
   select(event: MouseEvent, itemInfo: FileItem | FolderItem) {

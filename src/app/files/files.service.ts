@@ -3,11 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import {
   BehaviorSubject,
   of,
-  Observable,
   Subject,
-  interval,
-  concat,
-  ReplaySubject
+  concat
 } from 'rxjs';
 
 import {
@@ -28,11 +25,13 @@ export class FilesService implements OnInit {
   files: Folder[] = [];
   files$ = new Subject<Folder[]>();
   showingItems$ = new BehaviorSubject<ShowedItems[]>([
-    { files: [], folders: [] },
-    { files: [], folders: [] }
+    { id: 0, name: '', files: [], folders: [] },
+    { id: 0, name: '', files: [], folders: [] }
   ]);
 
   currentSelected$ = new BehaviorSubject<ShowedItems>({
+    id: 0,
+    name: '',
     files: [],
     folders: []
   });
@@ -85,6 +84,8 @@ export class FilesService implements OnInit {
 
   private appendItem(folderArr: Folder): ShowedItems {
     const results: ShowedItems = {
+      id: 0,
+      name: '',
       folders: [],
       files: []
     };
@@ -179,7 +180,7 @@ export class FilesService implements OnInit {
           console.log(this.files);
           this.showingItems$.next([
             this.updateShowing(-1, 'myFiles'),
-            { files: [], folders: [] }
+            { id: 0, name: '', files: [], folders: [] }
           ]);
         },
         () => {

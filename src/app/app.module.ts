@@ -43,6 +43,7 @@ import { ButtonComponent } from './ui-kit/button/button.component';
 import { SelectComponent } from './ui-kit/select/select.component';
 import { PrinterDropZoneComponent } from './files/printer-drop-zone/printer-drop-zone.component';
 import { FloatingMenuComponent } from './ui-kit/floating-menu/floating-menu.component';
+import { TreeComponent } from './files/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { FloatingMenuComponent } from './ui-kit/floating-menu/floating-menu.comp
     ButtonComponent,
     SelectComponent,
     PrinterDropZoneComponent,
-    FloatingMenuComponent
+    FloatingMenuComponent,
+    TreeComponent
   ],
   imports: [
     BrowserModule,

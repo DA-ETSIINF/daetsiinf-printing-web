@@ -21,18 +21,22 @@ main .grid {
 
 .items {
   background: var(--neutrals-10);
-  padding: 25px 40px;
-  box-shadow: 0 3px 19px -9px black;
-  border-radius: 15px;
-  border: 5px dashed transparent;
   position: relative;
   min-height: calc(100% - 112px);
 }
 
-.items.hovering {
-  background: var(--complementary-10);
-  border-radius: 5px;
-  border: 5px dashed var(--complementary-5);
+@media screen and (min-width: 992px) {
+  .items {
+    padding: 25px 40px;
+    box-shadow: 0 3px 19px -9px black;
+    border-radius: 15px;
+    border: 5px dashed transparent;
+  }
+  .items.hovering {
+    background: var(--complementary-10);
+    border-radius: 5px;
+    border: 5px dashed var(--complementary-5);
+  }
 }
 
 h5 {
